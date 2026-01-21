@@ -1,5 +1,5 @@
 import type { Core } from '@strapi/strapi';
-import { brands, categories, faqs, products } from './data';
+import { brands, categories, faqs, headerAbout, headerContact, products } from './data';
 
 export async function seedDatabase(strapi: Core.Strapi) {
   const shouldSeed = process.env.SEED_DATABASE === 'true';
@@ -202,6 +202,111 @@ export async function seedDatabase(strapi: Core.Strapi) {
           }
         }
       }
+    }
+
+    // Seed Header About (Single Type)
+    strapi.log.info('Seeding Header About...');
+    try {
+      const existingHeaderAbout = await strapi
+        .documents('api::header-about.header-about')
+        .findFirst({
+          locale: 'en',
+        });
+
+      if (!existingHeaderAbout) {
+        const createdHeaderAbout = await strapi.documents('api::header-about.header-about').create({
+          data: {
+            paragraph1: headerAbout.paragraph1,
+            paragraph2: headerAbout.paragraph2,
+            locale: 'en',
+            publishedAt: new Date(),
+          },
+        });
+        strapi.log.info('Created Header About (EN)');
+
+        // Create localizations
+        for (const [locale, locData] of Object.entries(headerAbout.localizations)) {
+          try {
+            await strapi.documents('api::header-about.header-about').update({
+              documentId: createdHeaderAbout.documentId,
+              locale,
+              data: {
+                paragraph1: locData.paragraph1,
+                paragraph2: locData.paragraph2,
+                publishedAt: new Date(),
+              },
+            });
+            strapi.log.info(`Created Header About (${locale.toUpperCase()})`);
+          } catch (_e) {
+            strapi.log.warn(`Failed to create ${locale} localization for Header About`);
+          }
+        }
+      } else {
+        strapi.log.info('Header About already exists, skipping...');
+      }
+    } catch (_e) {
+      strapi.log.warn('Header About content type not found, skipping...');
+    }
+
+    // Seed Header Contact (Single Type)
+    strapi.log.info('Seeding Header Contact...');
+    try {
+      const existingHeaderContact = await strapi
+        .documents('api::header-contact.header-contact')
+        .findFirst({
+          locale: 'en',
+        });
+
+      if (!existingHeaderContact) {
+        const createdHeaderContact = await strapi
+          .documents('api::header-contact.header-contact')
+          .create({
+            data: {
+              chatTitle: headerContact.chatTitle,
+              chatLink: headerContact.chatLink,
+              chatUrl: headerContact.chatUrl,
+              socialTitle: headerContact.socialTitle,
+              socialLinks: headerContact.socialLinks,
+              phoneTitle: headerContact.phoneTitle,
+              phoneNumber: headerContact.phoneNumber,
+              deliveryTitle: headerContact.deliveryTitle,
+              deliverySupportLink: headerContact.deliverySupportLink,
+              deliverySupportUrl: headerContact.deliverySupportUrl,
+              deliveryReturnsLink: headerContact.deliveryReturnsLink,
+              deliveryReturnsUrl: headerContact.deliveryReturnsUrl,
+              locale: 'en',
+              publishedAt: new Date(),
+            },
+          });
+        strapi.log.info('Created Header Contact (EN)');
+
+        // Create localizations
+        for (const [locale, locData] of Object.entries(headerContact.localizations)) {
+          try {
+            await strapi.documents('api::header-contact.header-contact').update({
+              documentId: createdHeaderContact.documentId,
+              locale,
+              data: {
+                chatTitle: locData.chatTitle,
+                chatLink: locData.chatLink,
+                socialTitle: locData.socialTitle,
+                phoneTitle: locData.phoneTitle,
+                deliveryTitle: locData.deliveryTitle,
+                deliverySupportLink: locData.deliverySupportLink,
+                deliveryReturnsLink: locData.deliveryReturnsLink,
+                publishedAt: new Date(),
+              },
+            });
+            strapi.log.info(`Created Header Contact (${locale.toUpperCase()})`);
+          } catch (_e) {
+            strapi.log.warn(`Failed to create ${locale} localization for Header Contact`);
+          }
+        }
+      } else {
+        strapi.log.info('Header Contact already exists, skipping...');
+      }
+    } catch (_e) {
+      strapi.log.warn('Header Contact content type not found, skipping...');
     }
 
     strapi.log.info('Database seed completed successfully!');

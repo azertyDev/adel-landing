@@ -495,7 +495,512 @@ export const products = [
       },
     },
   },
+  // Additional Coffee Machines
+  {
+    name: 'Turkish Coffee Maker',
+    slug: 'turkish-coffee-maker',
+    price: 79,
+    inStock: true,
+    colors: ['#B87333', '#000000', '#C0C0C0'],
+    categorySlug: 'coffee-machines',
+    brandSlug: 'adel',
+    description:
+      'Authentic Turkish coffee maker with automatic sand heating simulation. Makes rich, traditional Turkish coffee with perfect foam.',
+    specs: [
+      { label: 'Capacity', value: '4 cups' },
+      { label: 'Power', value: '800W' },
+      { label: 'Auto Shut-off', value: 'Yes' },
+      { label: 'Foam Level', value: 'Adjustable' },
+    ],
+    localizations: {
+      ru: {
+        name: 'Турецкая кофеварка',
+        description:
+          'Аутентичная турецкая кофеварка с имитацией нагрева на песке. Готовит насыщенный традиционный турецкий кофе с идеальной пенкой.',
+        specs: [
+          { label: 'Объём', value: '4 чашки' },
+          { label: 'Мощность', value: '800 Вт' },
+          { label: 'Автоотключение', value: 'Да' },
+          { label: 'Уровень пены', value: 'Регулируемый' },
+        ],
+      },
+      tr: {
+        name: 'Türk Kahve Makinesi',
+        description:
+          'Otomatik kum ısıtma simülasyonlu otantik Türk kahve makinesi. Mükemmel köpüklü geleneksel Türk kahvesi yapar.',
+        specs: [
+          { label: 'Kapasite', value: '4 fincan' },
+          { label: 'Güç', value: '800W' },
+          { label: 'Otomatik Kapanma', value: 'Evet' },
+          { label: 'Köpük Seviyesi', value: 'Ayarlanabilir' },
+        ],
+      },
+    },
+  },
+  {
+    name: 'Latte Art Machine',
+    slug: 'latte-art-machine',
+    price: 1299,
+    inStock: true,
+    colors: ['#C0C0C0', '#000000'],
+    categorySlug: 'coffee-machines',
+    brandSlug: 'adel',
+    description:
+      'Professional barista-grade espresso machine with dual boiler system and PID temperature control. Perfect for latte art enthusiasts.',
+    specs: [
+      { label: 'Boilers', value: 'Dual' },
+      { label: 'Pressure', value: '9 bar' },
+      { label: 'PID Control', value: 'Yes' },
+      { label: 'Steam Power', value: '1800W' },
+      { label: 'Portafilter', value: '58mm' },
+    ],
+    localizations: {
+      ru: {
+        name: 'Latte Art Machine',
+        description:
+          'Профессиональная эспрессо-машина с двойным бойлером и PID-контролем температуры. Идеальна для латте-арта.',
+      },
+      tr: {
+        name: 'Latte Art Machine',
+        description:
+          'Çift kazan sistemi ve PID sıcaklık kontrolü ile profesyonel barista sınıfı espresso makinesi.',
+      },
+    },
+  },
+  {
+    name: 'Moka Pot Electric',
+    slug: 'moka-pot-electric',
+    price: 69,
+    inStock: true,
+    colors: ['#C0C0C0', '#000000', '#FF0000'],
+    categorySlug: 'coffee-machines',
+    brandSlug: 'techhome',
+    description:
+      'Electric version of the classic Italian moka pot. Auto shut-off, keep warm function, and modern design.',
+    specs: [
+      { label: 'Capacity', value: '6 cups' },
+      { label: 'Power', value: '480W' },
+      { label: 'Keep Warm', value: '30 min' },
+      { label: 'Material', value: 'Aluminum + Steel' },
+    ],
+    localizations: {
+      ru: {
+        name: 'Электрическая гейзерная кофеварка',
+        description:
+          'Электрическая версия классической итальянской гейзерной кофеварки. Автоотключение и функция подогрева.',
+      },
+      tr: {
+        name: 'Elektrikli Moka Pot',
+        description:
+          'Klasik İtalyan moka potunun elektrikli versiyonu. Otomatik kapanma ve sıcak tutma özelliği.',
+      },
+    },
+  },
+  {
+    name: 'French Press Thermal',
+    slug: 'french-press-thermal',
+    price: 45,
+    inStock: true,
+    colors: ['#000000', '#C0C0C0', '#B87333'],
+    categorySlug: 'coffee-machines',
+    brandSlug: 'airclean',
+    description:
+      'Double-wall vacuum insulated French press. Keeps coffee hot for hours while brewing the perfect cup.',
+    specs: [
+      { label: 'Capacity', value: '1L' },
+      { label: 'Insulation', value: 'Double Wall' },
+      { label: 'Heat Retention', value: '4 hours' },
+      { label: 'Material', value: 'Stainless Steel' },
+    ],
+    localizations: {
+      ru: {
+        name: 'Термо Френч-пресс',
+        description:
+          'Френч-пресс с двойными стенками и вакуумной изоляцией. Сохраняет кофе горячим часами.',
+      },
+      tr: {
+        name: 'Termal French Press',
+        description: 'Çift cidarlı vakumlu yalıtımlı French press. Kahveyi saatlerce sıcak tutar.',
+      },
+    },
+  },
+  // Additional Kitchen Appliances
+  {
+    name: 'Sous Vide Precision Cooker',
+    slug: 'sous-vide-precision-cooker',
+    price: 129,
+    inStock: true,
+    colors: ['#000000', '#C0C0C0'],
+    categorySlug: 'kitchen-appliances',
+    brandSlug: 'adel',
+    description:
+      'Precision sous vide immersion circulator with WiFi control. Cook restaurant-quality meals at exact temperatures.',
+    specs: [
+      { label: 'Power', value: '1100W' },
+      { label: 'Temperature Range', value: '25-99°C' },
+      { label: 'Accuracy', value: '±0.1°C' },
+      { label: 'WiFi', value: 'Yes' },
+    ],
+    localizations: {
+      ru: {
+        name: 'Sous Vide погружной',
+        description:
+          'Прецизионный погружной циркулятор с WiFi-управлением. Готовьте блюда ресторанного качества.',
+      },
+      tr: {
+        name: 'Sous Vide Hassas Pişirici',
+        description:
+          'WiFi kontrolü ile hassas sous vide daldırma sirkülatörü. Restoran kalitesinde yemekler pişirin.',
+      },
+    },
+  },
+  {
+    name: 'Electric Grill Indoor',
+    slug: 'electric-grill-indoor',
+    price: 159,
+    inStock: true,
+    colors: ['#000000', '#C0C0C0'],
+    categorySlug: 'kitchen-appliances',
+    brandSlug: 'adel',
+    description:
+      'Smokeless indoor electric grill with ceramic non-stick coating. Drip tray for healthy cooking.',
+    specs: [
+      { label: 'Surface', value: '40x30 cm' },
+      { label: 'Power', value: '2000W' },
+      { label: 'Temperature', value: '100-250°C' },
+      { label: 'Coating', value: 'Ceramic' },
+    ],
+    localizations: {
+      ru: {
+        name: 'Электрогриль домашний',
+        description: 'Бездымный домашний электрогриль с керамическим антипригарным покрытием.',
+      },
+      tr: {
+        name: 'Kapalı Alan Elektrikli Izgara',
+        description: 'Seramik yapışmaz kaplama ile dumansız kapalı alan elektrikli ızgara.',
+      },
+    },
+  },
+  {
+    name: 'Ice Cream Maker',
+    slug: 'ice-cream-maker',
+    price: 89,
+    inStock: true,
+    colors: ['#FFFFFF', '#FFB6C1', '#87CEEB'],
+    categorySlug: 'kitchen-appliances',
+    brandSlug: 'techhome',
+    description:
+      'Automatic ice cream maker with built-in compressor. Make fresh ice cream, gelato, or sorbet in 30 minutes.',
+    specs: [
+      { label: 'Capacity', value: '1.5L' },
+      { label: 'Compressor', value: 'Built-in' },
+      { label: 'Time', value: '30-60 min' },
+      { label: 'Power', value: '150W' },
+    ],
+    localizations: {
+      ru: {
+        name: 'Мороженица',
+        description:
+          'Автоматическая мороженица со встроенным компрессором. Свежее мороженое за 30 минут.',
+      },
+      tr: {
+        name: 'Dondurma Makinesi',
+        description:
+          'Dahili kompresörlü otomatik dondurma makinesi. 30 dakikada taze dondurma yapın.',
+      },
+    },
+  },
+  {
+    name: 'Bread Maker Pro',
+    slug: 'bread-maker-pro',
+    price: 179,
+    inStock: true,
+    colors: ['#FFFFFF', '#000000', '#C0C0C0'],
+    categorySlug: 'kitchen-appliances',
+    brandSlug: 'adel',
+    description:
+      'Automatic bread maker with 15 programs including gluten-free and artisan bread. Delayed start timer.',
+    specs: [
+      { label: 'Loaf Size', value: '500g-1kg' },
+      { label: 'Programs', value: '15' },
+      { label: 'Timer', value: '13 hours' },
+      { label: 'Power', value: '550W' },
+    ],
+    localizations: {
+      ru: {
+        name: 'Хлебопечка Pro',
+        description:
+          'Автоматическая хлебопечка с 15 программами, включая безглютеновый и ремесленный хлеб.',
+      },
+      tr: {
+        name: 'Ekmek Yapma Makinesi Pro',
+        description:
+          'Glutensiz ve zanaatkar ekmek dahil 15 programlı otomatik ekmek yapma makinesi.',
+      },
+    },
+  },
+  {
+    name: 'Vacuum Sealer',
+    slug: 'vacuum-sealer',
+    price: 79,
+    inStock: true,
+    colors: ['#000000', '#FFFFFF'],
+    categorySlug: 'kitchen-appliances',
+    brandSlug: 'airclean',
+    description:
+      'Food vacuum sealer for long-term storage. Works with bags and containers. Marinate mode included.',
+    specs: [
+      { label: 'Vacuum', value: '-0.8 bar' },
+      { label: 'Seal Width', value: '30 cm' },
+      { label: 'Modes', value: 'Dry, Moist, Marinate' },
+      { label: 'Power', value: '120W' },
+    ],
+    localizations: {
+      ru: {
+        name: 'Вакууматор',
+        description:
+          'Вакуумный упаковщик для длительного хранения продуктов. Работает с пакетами и контейнерами.',
+      },
+      tr: {
+        name: 'Vakum Makinesi',
+        description: 'Uzun süreli saklama için gıda vakum makinesi. Poşet ve kaplarla çalışır.',
+      },
+    },
+  },
+  {
+    name: 'Electric Wok',
+    slug: 'electric-wok',
+    price: 99,
+    inStock: true,
+    colors: ['#000000', '#FF0000'],
+    categorySlug: 'kitchen-appliances',
+    brandSlug: 'techhome',
+    description:
+      'Large capacity electric wok with non-stick coating. High heat for authentic stir-fry cooking.',
+    specs: [
+      { label: 'Capacity', value: '5L' },
+      { label: 'Power', value: '2400W' },
+      { label: 'Temperature', value: 'up to 240°C' },
+      { label: 'Coating', value: 'Non-stick' },
+    ],
+    localizations: {
+      ru: {
+        name: 'Электрический вок',
+        description:
+          'Электрический вок большой ёмкости с антипригарным покрытием для аутентичной азиатской кухни.',
+      },
+      tr: {
+        name: 'Elektrikli Wok',
+        description:
+          'Yapışmaz kaplama ile büyük kapasiteli elektrikli wok. Otantik Asya mutfağı için.',
+      },
+    },
+  },
+  // Additional Air Purifiers
+  {
+    name: 'Desktop Air Purifier',
+    slug: 'desktop-air-purifier',
+    price: 49,
+    inStock: true,
+    colors: ['#FFFFFF', '#000000', '#87CEEB'],
+    categorySlug: 'air-purifiers',
+    brandSlug: 'techhome',
+    description:
+      'Ultra-compact desktop air purifier with negative ion generator. Perfect for office desks and nightstands.',
+    specs: [
+      { label: 'Coverage', value: '10 sqm' },
+      { label: 'Ionizer', value: 'Yes' },
+      { label: 'Noise Level', value: '< 25 dB' },
+      { label: 'Power', value: 'USB' },
+    ],
+    localizations: {
+      ru: {
+        name: 'Настольный очиститель воздуха',
+        description: 'Ультракомпактный настольный очиститель с генератором отрицательных ионов.',
+      },
+      tr: {
+        name: 'Masaüstü Hava Temizleyici',
+        description: 'Negatif iyon jeneratörlü ultra kompakt masaüstü hava temizleyici.',
+      },
+    },
+  },
+  {
+    name: 'Air Purifier with UV-C',
+    slug: 'air-purifier-uv-c',
+    price: 349,
+    inStock: true,
+    colors: ['#FFFFFF'],
+    categorySlug: 'air-purifiers',
+    brandSlug: 'adel',
+    description:
+      'Advanced air purifier with UV-C light sterilization. Destroys 99.9% of bacteria and viruses.',
+    specs: [
+      { label: 'Coverage', value: '45 sqm' },
+      { label: 'UV-C', value: '254nm Germicidal' },
+      { label: 'Filter', value: 'HEPA H14' },
+      { label: 'CADR', value: '350 m³/h' },
+    ],
+    localizations: {
+      ru: {
+        name: 'Очиститель воздуха с UV-C',
+        description:
+          'Продвинутый очиститель воздуха с UV-C стерилизацией. Уничтожает 99.9% бактерий и вирусов.',
+      },
+      tr: {
+        name: 'UV-C Hava Temizleyici',
+        description:
+          'UV-C ışık sterilizasyonlu gelişmiş hava temizleyici. Bakteri ve virüslerin %99.9unu yok eder.',
+      },
+    },
+  },
+  {
+    name: 'Tower Air Purifier',
+    slug: 'tower-air-purifier',
+    price: 449,
+    inStock: true,
+    colors: ['#FFFFFF', '#000000'],
+    categorySlug: 'air-purifiers',
+    brandSlug: 'adel',
+    description:
+      'Elegant tower design air purifier with 360° air intake. True HEPA + activated carbon for odor removal.',
+    specs: [
+      { label: 'Coverage', value: '80 sqm' },
+      { label: 'CADR', value: '600 m³/h' },
+      { label: 'Filter', value: '3-in-1 HEPA' },
+      { label: 'Noise Level', value: '22-52 dB' },
+    ],
+    localizations: {
+      ru: {
+        name: 'Башенный очиститель воздуха',
+        description:
+          'Элегантный башенный очиститель с 360° забором воздуха. True HEPA + активированный уголь.',
+      },
+      tr: {
+        name: 'Kule Hava Temizleyici',
+        description:
+          '360° hava girişli zarif kule tasarımlı hava temizleyici. Koku giderme için aktif karbon.',
+      },
+    },
+  },
+  {
+    name: 'Pet Air Purifier',
+    slug: 'pet-air-purifier',
+    price: 199,
+    inStock: true,
+    colors: ['#FFFFFF', '#87CEEB'],
+    categorySlug: 'air-purifiers',
+    brandSlug: 'airclean',
+    description:
+      'Specialized air purifier for pet owners. Extra-strong filter captures pet dander, hair, and odors.',
+    specs: [
+      { label: 'Coverage', value: '40 sqm' },
+      { label: 'Pet Filter', value: 'Enhanced HEPA' },
+      { label: 'Carbon Filter', value: 'Extra Thick' },
+      { label: 'CADR', value: '300 m³/h' },
+    ],
+    localizations: {
+      ru: {
+        name: 'Очиститель воздуха для владельцев питомцев',
+        description:
+          'Специализированный очиститель для владельцев домашних животных. Усиленный фильтр против шерсти и запахов.',
+      },
+      tr: {
+        name: 'Evcil Hayvan Hava Temizleyici',
+        description:
+          'Evcil hayvan sahipleri için özel hava temizleyici. Tüy ve koku giderme için güçlendirilmiş filtre.',
+      },
+    },
+  },
+  {
+    name: 'Whole House Air Purifier',
+    slug: 'whole-house-air-purifier',
+    price: 699,
+    inStock: true,
+    colors: ['#FFFFFF'],
+    categorySlug: 'air-purifiers',
+    brandSlug: 'adel',
+    description:
+      'Industrial-grade air purifier for whole house coverage. Medical-grade H14 HEPA filter with smart sensors.',
+    specs: [
+      { label: 'Coverage', value: '150 sqm' },
+      { label: 'CADR', value: '800 m³/h' },
+      { label: 'Filter', value: 'Medical H14 HEPA' },
+      { label: 'Sensors', value: 'PM2.5, VOC, CO2' },
+    ],
+    localizations: {
+      ru: {
+        name: 'Очиститель воздуха для всего дома',
+        description:
+          'Промышленный очиститель для всего дома. Медицинский H14 HEPA фильтр с умными датчиками.',
+      },
+      tr: {
+        name: 'Tüm Ev Hava Temizleyici',
+        description:
+          'Tüm ev kapsamı için endüstriyel sınıf hava temizleyici. Akıllı sensörlü medikal H14 HEPA filtre.',
+      },
+    },
+  },
 ];
+
+export const headerAbout = {
+  paragraph1:
+    'At ADEL, we design small home appliances that combine refined aesthetics with everyday performance. Every product is created with attention to detail, intuitive usability, and long-lasting quality.',
+  paragraph2:
+    'We believe technology should feel simple, elegant, and reliable — seamlessly fitting into modern life.',
+  localizations: {
+    ru: {
+      paragraph1:
+        'В ADEL мы создаём малую бытовую технику, сочетающую изысканную эстетику с повседневной функциональностью. Каждый продукт разработан с вниманием к деталям, интуитивной простотой использования и долговечным качеством.',
+      paragraph2:
+        'Мы верим, что технологии должны быть простыми, элегантными и надёжными — органично вписываясь в современную жизнь.',
+    },
+    tr: {
+      paragraph1:
+        "ADEL'de, zarif estetiği günlük performansla birleştiren küçük ev aletleri tasarlıyoruz. Her ürün, detaylara özen, sezgisel kullanılabilirlik ve uzun ömürlü kalite ile oluşturulmaktadır.",
+      paragraph2:
+        'Teknolojinin basit, şık ve güvenilir hissettirmesi gerektiğine inanıyoruz — modern yaşama sorunsuzca uyum sağlayarak.',
+    },
+  },
+};
+
+export const headerContact = {
+  chatTitle: 'Chat support',
+  chatLink: 'Support 24/7',
+  chatUrl: '#',
+  socialTitle: 'Social media',
+  socialLinks: [
+    { platform: 'facebook', url: 'https://facebook.com/adel', label: 'facebook.com' },
+    { platform: 'instagram', url: 'https://instagram.com/adel', label: 'linkforinsta.com' },
+    { platform: 'twitter', url: 'https://twitter.com/adel', label: 'twitterlink.com' },
+  ],
+  phoneTitle: 'Phone',
+  phoneNumber: '123 254 85',
+  deliveryTitle: 'Delivery and returns',
+  deliverySupportLink: 'Online support for your order',
+  deliverySupportUrl: '#',
+  deliveryReturnsLink: 'Return policy',
+  deliveryReturnsUrl: '#',
+  localizations: {
+    ru: {
+      chatTitle: 'Чат поддержки',
+      chatLink: 'Поддержка 24/7',
+      socialTitle: 'Социальные сети',
+      phoneTitle: 'Телефон',
+      deliveryTitle: 'Доставка и возврат',
+      deliverySupportLink: 'Онлайн поддержка вашего заказа',
+      deliveryReturnsLink: 'Политика возврата',
+    },
+    tr: {
+      chatTitle: 'Sohbet desteği',
+      chatLink: '7/24 Destek',
+      socialTitle: 'Sosyal medya',
+      phoneTitle: 'Telefon',
+      deliveryTitle: 'Teslimat ve iade',
+      deliverySupportLink: 'Siparişiniz için online destek',
+      deliveryReturnsLink: 'İade politikası',
+    },
+  },
+};
 
 export const faqs = [
   {
