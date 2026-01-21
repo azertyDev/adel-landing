@@ -1,0 +1,204 @@
+// Strapi v5 API response types
+
+export interface StrapiMeta {
+  pagination?: {
+    page: number;
+    pageSize: number;
+    pageCount: number;
+    total: number;
+  };
+}
+
+export interface StrapiResponse<T> {
+  data: T;
+  meta: StrapiMeta;
+}
+
+// In Strapi v5, attributes are flattened directly on the entity
+export interface StrapiEntity {
+  id: number;
+  documentId: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  locale: string;
+}
+
+// Media types
+export interface StrapiMedia {
+  id: number;
+  documentId: string;
+  name: string;
+  alternativeText: string | null;
+  caption: string | null;
+  width: number;
+  height: number;
+  formats: {
+    thumbnail?: StrapiImageFormat;
+    small?: StrapiImageFormat;
+    medium?: StrapiImageFormat;
+    large?: StrapiImageFormat;
+  };
+  url: string;
+}
+
+export interface StrapiImageFormat {
+  name: string;
+  hash: string;
+  ext: string;
+  mime: string;
+  width: number;
+  height: number;
+  size: number;
+  url: string;
+}
+
+// Spec type
+export interface ProductSpec {
+  label: string;
+  value: string;
+}
+
+// Strapi v5 entity types (attributes are flattened)
+export interface StrapiProduct extends StrapiEntity {
+  name: string;
+  slug: string;
+  description: string;
+  price: number;
+  originalPrice: number | null;
+  colors: string[];
+  specs: ProductSpec[];
+  inStock: boolean;
+  images: StrapiMedia[];
+  category?: StrapiCategory;
+  brand?: StrapiBrand;
+}
+
+export interface StrapiCategory extends StrapiEntity {
+  name: string;
+  slug: string;
+  description?: string;
+  image?: StrapiMedia;
+}
+
+export interface StrapiBrand extends StrapiEntity {
+  name: string;
+  slug: string;
+  logo?: StrapiMedia;
+}
+
+export interface StrapiFAQ extends StrapiEntity {
+  question: string;
+  answer: string;
+  order: number;
+}
+
+// Mapped types for frontend use
+export interface Product {
+  id: string;
+  slug: string;
+  name: string;
+  description: string;
+  price: number;
+  originalPrice: number | null;
+  currency: string;
+  colors: string[];
+  specs: ProductSpec[];
+  inStock: boolean;
+  images: string[];
+  categoryId: string;
+  brandId: string;
+}
+
+export interface Category {
+  id: string;
+  name: string;
+  slug: string;
+  description: string | null;
+  image: string | null;
+}
+
+export interface Brand {
+  id: string;
+  name: string;
+  slug: string;
+  logo: string | null;
+}
+
+export interface FAQItem {
+  id: string;
+  question: string;
+  answer: string;
+  order: number;
+}
+
+// Why Us types
+export interface StrapiWhyUsFeature {
+  id: number;
+  icon: StrapiMedia;
+  title: string;
+  description: string;
+}
+
+export interface StrapiWhyUs extends StrapiEntity {
+  sectionTitle: string;
+  features: StrapiWhyUsFeature[];
+}
+
+export interface WhyUsFeature {
+  id: number;
+  icon: string | null;
+  title: string;
+  description: string;
+}
+
+export interface WhyUsSection {
+  sectionTitle: string;
+  features: WhyUsFeature[];
+}
+
+// About Us types
+export interface StrapiAboutUs extends StrapiEntity {
+  sectionTitle: string;
+  heading: string;
+  backgroundImage: StrapiMedia;
+  buttonText: string;
+  buttonLink: string;
+}
+
+export interface AboutUsSection {
+  sectionTitle: string;
+  heading: string;
+  backgroundImage: string | null;
+  buttonText: string;
+  buttonLink: string;
+}
+
+// Hero types
+export interface StrapiHero extends StrapiEntity {
+  title: string;
+  subtitle: string;
+  ctaText: string;
+  ctaLink: string;
+  backgroundVideo: StrapiMedia;
+}
+
+export interface HeroSection {
+  title: string;
+  subtitle: string;
+  ctaText: string;
+  ctaLink: string;
+  backgroundVideo: string | null;
+}
+
+// Color types
+export interface StrapiColor extends StrapiEntity {
+  name: string;
+  hex: string;
+}
+
+export interface Color {
+  id: string;
+  name: string;
+  hex: string;
+}

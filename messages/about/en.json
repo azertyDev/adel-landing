@@ -1,0 +1,18 @@
+{
+  "hero": {
+    "subtitle": "Building quality home appliances since 2010",
+    "title": "Our Story"
+  },
+  "mission": {
+    "description": "To provide high-quality, innovative home appliances that enhance everyday living while maintaining exceptional standards of design and durability.",
+    "title": "Our Mission"
+  },
+  "title": "About Us",
+  "values": {
+    "customer": "Customer Focus",
+    "innovation": "Innovation",
+    "quality": "Quality First",
+    "sustainability": "Sustainability",
+    "title": "Our Values"
+  }
+}

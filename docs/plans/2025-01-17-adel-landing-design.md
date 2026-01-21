@@ -1358,7 +1358,7 @@ export function generateFAQSchema(faqs: Array<{ question: string; answer: string
 const config: NextConfig = {
   images: {
     remotePatterns: [
-      { protocol: 'https', hostname: 'api.adel.com', pathname: '/images/**' },
+      { protocol: 'https', hostname: 'api.adel.com', pathname: '/image/**' },
       { protocol: 'https', hostname: 'cdn.adel.com', pathname: '/**' },
     ],
     formats: ['image/avif', 'image/webp'],

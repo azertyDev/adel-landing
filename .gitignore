@@ -23,6 +23,8 @@
 # misc
 .DS_Store
 *.pem
+.idea/
+Adel design/
 
 # debug
 npm-debug.log*

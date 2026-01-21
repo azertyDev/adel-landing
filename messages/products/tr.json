@@ -1,0 +1,28 @@
+{
+  "filters": {
+    "apply": "Filtreleri Uygula",
+    "brands": "Markalar",
+    "categories": "Kategoriler",
+    "clearAll": "Tümünü Temizle",
+    "colors": "Renkler",
+    "maxPrice": "Maks fiyat",
+    "minPrice": "Min fiyat",
+    "price": "Fiyat",
+    "priceRange": "Fiyat Aralığı",
+    "showResults": "Sonuçları göster",
+    "title": "Filtreler"
+  },
+  "noResults": {
+    "description": "Filtrelerinizi veya arama terimlerinizi ayarlamayı deneyin",
+    "title": "Ürün bulunamadı"
+  },
+  "sort": {
+    "label": "Sırala",
+    "nameAsc": "İsim: A-Z",
+    "nameDesc": "İsim: Z-A",
+    "newest": "En Yeni",
+    "priceAsc": "Fiyat: Düşükten Yükseğe",
+    "priceDesc": "Fiyat: Yüksekten Düşüğe"
+  },
+  "title": "Tüm Ürünler"
+}

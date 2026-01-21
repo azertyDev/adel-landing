@@ -1,0 +1,167 @@
+{
+  "about": {
+    "hero": {
+      "subtitle": "2010'dan beri kaliteli ev aletleri üretiyoruz",
+      "title": "Hikayemiz"
+    },
+    "mission": {
+      "description": "Olağanüstü tasarım ve dayanıklılık standartlarını korurken günlük yaşamı geliştiren yüksek kaliteli, yenilikçi ev aletleri sunmak.",
+      "title": "Misyonumuz"
+    },
+    "title": "Hakkımızda",
+    "values": {
+      "customer": "Müşteri Odaklılık",
+      "innovation": "Yenilik",
+      "quality": "Önce Kalite",
+      "sustainability": "Sürdürülebilirlik",
+      "title": "Değerlerimiz"
+    }
+  },
+  "common": {
+    "backToHome": "Ana Sayfaya Dön",
+    "close": "Kapat",
+    "error": "Bir hata oluştu",
+    "filter": "Filtrele",
+    "filters": "Filtreler",
+    "learnMore": "Daha Fazla",
+    "loading": "Yükleniyor...",
+    "menu": "Menü",
+    "open": "Aç",
+    "retry": "Tekrar Dene",
+    "search": "Ara",
+    "sort": "Sırala",
+    "viewAll": "Tümünü Gör"
+  },
+  "contact": {
+    "address": {
+      "description": "Ofisimizi ziyaret edin",
+      "title": "Adres"
+    },
+    "chat": {
+      "button": "Sohbet Başlat",
+      "description": "Destek ekibimizle sohbet edin",
+      "title": "Canlı Destek"
+    },
+    "email": {
+      "description": "Bize mesaj gönderin",
+      "title": "E-posta"
+    },
+    "phone": {
+      "description": "Bizi arayın",
+      "title": "Telefon"
+    },
+    "social": {
+      "description": "Bağlantıda kalın",
+      "title": "Bizi Takip Edin"
+    },
+    "subtitle": "Size yardımcı olmak için buradayız",
+    "title": "İletişim"
+  },
+  "faq": {
+    "categories": {
+      "general": "Genel",
+      "orders": "Siparişler ve Kargo",
+      "products": "Ürünler",
+      "returns": "İadeler ve Garanti"
+    },
+    "contactUs": "Bize Ulaşın",
+    "noResults": "Şu anda mevcut soru yok",
+    "notFound": "Aradığınızı bulamadınız mı?",
+    "subtitle": "Yaygın sorulara cevaplar bulun",
+    "title": "Sıkça Sorulan Sorular"
+  },
+  "footer": {
+    "copyright": "© {year} ADEL. Tüm hakları saklıdır.",
+    "description": "Modern yaşam için premium ev aletleri.",
+    "followUs": "Bizi Takip Edin",
+    "privacyPolicy": "Gizlilik Politikası",
+    "quickLinks": "Hızlı Bağlantılar",
+    "support": "Destek",
+    "termsOfService": "Kullanım Şartları"
+  },
+  "home": {
+    "about": {
+      "description": "ADEL, şık tasarımı güvenilir performansla birleştiren premium ev aletleri sunar. Kaliteye olan bağlılığımız, evinizin en iyisiyle donatılmasını sağlar.",
+      "heading": "Akıllı tasarımı evinize getiriyoruz",
+      "title": "Hakkımızda"
+    },
+    "hero": {
+      "cta": "Ürünleri Keşfet",
+      "subtitle": "meets performance",
+      "title": "SIMPLICITY"
+    },
+    "products": {
+      "subtitle": "Premium ev aletleri koleksiyonumuzu keşfedin",
+      "title": "Ürünlerimiz"
+    },
+    "whyUs": {
+      "easyToUse": {
+        "description": "Sezgisel kontroller",
+        "title": "Kullanımı Kolay"
+      },
+      "innovation": {
+        "description": "Son teknoloji özellikler",
+        "title": "Yenilikçi\nTeknoloji"
+      },
+      "quality": {
+        "description": "Uzun ömürlü",
+        "title": "Premium\nKalite"
+      },
+      "title": "Neden ADEL?"
+    }
+  },
+  "navigation": {
+    "about": "Hakkımızda",
+    "contact": "İletişim",
+    "faq": "SSS",
+    "home": "Ana Sayfa",
+    "products": "Ürünler"
+  },
+  "product": {
+    "colors": "Mevcut Renkler",
+    "description": "Açıklama",
+    "discoverMore": "Daha Fazlasını Keşfet",
+    "inStock": "Stokta",
+    "orderNow": "Şimdi Sipariş Ver",
+    "outOfStock": "Stokta Yok",
+    "price": "Fiyat",
+    "relatedProducts": "İlgili Ürünler",
+    "specifications": "Özellikler",
+    "trustBadges": {
+      "returns": "Kolay İade",
+      "shipping": "Ücretsiz Kargo",
+      "support": "7/24 Destek",
+      "warranty": "2 Yıl Garanti"
+    }
+  },
+  "products": {
+    "filters": {
+      "apply": "Filtreleri Uygula",
+      "brands": "Markalar",
+      "categories": "Kategoriler",
+      "clearAll": "Tümünü Temizle",
+      "colors": "Renkler",
+      "discard": "Değişiklikleri sil",
+      "from": "dan",
+      "maxPrice": "Maks fiyat",
+      "minPrice": "Min fiyat",
+      "price": "Fiyat",
+      "priceRange": "Fiyat Aralığı",
+      "showResults": "Sonuçları göster",
+      "to": "a kadar"
+    },
+    "noResults": {
+      "description": "Filtrelerinizi veya arama terimlerinizi ayarlamayı deneyin",
+      "title": "Ürün bulunamadı"
+    },
+    "sort": {
+      "label": "Sırala",
+      "nameAsc": "İsim: A-Z",
+      "nameDesc": "İsim: Z-A",
+      "newest": "En Yeni",
+      "priceAsc": "Fiyat: Düşükten Yükseğe",
+      "priceDesc": "Fiyat: Yüksekten Düşüğe"
+    },
+    "title": "Tüm Ürünler"
+  }
+}

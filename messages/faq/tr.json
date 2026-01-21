@@ -1,0 +1,13 @@
+{
+  "categories": {
+    "general": "Genel",
+    "orders": "Siparişler ve Kargo",
+    "products": "Ürünler",
+    "returns": "İadeler ve Garanti"
+  },
+  "contactUs": "Bize Ulaşın",
+  "noResults": "Şu anda mevcut soru yok",
+  "notFound": "Aradığınızı bulamadınız mı?",
+  "subtitle": "Yaygın sorulara cevaplar bulun",
+  "title": "Sıkça Sorulan Sorular"
+}

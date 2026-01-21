@@ -1,0 +1,20 @@
+{
+  "backToHome": "Ana Sayfaya Dön",
+  "close": "Kapat",
+  "discard": "Değişiklikleri sil",
+  "error": "Bir hata oluştu",
+  "filter": "Filtrele",
+  "learnMore": "Daha Fazla",
+  "loading": "Yükleniyor...",
+  "menu": "Menü",
+  "open": "Aç",
+  "products": {
+    "filters": {
+      "discard": "Değişiklikleri sil"
+    }
+  },
+  "retry": "Tekrar Dene",
+  "search": "Ara",
+  "sort": "Sırala",
+  "viewAll": "Tümünü Gör"
+}

@@ -1,0 +1,28 @@
+{
+  "filters": {
+    "apply": "Apply Filters",
+    "brands": "Brands",
+    "categories": "Categories",
+    "clearAll": "Clear All",
+    "colors": "Colors",
+    "maxPrice": "Max price",
+    "minPrice": "Min price",
+    "price": "Price",
+    "priceRange": "Price",
+    "showResults": "Show results",
+    "title": "Filters"
+  },
+  "noResults": {
+    "description": "Try adjusting your filters or search terms",
+    "title": "No products found"
+  },
+  "sort": {
+    "label": "Sort by",
+    "nameAsc": "Name: A-Z",
+    "nameDesc": "Name: Z-A",
+    "newest": "Newest",
+    "priceAsc": "Price: Low to High",
+    "priceDesc": "Price: High to Low"
+  },
+  "title": "All Products"
+}

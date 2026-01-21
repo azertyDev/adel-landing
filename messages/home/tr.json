@@ -1,0 +1,31 @@
+{
+  "about": {
+    "description": "ADEL, şık tasarımı güvenilir performansla birleştiren premium ev aletleri sunar. Kaliteye olan bağlılığımız, evinizin en iyisiyle donatılmasını sağlar.",
+    "heading": "Akıllı tasarımı evinize getiriyoruz",
+    "title": "Hakkımızda"
+  },
+  "hero": {
+    "cta": "Ürünleri Keşfet",
+    "subtitle": "meets performance",
+    "title": "SIMPLICITY"
+  },
+  "products": {
+    "subtitle": "Premium ev aletleri koleksiyonumuzu keşfedin",
+    "title": "Ürünlerimiz"
+  },
+  "whyUs": {
+    "easyToUse": {
+      "description": "Sezgisel kontroller",
+      "title": "Kullanımı Kolay"
+    },
+    "innovation": {
+      "description": "Son teknoloji özellikler",
+      "title": "Yenilikçi\nTeknoloji"
+    },
+    "quality": {
+      "description": "Uzun ömürlü",
+      "title": "Premium\nKalite"
+    },
+    "title": "Neden ADEL?"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "colors": "Доступные цвета",
+  "description": "Описание",
+  "discoverMore": "Узнать больше",
+  "filters": "Категории",
+  "inStock": "В наличии",
+  "orderNow": "Заказать сейчас",
+  "outOfStock": "Нет в наличии",
+  "price": "Цена",
+  "relatedProducts": "Похожие товары",
+  "specifications": "Характеристики",
+  "trustBadges": {
+    "returns": "Лёгкий возврат",
+    "shipping": "Бесплатная доставка",
+    "support": "Поддержка 24/7",
+    "warranty": "Гарантия 2 года"
+  }
+}

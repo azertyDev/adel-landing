@@ -1,0 +1,27 @@
+export {
+  getAboutUs,
+  getBrand,
+  getBrands,
+  getCategories,
+  getCategory,
+  getColors,
+  getFAQs,
+  getHero,
+  getProduct,
+  getProductBySlug,
+  getProducts,
+  getProductsByCategory,
+  getWhyUs,
+} from './client';
+export type {
+  AboutUsSection,
+  Brand,
+  Category,
+  Color,
+  FAQItem,
+  HeroSection,
+  Product,
+  ProductSpec,
+  WhyUsFeature,
+  WhyUsSection,
+} from './types';

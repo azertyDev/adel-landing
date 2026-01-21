@@ -1,0 +1,18 @@
+{
+  "colors": "Available Colors",
+  "description": "Description",
+  "discoverMore": "Discover More",
+  "filters": "Categories",
+  "inStock": "In Stock",
+  "orderNow": "Order Now",
+  "outOfStock": "Out of Stock",
+  "price": "Price",
+  "relatedProducts": "Related Products",
+  "specifications": "Specifications",
+  "trustBadges": {
+    "returns": "Easy Returns",
+    "shipping": "Free Shipping",
+    "support": "24/7 Support",
+    "warranty": "2 Year Warranty"
+  }
+}

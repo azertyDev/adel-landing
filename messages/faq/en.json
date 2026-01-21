@@ -1,0 +1,13 @@
+{
+  "categories": {
+    "general": "General",
+    "orders": "Orders & Shipping",
+    "products": "Products",
+    "returns": "Returns & Warranty"
+  },
+  "contactUs": "Contact Us",
+  "noResults": "No questions available at the moment",
+  "notFound": "Didn't find what you're looking for?",
+  "subtitle": "Find answers to common questions",
+  "title": "Frequently Asked Questions"
+}

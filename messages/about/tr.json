@@ -1,0 +1,18 @@
+{
+  "hero": {
+    "subtitle": "2010'dan beri kaliteli ev aletleri üretiyoruz",
+    "title": "Hikayemiz"
+  },
+  "mission": {
+    "description": "Olağanüstü tasarım ve dayanıklılık standartlarını korurken günlük yaşamı geliştiren yüksek kaliteli, yenilikçi ev aletleri sunmak.",
+    "title": "Misyonumuz"
+  },
+  "title": "Hakkımızda",
+  "values": {
+    "customer": "Müşteri Odaklılık",
+    "innovation": "Yenilik",
+    "quality": "Önce Kalite",
+    "sustainability": "Sürdürülebilirlik",
+    "title": "Değerlerimiz"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "address": {
+    "description": "Ofisimizi ziyaret edin",
+    "title": "Adres"
+  },
+  "chat": {
+    "button": "Sohbet Başlat",
+    "description": "Destek ekibimizle sohbet edin",
+    "title": "Canlı Destek"
+  },
+  "email": {
+    "description": "Bize mesaj gönderin",
+    "title": "E-posta"
+  },
+  "phone": {
+    "description": "Bizi arayın",
+    "title": "Telefon"
+  },
+  "social": {
+    "description": "Bağlantıda kalın",
+    "title": "Bizi Takip Edin"
+  },
+  "subtitle": "Size yardımcı olmak için buradayız",
+  "title": "İletişim"
+}

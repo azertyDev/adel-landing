@@ -1,0 +1,167 @@
+{
+  "about": {
+    "hero": {
+      "subtitle": "Building quality home appliances since 2010",
+      "title": "Our Story"
+    },
+    "mission": {
+      "description": "To provide high-quality, innovative home appliances that enhance everyday living while maintaining exceptional standards of design and durability.",
+      "title": "Our Mission"
+    },
+    "title": "About Us",
+    "values": {
+      "customer": "Customer Focus",
+      "innovation": "Innovation",
+      "quality": "Quality First",
+      "sustainability": "Sustainability",
+      "title": "Our Values"
+    }
+  },
+  "common": {
+    "backToHome": "Back to Home",
+    "close": "Close",
+    "error": "An error occurred",
+    "filter": "Filter",
+    "filters": "Filters",
+    "learnMore": "Learn More",
+    "loading": "Loading...",
+    "menu": "Menu",
+    "open": "Open",
+    "retry": "Retry",
+    "search": "Search",
+    "sort": "Sort",
+    "viewAll": "View All"
+  },
+  "contact": {
+    "address": {
+      "description": "Visit our office",
+      "title": "Address"
+    },
+    "chat": {
+      "button": "Start Chat",
+      "description": "Chat with our support team",
+      "title": "Live Chat"
+    },
+    "email": {
+      "description": "Send us a message",
+      "title": "Email"
+    },
+    "phone": {
+      "description": "Call us anytime",
+      "title": "Phone"
+    },
+    "social": {
+      "description": "Stay connected",
+      "title": "Follow Us"
+    },
+    "subtitle": "We're here to help",
+    "title": "Contact Us"
+  },
+  "faq": {
+    "categories": {
+      "general": "General",
+      "orders": "Orders & Shipping",
+      "products": "Products",
+      "returns": "Returns & Warranty"
+    },
+    "contactUs": "Contact Us",
+    "noResults": "No questions available at the moment",
+    "notFound": "Didn't find what you're looking for?",
+    "subtitle": "Find answers to common questions",
+    "title": "Frequently Asked Questions"
+  },
+  "footer": {
+    "copyright": "© {year} ADEL. All rights reserved.",
+    "description": "Premium home appliances for modern living.",
+    "followUs": "Follow Us",
+    "privacyPolicy": "Privacy Policy",
+    "quickLinks": "Quick Links",
+    "support": "Support",
+    "termsOfService": "Terms of Service"
+  },
+  "home": {
+    "about": {
+      "description": "ADEL brings you premium home appliances that combine elegant design with reliable performance. Our commitment to quality ensures your home is equipped with the best.",
+      "heading": "Bringing smart design to your home",
+      "title": "About us"
+    },
+    "hero": {
+      "cta": "Explore Products",
+      "subtitle": "meets performance",
+      "title": "SIMPLICITY"
+    },
+    "products": {
+      "subtitle": "Explore our collection of premium home appliances",
+      "title": "Products"
+    },
+    "whyUs": {
+      "easyToUse": {
+        "description": "Intuitive controls",
+        "title": "Easy to use"
+      },
+      "innovation": {
+        "description": "Cutting edge features",
+        "title": "Innovative\nTechnology"
+      },
+      "quality": {
+        "description": "Built to last",
+        "title": "Premium\nQuality"
+      },
+      "title": "Why ADEL?"
+    }
+  },
+  "navigation": {
+    "about": "About us",
+    "contact": "Contact us",
+    "faq": "FAQ",
+    "home": "Home",
+    "products": "Products"
+  },
+  "product": {
+    "colors": "Available Colors",
+    "description": "Description",
+    "discoverMore": "Discover More",
+    "inStock": "In Stock",
+    "orderNow": "Order Now",
+    "outOfStock": "Out of Stock",
+    "price": "Price",
+    "relatedProducts": "Related Products",
+    "specifications": "Specifications",
+    "trustBadges": {
+      "returns": "Easy Returns",
+      "shipping": "Free Shipping",
+      "support": "24/7 Support",
+      "warranty": "2 Year Warranty"
+    }
+  },
+  "products": {
+    "filters": {
+      "apply": "Apply Filters",
+      "brands": "Brands",
+      "categories": "Categories",
+      "clearAll": "Clear All",
+      "colors": "Colors",
+      "discard": "Discard changes",
+      "from": "from",
+      "maxPrice": "Max price",
+      "minPrice": "Min price",
+      "price": "Price",
+      "priceRange": "Price",
+      "showResults": "Show results",
+      "to": "to"
+    },
+    "noResults": {
+      "description": "Try adjusting your filters or search terms",
+      "title": "No products found"
+    },
+    "sort": {
+      "label": "Sort by",
+      "nameAsc": "Name: A-Z",
+      "nameDesc": "Name: Z-A",
+      "newest": "Newest",
+      "priceAsc": "Price: Low to High",
+      "priceDesc": "Price: High to Low"
+    },
+    "title": "All Products"
+  }
+}

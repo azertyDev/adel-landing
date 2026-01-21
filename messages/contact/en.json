@@ -1,0 +1,25 @@
+{
+  "address": {
+    "description": "Visit our office",
+    "title": "Address"
+  },
+  "chat": {
+    "button": "Start Chat",
+    "description": "Chat with our support team",
+    "title": "Live Chat"
+  },
+  "email": {
+    "description": "Send us a message",
+    "title": "Email"
+  },
+  "phone": {
+    "description": "Call us anytime",
+    "title": "Phone"
+  },
+  "social": {
+    "description": "Stay connected",
+    "title": "Follow Us"
+  },
+  "subtitle": "We're here to help",
+  "title": "Contact Us"
+}

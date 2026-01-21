@@ -1,0 +1,37 @@
+{
+  "kind": "singleType",
+  "collectionName": "why_uses",
+  "info": {
+    "singularName": "why-us",
+    "pluralName": "why-uses",
+    "displayName": "Why Us Section",
+    "description": "Why Us section content for homepage"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "sectionTitle": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "features": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.why-us-feature",
+      "required": true,
+      "min": 1,
+      "max": 6
+    }
+  }
+}

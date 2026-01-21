@@ -1,0 +1,31 @@
+{
+  "about": {
+    "description": "ADEL brings you premium home appliances that combine elegant design with reliable performance. Our commitment to quality ensures your home is equipped with the best.",
+    "heading": "Bringing smart design to your home",
+    "title": "About us"
+  },
+  "hero": {
+    "cta": "Explore Products",
+    "subtitle": "meets performance",
+    "title": "SIMPLICITY"
+  },
+  "products": {
+    "subtitle": "Explore our collection of premium home appliances",
+    "title": "Products"
+  },
+  "whyUs": {
+    "easyToUse": {
+      "description": "Intuitive controls",
+      "title": "Easy to use"
+    },
+    "innovation": {
+      "description": "Cutting edge features",
+      "title": "Innovative\nTechnology"
+    },
+    "quality": {
+      "description": "Built to last",
+      "title": "Premium\nQuality"
+    },
+    "title": "Why ADEL?"
+  }
+}

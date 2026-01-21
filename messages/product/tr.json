@@ -1,0 +1,18 @@
+{
+  "colors": "Mevcut Renkler",
+  "description": "Açıklama",
+  "discoverMore": "Daha Fazlasını Keşfet",
+  "filters": "Kategoriler",
+  "inStock": "Stokta",
+  "orderNow": "Şimdi Sipariş Ver",
+  "outOfStock": "Stokta Yok",
+  "price": "Fiyat",
+  "relatedProducts": "İlgili Ürünler",
+  "specifications": "Özellikler",
+  "trustBadges": {
+    "returns": "Kolay İade",
+    "shipping": "Ücretsiz Kargo",
+    "support": "7/24 Destek",
+    "warranty": "2 Yıl Garanti"
+  }
+}
