@@ -37,18 +37,32 @@ function getMediaUrl(media: StrapiMedia | undefined): string | null {
 
 // Strapi v5 mappers - fields are directly on entity (no attributes nesting)
 function mapProduct(entity: StrapiProduct): Product {
+  const images = entity.images?.map((img) => getMediaUrl(img) || '') || [];
+  const colors = entity.colors || [];
+
+  // Create colorVariants by pairing colors with images
+  const colorVariants = colors.map((color, index) => ({
+    id: `cv-${entity.id}-${index}`,
+    name: color,
+    hex: color, // Assuming color is a hex value, or needs mapping
+    image: images[index] || images[0] || '/image/general-img-square.png',
+  }));
+
   return {
     id: entity.documentId,
+    documentId: entity.documentId,
     slug: entity.slug,
     name: entity.name,
     description: entity.description,
     price: entity.price,
     originalPrice: entity.originalPrice,
     currency: 'USD',
-    colors: entity.colors || [],
+    model: '',
+    size: '',
+    colorVariants,
+    thumbnail: images[0] || '/image/general-img-square.png',
     specs: (entity.specs as ProductSpec[]) || [],
     inStock: entity.inStock,
-    images: entity.images?.map((img) => getMediaUrl(img) || '') || [],
     categoryId: entity.category?.documentId || '',
     brandId: entity.brand?.documentId || '',
   };
