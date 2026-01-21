@@ -70,6 +70,33 @@
     "subtitle": "Yaygın sorulara cevaplar bulun",
     "title": "Sıkça Sorulan Sorular"
   },
+  "headerDropdown": {
+    "about": {
+      "paragraph1": "ADEL'de, zarif estetiği günlük performansla birleştiren küçük ev aletleri tasarlıyoruz. Her ürün, detaylara özen, sezgisel kullanılabilirlik ve uzun ömürlü kalite ile oluşturulmaktadır.",
+      "paragraph2": "Teknolojinin basit, şık ve güvenilir hissettirmesi gerektiğine inanıyoruz — modern yaşama sorunsuzca uyum sağlayarak."
+    },
+    "contact": {
+      "chat": {
+        "title": "Sohbet desteği",
+        "link": "7/24 Destek"
+      },
+      "social": {
+        "title": "Sosyal medya",
+        "facebook": "facebook.com",
+        "instagram": "linkforinsta.com",
+        "twitter": "twitterlink.com"
+      },
+      "phone": {
+        "title": "Telefon",
+        "number": "123 254 85"
+      },
+      "delivery": {
+        "title": "Teslimat ve iade",
+        "support": "Siparişiniz için online destek",
+        "returns": "İade politikası"
+      }
+    }
+  },
   "footer": {
     "copyright": "© {year} ADEL. Tüm hakları saklıdır.",
     "description": "Modern yaşam için premium ev aletleri.",

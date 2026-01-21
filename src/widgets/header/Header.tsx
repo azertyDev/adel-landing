@@ -3,23 +3,39 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, SlidersHorizontal, X } from 'lucide-react';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from '@/i18n';
 import { Button, Container } from '@/shared/ui';
 import { FilterDrawer, LanguageSwitcher } from '@/widgets';
+import { AboutDropdown } from './AboutDropdown';
+import { ContactDropdown } from './ContactDropdown';
 
-const navLinks = [
-  { href: '/products', label: 'products' },
-  { href: '/about', label: 'about' },
-  { href: '/contact', label: 'contact' },
-] as const;
+type DropdownType = 'about' | 'contact' | null;
 
 export function Header() {
   const t = useTranslations('navigation');
   const commonT = useTranslations('common');
+  const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [filterDrawerOpen, setFilterDrawerOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<DropdownType>(null);
+
+  // Close dropdown on route change
+  useEffect(() => {
+    setActiveDropdown(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- intentionally run on pathname change
+  }, [pathname]);
+
+  const toggleDropdown = (dropdown: 'about' | 'contact') => {
+    setActiveDropdown((prev) => (prev === dropdown ? null : dropdown));
+  };
+
+  const handleMobileMenuOpen = () => {
+    setActiveDropdown(null);
+    setMobileMenuOpen(true);
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-gray-100 bg-white/80 backdrop-blur-md">
@@ -34,16 +50,39 @@ export function Header() {
           <div className="hidden items-center gap-6 md:flex lg:gap-8">
             {/* Navigation Links */}
             <ul className="flex items-center gap-6 lg:gap-8">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-gray-600 transition-colors hover:text-black lg:text-base"
-                  >
-                    {t(link.label)}
-                  </Link>
-                </li>
-              ))}
+              {/* Products - regular link */}
+              <li>
+                <Link
+                  href="/products"
+                  className="text-sm text-gray-600 transition-colors hover:text-black lg:text-base"
+                >
+                  {t('products')}
+                </Link>
+              </li>
+
+              {/* About us - dropdown toggle */}
+              <li>
+                <button
+                  type="button"
+                  onClick={() => toggleDropdown('about')}
+                  className="flex items-center gap-1.5 text-sm text-gray-600 transition-colors hover:text-black lg:text-base"
+                >
+                  {t('about')}
+                  {activeDropdown === 'about' && <X className="h-4 w-4" />}
+                </button>
+              </li>
+
+              {/* Contact us - dropdown toggle */}
+              <li>
+                <button
+                  type="button"
+                  onClick={() => toggleDropdown('contact')}
+                  className="flex items-center gap-1.5 text-sm text-gray-600 transition-colors hover:text-black lg:text-base"
+                >
+                  {t('contact')}
+                  {activeDropdown === 'contact' && <X className="h-4 w-4" />}
+                </button>
+              </li>
             </ul>
 
             {/* Filters Button */}
@@ -70,7 +109,7 @@ export function Header() {
             variant="ghost"
             size="icon"
             className="md:hidden"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            onClick={() => (mobileMenuOpen ? setMobileMenuOpen(false) : handleMobileMenuOpen())}
             aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
             type="button"
           >
@@ -78,6 +117,35 @@ export function Header() {
           </Button>
         </nav>
       </Container>
+
+      {/* Desktop Dropdowns */}
+      <AnimatePresence>
+        {activeDropdown === 'about' && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="hidden overflow-hidden md:block"
+          >
+            <AboutDropdown />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {activeDropdown === 'contact' && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="hidden overflow-hidden md:block"
+          >
+            <ContactDropdown />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Mobile Menu */}
       <AnimatePresence>
@@ -92,20 +160,36 @@ export function Header() {
               <div className="flex flex-col items-center py-6">
                 {/* Navigation links - top center */}
                 <ul className="flex flex-col items-center gap-4">
-                  {navLinks.map((link) => (
-                    <li key={link.href}>
-                      <Link
-                        href={link.href}
-                        className="block text-lg font-medium text-gray-600 transition-colors hover:text-black"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        {t(link.label)}
-                      </Link>
-                    </li>
-                  ))}
+                  <li>
+                    <Link
+                      href="/products"
+                      className="block text-lg font-medium text-gray-600 transition-colors hover:text-black"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {t('products')}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/about"
+                      className="block text-lg font-medium text-gray-600 transition-colors hover:text-black"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {t('about')}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/contact"
+                      className="block text-lg font-medium text-gray-600 transition-colors hover:text-black"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {t('contact')}
+                    </Link>
+                  </li>
                 </ul>
                 {/* Language switcher - bottom center */}
-                <div className="mt-6 pt-4 border-t border-gray-100 w-full flex justify-center">
+                <div className="mt-6 flex w-full justify-center border-t border-gray-100 pt-4">
                   <LanguageSwitcher />
                 </div>
               </div>

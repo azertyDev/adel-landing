@@ -70,6 +70,33 @@
     "subtitle": "Find answers to common questions",
     "title": "Frequently Asked Questions"
   },
+  "headerDropdown": {
+    "about": {
+      "paragraph1": "At ADEL, we design small home appliances that combine refined aesthetics with everyday performance. Every product is created with attention to detail, intuitive usability, and long-lasting quality.",
+      "paragraph2": "We believe technology should feel simple, elegant, and reliable — seamlessly fitting into modern life."
+    },
+    "contact": {
+      "chat": {
+        "title": "Chat support",
+        "link": "Support 24/7"
+      },
+      "social": {
+        "title": "Social media",
+        "facebook": "facebook.com",
+        "instagram": "linkforinsta.com",
+        "twitter": "twitterlink.com"
+      },
+      "phone": {
+        "title": "Phone",
+        "number": "123 254 85"
+      },
+      "delivery": {
+        "title": "Delivery and returns",
+        "support": "Online support for your order",
+        "returns": "Return policy"
+      }
+    }
+  },
   "footer": {
     "copyright": "© {year} ADEL. All rights reserved.",
     "description": "Premium home appliances for modern living.",
