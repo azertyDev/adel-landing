@@ -18,6 +18,7 @@ export type {
   Brand,
   Category,
   Color,
+  ColorVariant,
   FAQItem,
   HeroSection,
   Product,
