@@ -96,18 +96,21 @@ export interface StrapiFAQ extends StrapiEntity {
 // Mapped types for frontend use
 export interface Product {
   id: string;
+  documentId: string;
   slug: string;
   name: string;
   description: string;
   price: number;
   originalPrice: number | null;
-  currency: string;
-  colors: string[];
+  currency: 'USD' | 'TRY';
+  model: string;
+  size: string;
+  colorVariants: ColorVariant[];
+  thumbnail: string;
   specs: ProductSpec[];
   inStock: boolean;
-  images: string[];
-  categoryId: string;
-  brandId: string;
+  categoryId?: string;
+  brandId?: string;
 }
 
 export interface Category {
@@ -201,4 +204,12 @@ export interface Color {
   id: string;
   name: string;
   hex: string;
+}
+
+// ColorVariant for product color selection with linked images
+export interface ColorVariant {
+  id: string;
+  name: string;
+  hex: string;
+  image: string;
 }
