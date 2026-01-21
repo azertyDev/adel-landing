@@ -35,6 +35,8 @@ export function ColorSelector({
             title={variant.name}
             className="relative cursor-pointer"
             onMouseEnter={() => onHover?.(variant)}
+            onClick={(e) => e.stopPropagation()}
+            onKeyDown={(e) => e.stopPropagation()}
           >
             <input
               type="radio"
