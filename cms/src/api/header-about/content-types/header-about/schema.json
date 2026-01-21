@@ -1,0 +1,38 @@
+{
+  "kind": "singleType",
+  "collectionName": "header_abouts",
+  "info": {
+    "singularName": "header-about",
+    "pluralName": "header-abouts",
+    "displayName": "Header About Dropdown",
+    "description": "Content for About Us dropdown in header"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "paragraph1": {
+      "type": "text",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "paragraph2": {
+      "type": "text",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    }
+  }
+}

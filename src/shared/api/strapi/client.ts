@@ -5,6 +5,8 @@ import type {
   Category,
   Color,
   FAQItem,
+  HeaderAboutSection,
+  HeaderContactSection,
   HeroSection,
   Product,
   ProductSpec,
@@ -13,9 +15,12 @@ import type {
   StrapiCategory,
   StrapiColor,
   StrapiFAQ,
+  StrapiHeaderAbout,
+  StrapiHeaderContact,
   StrapiHero,
   StrapiMedia,
   StrapiProduct,
+  StrapiProductVariant,
   StrapiResponse,
   StrapiWhyUs,
   StrapiWhyUsFeature,
@@ -119,7 +124,7 @@ function mapWhyUs(entity: StrapiWhyUs): WhyUsSection {
   };
 }
 
-type PopulateValue = string | string[] | Record<string, { populate: string[] }>;
+type PopulateValue = string | string[] | Record<string, boolean | { populate: string[] }>;
 
 type FetchOptions = {
   locale?: string;
@@ -147,11 +152,16 @@ async function fetchStrapi<T>(
         params.set(`populate[${i}]`, populate[i]);
       }
     } else if (typeof populate === 'object') {
-      // Handle nested populate: { features: { populate: ['icon'] } }
+      // Handle nested populate: { variants: { populate: ['image'] }, category: true }
       for (const [key, value] of Object.entries(populate)) {
-        if (value.populate) {
-          for (let i = 0; i < value.populate.length; i++) {
-            params.set(`populate[${key}][populate][${i}]`, value.populate[i]);
+        if (value === true) {
+          // Simple populate: category: true
+          params.set(`populate[${key}]`, 'true');
+        } else if (typeof value === 'object' && value !== null && 'populate' in value) {
+          // Nested populate: variants: { populate: ['image', 'color'] }
+          const nestedPopulate = value.populate as string[];
+          for (let i = 0; i < nestedPopulate.length; i++) {
+            params.set(`populate[${key}][populate][${i}]`, nestedPopulate[i]);
           }
         }
       }
@@ -201,8 +211,8 @@ export async function getProducts(locale = 'ru'): Promise<Product[]> {
     locale,
     populate: {
       variants: { populate: ['image', 'color'] },
-      category: { populate: [] },
-      brand: { populate: [] },
+      category: true,
+      brand: true,
     },
   });
 
@@ -253,8 +263,8 @@ export async function getProductsByCategory(
     locale,
     populate: {
       variants: { populate: ['image', 'color'] },
-      category: { populate: [] },
-      brand: { populate: [] },
+      category: true,
+      brand: true,
     },
     filters: { 'category.slug': { $eq: categorySlug } },
   });
@@ -402,4 +412,57 @@ export async function getColors(locale = 'ru'): Promise<Color[]> {
   });
 
   return response.data.map(mapColor);
+}
+
+// Header About mapper
+function mapHeaderAbout(entity: StrapiHeaderAbout): HeaderAboutSection {
+  return {
+    paragraph1: entity.paragraph1,
+    paragraph2: entity.paragraph2,
+  };
+}
+
+// Header About API (Single-Type)
+export async function getHeaderAbout(locale = 'ru'): Promise<HeaderAboutSection | null> {
+  try {
+    const response = await fetchStrapi<StrapiHeaderAbout>('/header-about', {
+      locale,
+    });
+
+    return mapHeaderAbout(response.data);
+  } catch {
+    return null;
+  }
+}
+
+// Header Contact mapper
+function mapHeaderContact(entity: StrapiHeaderContact): HeaderContactSection {
+  return {
+    chatTitle: entity.chatTitle,
+    chatLink: entity.chatLink,
+    chatUrl: entity.chatUrl,
+    socialTitle: entity.socialTitle,
+    socialLinks: entity.socialLinks || [],
+    phoneTitle: entity.phoneTitle,
+    phoneNumber: entity.phoneNumber,
+    deliveryTitle: entity.deliveryTitle,
+    deliverySupportLink: entity.deliverySupportLink,
+    deliverySupportUrl: entity.deliverySupportUrl,
+    deliveryReturnsLink: entity.deliveryReturnsLink,
+    deliveryReturnsUrl: entity.deliveryReturnsUrl,
+  };
+}
+
+// Header Contact API (Single-Type)
+export async function getHeaderContact(locale = 'ru'): Promise<HeaderContactSection | null> {
+  try {
+    const response = await fetchStrapi<StrapiHeaderContact>('/header-contact', {
+      locale,
+      populate: 'socialLinks',
+    });
+
+    return mapHeaderContact(response.data);
+  } catch {
+    return null;
+  }
 }

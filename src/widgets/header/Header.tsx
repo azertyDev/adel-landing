@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { Link } from '@/i18n';
+import type { HeaderAboutSection, HeaderContactSection } from '@/shared/api/strapi/types';
 import { Button, Container } from '@/shared/ui';
 import { FilterDrawer, LanguageSwitcher } from '@/widgets';
 import { AboutDropdown } from './AboutDropdown';
@@ -14,7 +15,12 @@ import { ContactDropdown } from './ContactDropdown';
 
 type DropdownType = 'about' | 'contact' | null;
 
-export function Header() {
+interface HeaderProps {
+  headerAbout: HeaderAboutSection | null;
+  headerContact: HeaderContactSection | null;
+}
+
+export function Header({ headerAbout, headerContact }: HeaderProps) {
   const t = useTranslations('navigation');
   const commonT = useTranslations('common');
   const pathname = usePathname();
@@ -128,7 +134,7 @@ export function Header() {
             transition={{ duration: 0.3, ease: 'easeInOut' }}
             className="hidden overflow-hidden md:block"
           >
-            <AboutDropdown />
+            <AboutDropdown data={headerAbout} />
           </motion.div>
         )}
       </AnimatePresence>
@@ -142,7 +148,7 @@ export function Header() {
             transition={{ duration: 0.3, ease: 'easeInOut' }}
             className="hidden overflow-hidden md:block"
           >
-            <ContactDropdown />
+            <ContactDropdown data={headerContact} />
           </motion.div>
         )}
       </AnimatePresence>

@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { Toaster } from 'sonner';
 import { routing } from '@/i18n/routing';
+import { getHeaderAbout, getHeaderContact } from '@/shared/api/strapi/client';
 import { QueryProvider } from '@/shared/providers';
 import { Footer, Header } from '@/widgets';
 import { inter, montserrat } from '../fonts';
@@ -74,7 +75,11 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   setRequestLocale(locale);
 
-  const messages = await getMessages();
+  const [messages, headerAbout, headerContact] = await Promise.all([
+    getMessages(),
+    getHeaderAbout(locale),
+    getHeaderContact(locale),
+  ]);
 
   return (
     <html lang={locale} suppressHydrationWarning>
@@ -82,8 +87,10 @@ export default async function LocaleLayout({ children, params }: Props) {
         <QueryProvider>
           <NextIntlClientProvider messages={messages}>
             <div className="flex min-h-screen flex-col">
-              <Header />
-              <main className="flex-1">{children}</main>
+              <Header headerAbout={headerAbout} headerContact={headerContact} />
+              <main className="bg-[url('/image/content-bg.png')] bg-no-repeat bg-top sm:bg-center bg-cover bg-scroll flex-1">
+                {children}
+              </main>
               <Footer />
             </div>
           </NextIntlClientProvider>

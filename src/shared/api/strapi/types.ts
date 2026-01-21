@@ -219,3 +219,59 @@ export interface ColorVariant {
   hex: string;
   image: string;
 }
+
+// Header About Dropdown types
+export interface StrapiHeaderAbout extends StrapiEntity {
+  paragraph1: string;
+  paragraph2: string;
+}
+
+export interface HeaderAboutSection {
+  paragraph1: string;
+  paragraph2: string;
+}
+
+// Header Contact Dropdown types
+export interface StrapiSocialLink {
+  id: number;
+  platform: string;
+  url: string;
+  label: string;
+}
+
+export interface StrapiHeaderContact extends StrapiEntity {
+  chatTitle: string;
+  chatLink: string;
+  chatUrl: string | null;
+  socialTitle: string;
+  socialLinks: StrapiSocialLink[];
+  phoneTitle: string;
+  phoneNumber: string;
+  deliveryTitle: string;
+  deliverySupportLink: string;
+  deliverySupportUrl: string | null;
+  deliveryReturnsLink: string;
+  deliveryReturnsUrl: string | null;
+}
+
+export interface SocialLink {
+  id: number;
+  platform: string;
+  url: string;
+  label: string;
+}
+
+export interface HeaderContactSection {
+  chatTitle: string;
+  chatLink: string;
+  chatUrl: string | null;
+  socialTitle: string;
+  socialLinks: SocialLink[];
+  phoneTitle: string;
+  phoneNumber: string;
+  deliveryTitle: string;
+  deliverySupportLink: string;
+  deliverySupportUrl: string | null;
+  deliveryReturnsLink: string;
+  deliveryReturnsUrl: string | null;
+}
