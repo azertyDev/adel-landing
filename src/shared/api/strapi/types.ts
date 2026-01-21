@@ -59,6 +59,13 @@ export interface ProductSpec {
   value: string;
 }
 
+// Strapi product variant component
+export interface StrapiProductVariant {
+  id: number;
+  color: StrapiColor | null;
+  image: StrapiMedia | null;
+}
+
 // Strapi v5 entity types (attributes are flattened)
 export interface StrapiProduct extends StrapiEntity {
   name: string;
@@ -66,10 +73,9 @@ export interface StrapiProduct extends StrapiEntity {
   description: string;
   price: number;
   originalPrice: number | null;
-  colors: string[];
+  variants: StrapiProductVariant[];
   specs: ProductSpec[];
   inStock: boolean;
-  images: StrapiMedia[];
   category?: StrapiCategory;
   brand?: StrapiBrand;
 }

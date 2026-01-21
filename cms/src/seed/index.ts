@@ -77,12 +77,57 @@ export async function seedDatabase(strapi: Core.Strapi) {
       }
     }
 
+    // Seed Colors
+    strapi.log.info('Seeding colors...');
+    const colorMap = new Map<string, string>();
+
+    const colorData = [
+      { name: 'Silver', hex: '#C0C0C0' },
+      { name: 'Black', hex: '#000000' },
+      { name: 'White', hex: '#FFFFFF' },
+      { name: 'Red', hex: '#FF0000' },
+      { name: 'Copper', hex: '#B87333' },
+      { name: 'Sky Blue', hex: '#87CEEB' },
+      { name: 'Pink', hex: '#FFB6C1' },
+    ];
+
+    for (const color of colorData) {
+      const existing = await strapi.documents('api::color.color').findMany({
+        filters: { hex: color.hex },
+      });
+
+      if (existing.length > 0) {
+        colorMap.set(color.hex, existing[0].documentId);
+        strapi.log.info(`Color already exists: ${color.name}`);
+      } else {
+        const created = await strapi.documents('api::color.color').create({
+          data: {
+            name: color.name,
+            hex: color.hex,
+            locale: 'en',
+            publishedAt: new Date(),
+          },
+        });
+        colorMap.set(color.hex, created.documentId);
+        strapi.log.info(`Created color: ${color.name}`);
+      }
+    }
+
     // Seed Products
     strapi.log.info('Seeding products...');
 
     for (const product of products) {
       const categoryId = categoryMap.get(product.categorySlug);
       const brandId = brandMap.get(product.brandSlug);
+
+      // Convert colors array to variants format
+      const variants = product.colors
+        .map((hex) => {
+          const colorId = colorMap.get(hex);
+          if (!colorId) return null;
+          return { color: colorId };
+        })
+        .filter(Boolean);
 
       const created = await strapi.documents('api::product.product').create({
         data: {
@@ -91,7 +136,7 @@ export async function seedDatabase(strapi: Core.Strapi) {
           description: product.description,
           price: product.price,
           inStock: product.inStock,
-          colors: product.colors,
+          variants,
           specs: product.specs,
           locale: 'en',
           publishedAt: new Date(),

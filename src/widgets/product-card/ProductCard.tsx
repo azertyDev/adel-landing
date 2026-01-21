@@ -6,7 +6,7 @@ import { Link } from '@/i18n';
 import type { Product } from '@/shared/api/strapi';
 import { cn } from '@/shared/lib';
 import { formatPrice, useImagePreload } from './lib';
-import { ColorSelector, ProductImage, ShareButton } from './ui';
+import { ColorSelector, ProductImage } from './ui';
 
 interface ProductCardProps {
   product: Product;
@@ -16,12 +16,18 @@ interface ProductCardProps {
 export function ProductCard({ product, className }: ProductCardProps) {
   const { preload } = useImagePreload();
 
-  const [selectedColorId, setSelectedColorId] = useState(product.colorVariants[0]?.id ?? '');
+  // Find default variant (first in array)
+  // Note: if no variants exist, defaultVariant will be undefined and fallbacks are used
+  const defaultVariant = useMemo(() => product.colorVariants[0], [product.colorVariants]);
+
+  const [selectedColorId, setSelectedColorId] = useState(defaultVariant?.id ?? '');
 
   const selectedVariant = useMemo(
     () => product.colorVariants.find((v) => v.id === selectedColorId),
     [product.colorVariants, selectedColorId]
   );
+
+  const displayPrice = product.price;
 
   const currentImage = selectedVariant?.image ?? product.thumbnail;
   const altText = `${product.name}${selectedVariant ? ` - ${selectedVariant.name}` : ''}`;
@@ -35,40 +41,28 @@ export function ProductCard({ product, className }: ProductCardProps) {
       <motion.article
         className={cn(
           'group relative flex overflow-hidden',
-          // Mobile: vertical layout
-          'flex-col sm:flex-row sm:items-stretch',
-          // Padding
-          'p-4 sm:p-6 lg:p-8',
-          // Border radius
-          'rounded-3xl sm:rounded-[40px]',
+          // Horizontal layout
+          'flex-row items-stretch',
+          // Padding - responsive (mobile → sm → md → lg → xl)
+          'p-2 sm:p-4 md:p-5 lg:p-8 xl:p-10',
+          // Border radius - responsive
+          'rounded-xl sm:rounded-2xl md:rounded-3xl lg:rounded-[48px] xl:rounded-[60px]',
           // Background
-          'bg-white/60 backdrop-blur-xl',
-          // Shadow
-          'shadow-sm transition-shadow duration-300 hover:shadow-lg'
+          'bg-[#EDEDED]'
         )}
-        whileHover={{ scale: 1.01 }}
+        whileHover={{ scale: 1.005 }}
         transition={{ duration: 0.2 }}
       >
-        {/* Share Button - absolute positioned */}
-        <div className="absolute top-4 right-4 z-10 sm:top-6 sm:right-6">
-          <ShareButton productSlug={product.slug} productName={product.name} />
-        </div>
-
-        {/* Mobile: Image on top */}
-        <div className="relative aspect-square w-full sm:hidden mb-4">
-          <ProductImage src={currentImage} alt={altText} className="h-full w-full" />
-        </div>
-
-        {/* Content */}
-        <div className="flex flex-1 flex-col justify-between sm:py-2">
-          {/* Name */}
-          <h3 className="font-semibold text-main leading-tight text-base sm:text-lg lg:text-xl xl:text-2xl">
+        {/* Content - left side */}
+        <div className="flex flex-1 flex-col justify-between min-w-0 py-1 sm:py-2">
+          {/* Name - responsive */}
+          <h3 className="font-bold text-main leading-tight text-xs sm:text-base md:text-lg lg:text-2xl xl:text-3xl">
             {product.name}
           </h3>
 
-          {/* Price */}
-          <p className="text-main/80 text-sm sm:text-base lg:text-lg mt-2">
-            {formatPrice(product.price, product.currency)}
+          {/* Price - hidden on mobile */}
+          <p className="hidden sm:block text-main/70 text-xs md:text-sm lg:text-base xl:text-lg mt-1 lg:mt-2">
+            {formatPrice(displayPrice, product.currency)}
           </p>
 
           {/* Color Selector */}
@@ -78,14 +72,18 @@ export function ProductCard({ product, className }: ProductCardProps) {
               selectedId={selectedColorId}
               onSelect={setSelectedColorId}
               onHover={handleColorHover}
-              className="mt-4"
+              className="mt-auto pt-1 sm:pt-2 w-fit"
             />
           )}
         </div>
 
-        {/* Desktop: Image on right */}
-        <div className="relative hidden sm:block w-2/5 shrink-0">
-          <ProductImage src={currentImage} alt={altText} className="h-full w-full" />
+        {/* Image - responsive size */}
+        <div className="relative h-24 sm:h-36 md:h-48 lg:h-56 xl:h-64 w-[38%] sm:w-[42%] lg:w-[45%] shrink-0 flex items-center justify-end">
+          <ProductImage
+            src={currentImage}
+            alt={altText}
+            className="h-full sm:h-25 md:h-32.5 lg:h-45 xl:h-55 w-full"
+          />
         </div>
       </motion.article>
     </Link>

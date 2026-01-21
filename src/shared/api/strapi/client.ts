@@ -37,16 +37,23 @@ function getMediaUrl(media: StrapiMedia | undefined): string | null {
 
 // Strapi v5 mappers - fields are directly on entity (no attributes nesting)
 function mapProduct(entity: StrapiProduct): Product {
-  const images = entity.images?.map((img) => getMediaUrl(img) || '') || [];
-  const colors = entity.colors || [];
+  // Map variants from Strapi component - extract color from nested relation
+  const colorVariants = (entity.variants || [])
+    .filter(
+      (variant): variant is StrapiProductVariant & { color: StrapiColor } => variant.color !== null
+    )
+    .map((variant) => ({
+      id: `cv-${entity.id}-${variant.id}`,
+      name: variant.color.name,
+      hex: variant.color.hex,
+      image: getMediaUrl(variant.image ?? undefined) || '/image/placeholder_6398266.png',
+    }));
 
-  // Create colorVariants by pairing colors with images
-  const colorVariants = colors.map((color, index) => ({
-    id: `cv-${entity.id}-${index}`,
-    name: color,
-    hex: color, // Assuming color is a hex value, or needs mapping
-    image: images[index] || images[0] || '/image/general-img-square.png',
-  }));
+  // Use first variant as default
+  const defaultVariant = colorVariants[0];
+
+  // Use base product price
+  const effectivePrice = entity.price;
 
   return {
     id: entity.documentId,
@@ -54,13 +61,13 @@ function mapProduct(entity: StrapiProduct): Product {
     slug: entity.slug,
     name: entity.name,
     description: entity.description,
-    price: entity.price,
+    price: effectivePrice,
     originalPrice: entity.originalPrice,
     currency: 'USD',
     model: '',
     size: '',
     colorVariants,
-    thumbnail: images[0] || '/image/general-img-square.png',
+    thumbnail: defaultVariant?.image || '/image/general-img-square.png',
     specs: (entity.specs as ProductSpec[]) || [],
     inStock: entity.inStock,
     categoryId: entity.category?.documentId || '',
@@ -192,7 +199,11 @@ async function fetchStrapi<T>(
 export async function getProducts(locale = 'ru'): Promise<Product[]> {
   const response = await fetchStrapi<StrapiProduct[]>('/products', {
     locale,
-    populate: ['images', 'category', 'brand'],
+    populate: {
+      variants: { populate: ['image', 'color'] },
+      category: { populate: [] },
+      brand: { populate: [] },
+    },
   });
 
   return response.data.map(mapProduct);
@@ -202,7 +213,11 @@ export async function getProduct(documentId: string, locale = 'ru'): Promise<Pro
   try {
     const response = await fetchStrapi<StrapiProduct>(`/products/${documentId}`, {
       locale,
-      populate: ['images', 'category', 'brand'],
+      populate: {
+        variants: { populate: ['image', 'color'] },
+        category: { populate: [] },
+        brand: { populate: [] },
+      },
     });
 
     return mapProduct(response.data);
@@ -215,7 +230,11 @@ export async function getProductBySlug(slug: string, locale = 'ru'): Promise<Pro
   try {
     const response = await fetchStrapi<StrapiProduct[]>('/products', {
       locale,
-      populate: ['images', 'category', 'brand'],
+      populate: {
+        variants: { populate: ['image', 'color'] },
+        category: { populate: [] },
+        brand: { populate: [] },
+      },
       filters: { slug: { $eq: slug } },
     });
 
@@ -232,7 +251,11 @@ export async function getProductsByCategory(
 ): Promise<Product[]> {
   const response = await fetchStrapi<StrapiProduct[]>('/products', {
     locale,
-    populate: ['images', 'category', 'brand'],
+    populate: {
+      variants: { populate: ['image', 'color'] },
+      category: { populate: [] },
+      brand: { populate: [] },
+    },
     filters: { 'category.slug': { $eq: categorySlug } },
   });
 

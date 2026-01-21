@@ -30,9 +30,12 @@ export function ProductDetailContent({
 }: ProductDetailContentProps) {
   const t = useTranslations('product');
   const navT = useTranslations('navigation');
-  const [selectedColorId, setSelectedColorId] = useState<string | null>(
-    product.colorVariants[0]?.id || null
-  );
+
+  const defaultVariant = useMemo(() => product.colorVariants[0], [product.colorVariants]);
+
+  const [selectedColorId, setSelectedColorId] = useState<string | null>(defaultVariant?.id || null);
+
+  const displayPrice = product.price;
 
   // Get images from colorVariants for the gallery
   const galleryImages = useMemo(
@@ -76,7 +79,7 @@ export function ProductDetailContent({
           </Heading>
 
           {/* Price */}
-          <p className="mb-6 text-3xl font-bold">{formatPrice(product.price, product.currency)}</p>
+          <p className="mb-6 text-3xl font-bold">{formatPrice(displayPrice, product.currency)}</p>
 
           {/* Stock Status */}
           <div className="mb-6">
