@@ -39,13 +39,18 @@ export function ProductsPageClient({ products }: ProductsPageClientProps) {
   const filteredProducts = useMemo(() => {
     return products.filter((product) => {
       const matchesCategory =
-        filters.categories.length === 0 || filters.categories.includes(product.categoryId);
-      const matchesBrand = filters.brands.length === 0 || filters.brands.includes(product.brandId);
+        filters.categories.length === 0 ||
+        (product.categoryId && filters.categories.includes(product.categoryId));
+      const matchesBrand =
+        filters.brands.length === 0 ||
+        (product.brandId && filters.brands.includes(product.brandId));
       const matchesPriceMin = filters.priceMin === null || product.price >= filters.priceMin;
       const matchesPriceMax = filters.priceMax === null || product.price <= filters.priceMax;
       const matchesColor =
         filters.colors.length === 0 ||
-        filters.colors.some((color) => product.colors.includes(color));
+        filters.colors.some((color) =>
+          product.colorVariants.some((v) => v.hex === color || v.name === color)
+        );
 
       return matchesCategory && matchesBrand && matchesPriceMin && matchesPriceMax && matchesColor;
     });

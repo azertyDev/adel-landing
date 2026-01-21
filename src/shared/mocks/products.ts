@@ -10,6 +10,7 @@ export const mockProducts: Product[] = [
     description:
       'Professional-grade espresso machine with 15-bar pressure pump, built-in grinder, and milk frother. Perfect for coffee enthusiasts who demand cafe-quality drinks at home.',
     price: 599,
+    originalPrice: null,
     currency: 'USD',
     model: 'EMP-2024',
     size: '35x25x40 cm',
@@ -18,6 +19,11 @@ export const mockProducts: Product[] = [
       { id: 'cv-1-1', name: 'Silver', hex: '#C0C0C0', image: '/image/general-img-square.png' },
       { id: 'cv-1-2', name: 'Black', hex: '#000000', image: '/image/general-img-square.png' },
     ],
+    specs: [
+      { label: 'Pressure', value: '15 bar' },
+      { label: 'Power', value: '1450W' },
+    ],
+    inStock: true,
     categoryId: '1',
     brandId: '1',
   },
@@ -29,6 +35,7 @@ export const mockProducts: Product[] = [
     description:
       'Fully automatic cappuccino machine with one-touch brewing. Features ceramic grinder, automatic milk system, and customizable drink settings.',
     price: 899,
+    originalPrice: null,
     currency: 'USD',
     model: 'CE-3000',
     size: '30x28x42 cm',
@@ -37,6 +44,11 @@ export const mockProducts: Product[] = [
       { id: 'cv-2-1', name: 'Black', hex: '#000000', image: '/image/general-img-square.png' },
       { id: 'cv-2-2', name: 'White', hex: '#FFFFFF', image: '/image/general-img-square.png' },
     ],
+    specs: [
+      { label: 'Grinder', value: 'Ceramic' },
+      { label: 'Power', value: '1500W' },
+    ],
+    inStock: true,
     categoryId: '1',
     brandId: '1',
   },
@@ -48,6 +60,7 @@ export const mockProducts: Product[] = [
     description:
       'Classic drip coffee maker with programmable timer, thermal carafe, and anti-drip system. Brews up to 12 cups of perfectly balanced coffee.',
     price: 129,
+    originalPrice: null,
     currency: 'USD',
     model: 'DCC-1200',
     size: '25x20x35 cm',
@@ -56,6 +69,11 @@ export const mockProducts: Product[] = [
       { id: 'cv-3-1', name: 'Black', hex: '#000000', image: '/image/general-img-square.png' },
       { id: 'cv-3-2', name: 'Silver', hex: '#C0C0C0', image: '/image/general-img-square.png' },
     ],
+    specs: [
+      { label: 'Capacity', value: '12 cups' },
+      { label: 'Power', value: '1000W' },
+    ],
+    inStock: true,
     categoryId: '1',
     brandId: '2',
   },
@@ -67,6 +85,7 @@ export const mockProducts: Product[] = [
     description:
       'Compact single-serve coffee maker compatible with all major pod systems. Fast heat-up, adjustable cup sizes, and sleek modern design.',
     price: 89,
+    originalPrice: null,
     currency: 'USD',
     model: 'PCC-500',
     size: '15x25x30 cm',
@@ -76,6 +95,11 @@ export const mockProducts: Product[] = [
       { id: 'cv-4-2', name: 'Black', hex: '#000000', image: '/image/general-img-square.png' },
       { id: 'cv-4-3', name: 'White', hex: '#FFFFFF', image: '/image/general-img-square.png' },
     ],
+    specs: [
+      { label: 'Cup Sizes', value: '3 options' },
+      { label: 'Power', value: '1200W' },
+    ],
+    inStock: true,
     categoryId: '1',
     brandId: '2',
   },
@@ -87,6 +111,7 @@ export const mockProducts: Product[] = [
     description:
       'Premium cold brew coffee system with airtight seal and fine mesh filter. Makes smooth, low-acid cold brew concentrate in 12-24 hours.',
     price: 49,
+    originalPrice: null,
     currency: 'USD',
     model: 'CBM-150',
     size: '12x12x25 cm',
@@ -94,6 +119,11 @@ export const mockProducts: Product[] = [
     colorVariants: [
       { id: 'cv-5-1', name: 'Black', hex: '#000000', image: '/image/general-img-square.png' },
     ],
+    specs: [
+      { label: 'Capacity', value: '1.5L' },
+      { label: 'Brew Time', value: '12-24 hours' },
+    ],
+    inStock: true,
     categoryId: '1',
     brandId: '3',
   },
@@ -107,6 +137,7 @@ export const mockProducts: Product[] = [
     description:
       'High-performance blender with 1500W motor, smart programs, and self-cleaning function. Perfect for smoothies, soups, and nut butters.',
     price: 199,
+    originalPrice: null,
     currency: 'USD',
     model: 'SBP-1500',
     size: '20x20x45 cm',
@@ -115,6 +146,11 @@ export const mockProducts: Product[] = [
       { id: 'cv-6-1', name: 'Silver', hex: '#C0C0C0', image: '/image/general-img-square.png' },
       { id: 'cv-6-2', name: 'Black', hex: '#000000', image: '/image/general-img-square.png' },
     ],
+    specs: [
+      { label: 'Power', value: '1500W' },
+      { label: 'Programs', value: '6 smart modes' },
+    ],
+    inStock: true,
     categoryId: '2',
     brandId: '1',
   },
@@ -126,6 +162,7 @@ export const mockProducts: Product[] = [
     description:
       'Large capacity air fryer with rapid air technology. Crispy results with up to 85% less fat. Digital touch screen and 8 preset programs.',
     price: 149,
+    originalPrice: null,
     currency: 'USD',
     model: 'AFX-550',
     size: '35x30x35 cm',
@@ -134,6 +171,11 @@ export const mockProducts: Product[] = [
       { id: 'cv-7-1', name: 'Black', hex: '#000000', image: '/image/general-img-square.png' },
       { id: 'cv-7-2', name: 'White', hex: '#FFFFFF', image: '/image/general-img-square.png' },
     ],
+    specs: [
+      { label: 'Capacity', value: '5.5L' },
+      { label: 'Programs', value: '8 presets' },
+    ],
+    inStock: true,
     categoryId: '2',
     brandId: '1',
   },
@@ -145,6 +187,7 @@ export const mockProducts: Product[] = [
     description:
       'Temperature-controlled electric kettle with keep-warm function. Perfect for tea, coffee, and baby formula. Borosilicate glass body.',
     price: 79,
+    originalPrice: null,
     currency: 'USD',
     model: 'EKS-170',
     size: '22x15x25 cm',
@@ -153,6 +196,11 @@ export const mockProducts: Product[] = [
       { id: 'cv-8-1', name: 'Silver', hex: '#C0C0C0', image: '/image/general-img-square.png' },
       { id: 'cv-8-2', name: 'Black', hex: '#000000', image: '/image/general-img-square.png' },
     ],
+    specs: [
+      { label: 'Capacity', value: '1.7L' },
+      { label: 'Material', value: 'Borosilicate glass' },
+    ],
+    inStock: true,
     categoryId: '2',
     brandId: '2',
   },
@@ -164,6 +212,7 @@ export const mockProducts: Product[] = [
     description:
       'Wide-slot 4-slice toaster with 7 browning levels. Extra-lift feature, defrost and bagel functions. Stainless steel design.',
     price: 69,
+    originalPrice: null,
     currency: 'USD',
     model: 'T4S-700',
     size: '30x18x20 cm',
@@ -173,6 +222,11 @@ export const mockProducts: Product[] = [
       { id: 'cv-9-2', name: 'Black', hex: '#000000', image: '/image/general-img-square.png' },
       { id: 'cv-9-3', name: 'Copper', hex: '#B87333', image: '/image/general-img-square.png' },
     ],
+    specs: [
+      { label: 'Slots', value: '4' },
+      { label: 'Browning Levels', value: '7' },
+    ],
+    inStock: true,
     categoryId: '2',
     brandId: '2',
   },
@@ -184,6 +238,7 @@ export const mockProducts: Product[] = [
     description:
       'Professional stand mixer with 800W motor and 6L bowl. Includes dough hook, flat beater, and wire whisk. 10 speed settings.',
     price: 349,
+    originalPrice: null,
     currency: 'USD',
     model: 'SMP-800',
     size: '40x25x35 cm',
@@ -194,6 +249,11 @@ export const mockProducts: Product[] = [
       { id: 'cv-10-3', name: 'White', hex: '#FFFFFF', image: '/image/general-img-square.png' },
       { id: 'cv-10-4', name: 'Silver', hex: '#C0C0C0', image: '/image/general-img-square.png' },
     ],
+    specs: [
+      { label: 'Power', value: '800W' },
+      { label: 'Bowl Capacity', value: '6L' },
+    ],
+    inStock: true,
     categoryId: '2',
     brandId: '1',
   },
@@ -205,6 +265,7 @@ export const mockProducts: Product[] = [
     description:
       'Versatile food processor with 12-cup capacity. Includes slicing, shredding, and chopping discs. Powerful 750W motor.',
     price: 179,
+    originalPrice: null,
     currency: 'USD',
     model: 'FPM-750',
     size: '25x25x40 cm',
@@ -213,6 +274,11 @@ export const mockProducts: Product[] = [
       { id: 'cv-11-1', name: 'White', hex: '#FFFFFF', image: '/image/general-img-square.png' },
       { id: 'cv-11-2', name: 'Black', hex: '#000000', image: '/image/general-img-square.png' },
     ],
+    specs: [
+      { label: 'Capacity', value: '12 cups' },
+      { label: 'Power', value: '750W' },
+    ],
+    inStock: true,
     categoryId: '2',
     brandId: '3',
   },
@@ -226,6 +292,7 @@ export const mockProducts: Product[] = [
     description:
       'True HEPA air purifier for large rooms up to 50 sqm. Captures 99.97% of particles. 3-stage filtration with activated carbon.',
     price: 299,
+    originalPrice: null,
     currency: 'USD',
     model: 'HAP-500',
     size: '30x30x60 cm',
@@ -233,6 +300,11 @@ export const mockProducts: Product[] = [
     colorVariants: [
       { id: 'cv-12-1', name: 'White', hex: '#FFFFFF', image: '/image/general-img-square.png' },
     ],
+    specs: [
+      { label: 'Coverage', value: '50 sqm' },
+      { label: 'Filtration', value: '3-stage HEPA' },
+    ],
+    inStock: true,
     categoryId: '3',
     brandId: '1',
   },
@@ -244,6 +316,7 @@ export const mockProducts: Product[] = [
     description:
       'WiFi-enabled air purifier with app control and real-time air quality monitoring. Auto mode adjusts fan speed based on air quality.',
     price: 399,
+    originalPrice: null,
     currency: 'USD',
     model: 'SAP-600W',
     size: '32x32x65 cm',
@@ -252,6 +325,11 @@ export const mockProducts: Product[] = [
       { id: 'cv-13-1', name: 'White', hex: '#FFFFFF', image: '/image/general-img-square.png' },
       { id: 'cv-13-2', name: 'Black', hex: '#000000', image: '/image/general-img-square.png' },
     ],
+    specs: [
+      { label: 'Connectivity', value: 'WiFi' },
+      { label: 'Mode', value: 'Auto/Manual' },
+    ],
+    inStock: true,
     categoryId: '3',
     brandId: '1',
   },
@@ -263,6 +341,7 @@ export const mockProducts: Product[] = [
     description:
       'Compact and portable air purifier perfect for bedrooms and offices. Quiet operation and energy efficient. USB powered option.',
     price: 99,
+    originalPrice: null,
     currency: 'USD',
     model: 'CAP-200',
     size: '18x18x30 cm',
@@ -272,6 +351,11 @@ export const mockProducts: Product[] = [
       { id: 'cv-14-2', name: 'Sky Blue', hex: '#87CEEB', image: '/image/general-img-square.png' },
       { id: 'cv-14-3', name: 'Pink', hex: '#FFB6C1', image: '/image/general-img-square.png' },
     ],
+    specs: [
+      { label: 'Power', value: 'USB/AC' },
+      { label: 'Noise', value: '< 30dB' },
+    ],
+    inStock: true,
     categoryId: '3',
     brandId: '2',
   },
@@ -283,6 +367,7 @@ export const mockProducts: Product[] = [
     description:
       '2-in-1 air purifier and humidifier combo. HEPA filtration plus cool mist humidification for optimal indoor air quality.',
     price: 249,
+    originalPrice: null,
     currency: 'USD',
     model: 'APH-350',
     size: '28x28x50 cm',
@@ -290,6 +375,11 @@ export const mockProducts: Product[] = [
     colorVariants: [
       { id: 'cv-15-1', name: 'White', hex: '#FFFFFF', image: '/image/general-img-square.png' },
     ],
+    specs: [
+      { label: 'Function', value: '2-in-1' },
+      { label: 'Filtration', value: 'HEPA' },
+    ],
+    inStock: true,
     categoryId: '3',
     brandId: '3',
   },
@@ -301,6 +391,7 @@ export const mockProducts: Product[] = [
     description:
       'Compact car air purifier with HEPA filter and ionizer. Plugs into car USB or 12V outlet. Removes odors, smoke, and allergens.',
     price: 59,
+    originalPrice: null,
     currency: 'USD',
     model: 'CAP-100',
     size: '8x8x15 cm',
@@ -309,6 +400,11 @@ export const mockProducts: Product[] = [
       { id: 'cv-16-1', name: 'Black', hex: '#000000', image: '/image/general-img-square.png' },
       { id: 'cv-16-2', name: 'Silver', hex: '#C0C0C0', image: '/image/general-img-square.png' },
     ],
+    specs: [
+      { label: 'Power', value: 'USB/12V' },
+      { label: 'Ionizer', value: 'Yes' },
+    ],
+    inStock: true,
     categoryId: '3',
     brandId: '2',
   },

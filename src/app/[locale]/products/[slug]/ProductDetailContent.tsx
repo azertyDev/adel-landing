@@ -2,7 +2,7 @@
 
 import { Check, Package, RefreshCw, Shield, Truck } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import type { Brand, Category, Product } from '@/shared/api/strapi';
 import { cn } from '@/shared/lib';
 import { Badge, Breadcrumbs, Button, Card, Container, Heading, Section, Text } from '@/shared/ui';
@@ -30,7 +30,15 @@ export function ProductDetailContent({
 }: ProductDetailContentProps) {
   const t = useTranslations('product');
   const navT = useTranslations('navigation');
-  const [selectedColor, setSelectedColor] = useState<string | null>(product.colors[0] || null);
+  const [selectedColorId, setSelectedColorId] = useState<string | null>(
+    product.colorVariants[0]?.id || null
+  );
+
+  // Get images from colorVariants for the gallery
+  const galleryImages = useMemo(
+    () => product.colorVariants.map((v) => v.image),
+    [product.colorVariants]
+  );
 
   const formatPrice = (price: number, currency: string) => {
     return new Intl.NumberFormat('en-US', {
@@ -52,7 +60,7 @@ export function ProductDetailContent({
 
       <div className="grid gap-12 lg:grid-cols-2">
         {/* Gallery */}
-        <ProductGallery images={product.images} productName={product.name} />
+        <ProductGallery images={galleryImages} productName={product.name} />
 
         {/* Product Info */}
         <div>
@@ -86,23 +94,23 @@ export function ProductDetailContent({
           <Text className="mb-8 text-gray-600">{product.description}</Text>
 
           {/* Colors */}
-          {product.colors.length > 0 && (
+          {product.colorVariants.length > 0 && (
             <div className="mb-8">
               <h3 className="mb-3 font-medium">{t('colors')}</h3>
               <div className="flex gap-3">
-                {product.colors.map((color) => (
+                {product.colorVariants.map((variant) => (
                   <button
-                    key={color}
+                    key={variant.id}
                     type="button"
-                    onClick={() => setSelectedColor(color)}
+                    onClick={() => setSelectedColorId(variant.id)}
                     className={cn(
                       'h-10 w-10 rounded-full border-2 transition-all',
-                      selectedColor === color
+                      selectedColorId === variant.id
                         ? 'border-black ring-2 ring-black ring-offset-2'
                         : 'border-gray-200 hover:border-gray-400'
                     )}
-                    style={{ backgroundColor: color }}
-                    aria-label={`Select color ${color}`}
+                    style={{ backgroundColor: variant.hex }}
+                    aria-label={`Select color ${variant.name}`}
                   />
                 ))}
               </div>
