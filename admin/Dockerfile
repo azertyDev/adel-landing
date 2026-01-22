@@ -17,8 +17,9 @@ RUN corepack enable && corepack prepare pnpm@latest --activate
 COPY pnpm-workspace.yaml package.json pnpm-lock.yaml ./
 COPY admin/package.json ./admin/
 
-# Install dependencies with native modules rebuild
-RUN pnpm install --frozen-lockfile --filter admin
+# Install dependencies with native modules rebuild (with pnpm cache)
+RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store \
+    pnpm install --frozen-lockfile --filter admin
 
 # =============================================================================
 # Stage 2: Builder

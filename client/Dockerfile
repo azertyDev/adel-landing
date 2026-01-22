@@ -14,8 +14,9 @@ RUN corepack enable && corepack prepare pnpm@latest --activate
 COPY pnpm-workspace.yaml package.json pnpm-lock.yaml ./
 COPY client/package.json ./client/
 
-# Install only client dependencies
-RUN pnpm install --frozen-lockfile --filter client
+# Install only client dependencies (with pnpm cache)
+RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store \
+    pnpm install --frozen-lockfile --filter client
 
 # =============================================================================
 # Stage 2: Builder
