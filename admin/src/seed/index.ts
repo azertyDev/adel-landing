@@ -1,12 +1,16 @@
 import type { Core } from '@strapi/strapi';
 import {
+  aboutUs,
   brands,
   categories,
+  colors,
   faqs,
   headerAbout,
   headerContact,
+  hero,
   products,
   siteSettings,
+  whyUs,
 } from './data';
 
 export async function seedDatabase(strapi: Core.Strapi) {
@@ -37,11 +41,31 @@ export async function seedDatabase(strapi: Core.Strapi) {
         data: {
           name: brand.name,
           slug: brand.slug,
+          locale: 'en',
           publishedAt: new Date(),
         },
       });
       brandMap.set(brand.slug, created.documentId);
       strapi.log.info(`Created brand: ${brand.name}`);
+
+      // Create localizations for brands
+      if (brand.localizations) {
+        for (const [locale, locData] of Object.entries(brand.localizations)) {
+          try {
+            await strapi.documents('api::brand.brand').update({
+              documentId: created.documentId,
+              locale,
+              data: {
+                name: locData.name,
+                publishedAt: new Date(),
+              },
+            });
+            strapi.log.info(`Created ${locale} localization for brand: ${brand.name}`);
+          } catch (_e) {
+            strapi.log.warn(`Failed to create ${locale} localization for brand: ${brand.name}`);
+          }
+        }
+      }
     }
 
     // Seed Categories
@@ -89,17 +113,7 @@ export async function seedDatabase(strapi: Core.Strapi) {
     strapi.log.info('Seeding colors...');
     const colorMap = new Map<string, string>();
 
-    const colorData = [
-      { name: 'Silver', hex: '#C0C0C0' },
-      { name: 'Black', hex: '#000000' },
-      { name: 'White', hex: '#FFFFFF' },
-      { name: 'Red', hex: '#FF0000' },
-      { name: 'Copper', hex: '#B87333' },
-      { name: 'Sky Blue', hex: '#87CEEB' },
-      { name: 'Pink', hex: '#FFB6C1' },
-    ];
-
-    for (const color of colorData) {
+    for (const color of colors) {
       const existing = await strapi.documents('api::color.color').findMany({
         filters: { hex: color.hex },
       });
@@ -118,6 +132,25 @@ export async function seedDatabase(strapi: Core.Strapi) {
         });
         colorMap.set(color.hex, created.documentId);
         strapi.log.info(`Created color: ${color.name}`);
+
+        // Create localizations for colors
+        if (color.localizations) {
+          for (const [locale, locData] of Object.entries(color.localizations)) {
+            try {
+              await strapi.documents('api::color.color').update({
+                documentId: created.documentId,
+                locale,
+                data: {
+                  name: locData.name,
+                  publishedAt: new Date(),
+                },
+              });
+              strapi.log.info(`Created ${locale} localization for color: ${color.name}`);
+            } catch (_e) {
+              strapi.log.warn(`Failed to create ${locale} localization for color: ${color.name}`);
+            }
+          }
+        }
       }
     }
 
@@ -128,8 +161,8 @@ export async function seedDatabase(strapi: Core.Strapi) {
       const categoryId = categoryMap.get(product.categorySlug);
       const brandId = brandMap.get(product.brandSlug);
 
-      // Convert colors array to variants format
-      const variants = product.colors
+      // Convert variantColors array to variants format
+      const variants = product.variantColors
         .map((hex) => {
           const colorId = colorMap.get(hex);
           if (!colorId) return null;
@@ -142,10 +175,15 @@ export async function seedDatabase(strapi: Core.Strapi) {
           name: product.name,
           slug: product.slug,
           description: product.description,
+          model: product.model,
+          size: product.size,
           price: product.price,
+          currency: product.currency as 'USD' | 'EUR' | 'TRY' | 'RUB',
+          originalPrice: product.originalPrice,
           inStock: product.inStock,
           variants,
           specs: product.specs,
+          features: product.features,
           locale: 'en',
           publishedAt: new Date(),
           category: categoryId,
@@ -165,6 +203,7 @@ export async function seedDatabase(strapi: Core.Strapi) {
                 name: locData.name,
                 description: locData.description,
                 specs: locData.specs || product.specs,
+                features: locData.features || product.features,
                 publishedAt: new Date(),
               },
             });
@@ -210,6 +249,153 @@ export async function seedDatabase(strapi: Core.Strapi) {
           }
         }
       }
+    }
+
+    // Seed Hero Section (Single Type)
+    strapi.log.info('Seeding Hero Section...');
+    try {
+      const existingHero = await strapi.documents('api::hero.hero').findFirst({
+        locale: 'en',
+      });
+
+      if (!existingHero) {
+        const createdHero = await strapi.documents('api::hero.hero').create({
+          data: {
+            title: hero.title,
+            subtitle: hero.subtitle,
+            ctaText: hero.ctaText,
+            ctaLink: hero.ctaLink,
+            locale: 'en',
+            publishedAt: new Date(),
+          },
+        });
+        strapi.log.info('Created Hero Section (EN)');
+
+        // Create localizations
+        for (const [locale, locData] of Object.entries(hero.localizations)) {
+          try {
+            await strapi.documents('api::hero.hero').update({
+              documentId: createdHero.documentId,
+              locale,
+              data: {
+                title: locData.title,
+                subtitle: locData.subtitle,
+                ctaText: locData.ctaText,
+                publishedAt: new Date(),
+              },
+            });
+            strapi.log.info(`Created Hero Section (${locale.toUpperCase()})`);
+          } catch (_e) {
+            strapi.log.warn(`Failed to create ${locale} localization for Hero Section`);
+          }
+        }
+      } else {
+        strapi.log.info('Hero Section already exists, skipping...');
+      }
+    } catch (_e) {
+      strapi.log.warn('Hero content type not found, skipping...');
+    }
+
+    // Seed About Us Section (Single Type)
+    strapi.log.info('Seeding About Us Section...');
+    try {
+      const existingAboutUs = await strapi.documents('api::about-us.about-us').findFirst({
+        locale: 'en',
+      });
+
+      if (!existingAboutUs) {
+        const createdAboutUs = await strapi.documents('api::about-us.about-us').create({
+          data: {
+            sectionTitle: aboutUs.sectionTitle,
+            heading: aboutUs.heading,
+            buttonText: aboutUs.buttonText,
+            buttonLink: aboutUs.buttonLink,
+            locale: 'en',
+            publishedAt: new Date(),
+          },
+        });
+        strapi.log.info('Created About Us Section (EN)');
+
+        // Create localizations
+        for (const [locale, locData] of Object.entries(aboutUs.localizations)) {
+          try {
+            await strapi.documents('api::about-us.about-us').update({
+              documentId: createdAboutUs.documentId,
+              locale,
+              data: {
+                sectionTitle: locData.sectionTitle,
+                heading: locData.heading,
+                buttonText: locData.buttonText,
+                publishedAt: new Date(),
+              },
+            });
+            strapi.log.info(`Created About Us Section (${locale.toUpperCase()})`);
+          } catch (_e) {
+            strapi.log.warn(`Failed to create ${locale} localization for About Us Section`);
+          }
+        }
+      } else {
+        strapi.log.info('About Us Section already exists, skipping...');
+      }
+    } catch (_e) {
+      strapi.log.warn('About Us content type not found, skipping...');
+    }
+
+    // Seed Why Us Section (Single Type)
+    strapi.log.info('Seeding Why Us Section...');
+    try {
+      const existingWhyUs = await strapi.documents('api::why-us.why-us').findFirst({
+        locale: 'en',
+      });
+
+      if (!existingWhyUs) {
+        // Prepare features for English
+        const featuresEn = whyUs.features.map((feature) => ({
+          title: feature.title,
+          description: feature.description,
+        }));
+
+        const createdWhyUs = await strapi.documents('api::why-us.why-us').create({
+          data: {
+            sectionTitle: whyUs.sectionTitle,
+            features: featuresEn,
+            locale: 'en',
+            publishedAt: new Date(),
+          },
+        });
+        strapi.log.info('Created Why Us Section (EN)');
+
+        // Create localizations
+        for (const [locale, locData] of Object.entries(whyUs.localizations)) {
+          try {
+            // Prepare features for this locale
+            const featuresLocale = whyUs.features.map((feature) => {
+              const featureLoc = feature.localizations?.[locale];
+              return {
+                title: featureLoc?.title || feature.title,
+                description: featureLoc?.description || feature.description,
+              };
+            });
+
+            await strapi.documents('api::why-us.why-us').update({
+              documentId: createdWhyUs.documentId,
+              locale,
+              data: {
+                sectionTitle: locData.sectionTitle,
+                features: featuresLocale,
+                publishedAt: new Date(),
+              },
+            });
+            strapi.log.info(`Created Why Us Section (${locale.toUpperCase()})`);
+          } catch (_e) {
+            strapi.log.warn(`Failed to create ${locale} localization for Why Us Section`);
+          }
+        }
+      } else {
+        strapi.log.info('Why Us Section already exists, skipping...');
+      }
+    } catch (_e) {
+      strapi.log.warn('Why Us content type not found, skipping...');
     }
 
     // Seed Header About (Single Type)

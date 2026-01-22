@@ -41,7 +41,7 @@ export function CategoryGrid({ categories, loading, className }: CategoryGridPro
 
   return (
     <motion.div
-      className={cn('grid grid-cols-1 gap-6 ', className)}
+      className={cn('grid grid-cols-1 gap-3 sm:gap-4 md:gap-5 lg:gap-6 xl:gap-8', className)}
       variants={containerVariants}
       initial="hidden"
       animate="visible"

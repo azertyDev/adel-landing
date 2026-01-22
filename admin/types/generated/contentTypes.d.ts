@@ -404,7 +404,7 @@ export interface ApiAboutUsAboutUs extends Struct.SingleTypeSchema {
     };
   };
   attributes: {
-    backgroundImage: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    backgroundImage: Schema.Attribute.Media<'images'>;
     buttonLink: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'/about'>;
@@ -735,7 +735,7 @@ export interface ApiHeroHero extends Struct.SingleTypeSchema {
     };
   };
   attributes: {
-    backgroundVideo: Schema.Attribute.Media<'videos'> & Schema.Attribute.Required;
+    backgroundVideo: Schema.Attribute.Media<'videos'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
     ctaLink: Schema.Attribute.String &

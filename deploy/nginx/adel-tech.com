@@ -115,6 +115,18 @@ server {
     }
 
     # ==========================================================================
+    # Strapi Upload plugin (admin settings)
+    # ==========================================================================
+    location /upload {
+        proxy_pass http://adel_admin;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    # ==========================================================================
     # Strapi i18n (localization plugin)
     # ==========================================================================
     location /i18n {
@@ -142,6 +154,18 @@ server {
     # Strapi Content Manager (admin)
     # ==========================================================================
     location /content-manager {
+        proxy_pass http://adel_admin;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    # ==========================================================================
+    # Strapi Users & Permissions (admin roles management)
+    # ==========================================================================
+    location /users-permissions {
         proxy_pass http://adel_admin;
         proxy_http_version 1.1;
         proxy_set_header Host $host;

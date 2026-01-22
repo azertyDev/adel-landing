@@ -29,7 +29,7 @@ export interface ProductProductFeature extends Struct.ComponentSchema {
   };
   attributes: {
     description: Schema.Attribute.Text & Schema.Attribute.Required;
-    icon: Schema.Attribute.Media<'images' | 'files'> & Schema.Attribute.Required;
+    icon: Schema.Attribute.Media<'images' | 'files'>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
@@ -60,7 +60,7 @@ export interface SharedWhyUsFeature extends Struct.ComponentSchema {
           localized: true;
         };
       }>;
-    icon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    icon: Schema.Attribute.Media<'images'>;
     title: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
