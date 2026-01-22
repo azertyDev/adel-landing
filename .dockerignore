@@ -1,0 +1,44 @@
+# Dependencies
+**/node_modules
+.pnpm-store
+
+# Build outputs
+client/build
+client/.next
+admin/dist
+admin/build
+admin/.strapi
+
+# Database
+**/.tmp
+**/*.db
+**/*.sqlite
+
+# Environment
+**/.env
+**/.env.*
+!**/.env.example
+
+# IDE
+.idea
+.vscode
+**/*.swp
+**/*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+
+# Misc
+**/*.log
+**/coverage
+README.md
+.husky
+.worktrees
+
+# Design files
+Adel design

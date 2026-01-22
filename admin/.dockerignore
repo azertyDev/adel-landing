@@ -1,0 +1,44 @@
+# Dependencies
+node_modules
+.pnpm-store
+
+# Build output
+dist
+build
+.strapi
+
+# Database (local)
+.tmp
+*.db
+*.sqlite
+
+# Uploads (local)
+public/uploads/*
+!public/uploads/.gitkeep
+
+# Development
+*.log
+.env
+.env.*
+!.env.example
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+
+# Misc
+README.md
+*.md
+coverage
+exports
+license.txt

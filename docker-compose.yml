@@ -1,0 +1,83 @@
+services:
+  # ==========================================================================
+  # Strapi CMS (Admin)
+  # ==========================================================================
+  adel-admin:
+    container_name: adel-admin
+    build:
+      context: .
+      dockerfile: admin/Dockerfile
+    restart: unless-stopped
+    environment:
+      # Server
+      HOST: 0.0.0.0
+      PORT: 1337
+      # Database (SQLite)
+      DATABASE_CLIENT: sqlite
+      DATABASE_FILENAME: .tmp/data.db
+      # Security (from .env file)
+      APP_KEYS: ${STRAPI_APP_KEYS}
+      API_TOKEN_SALT: ${STRAPI_API_TOKEN_SALT}
+      ADMIN_JWT_SECRET: ${STRAPI_ADMIN_JWT_SECRET}
+      TRANSFER_TOKEN_SALT: ${STRAPI_TRANSFER_TOKEN_SALT}
+      JWT_SECRET: ${STRAPI_JWT_SECRET}
+      ENCRYPTION_KEY: ${STRAPI_ENCRYPTION_KEY}
+    ports:
+      - "1337:1337"
+    volumes:
+      # Persist SQLite database
+      - adel-admin-data:/app/admin/.tmp
+      # Persist uploads
+      - adel-admin-uploads:/app/admin/public/uploads
+    networks:
+      - adel-network
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:1337/_health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # ==========================================================================
+  # Next.js Client
+  # ==========================================================================
+  adel-client:
+    container_name: adel-client
+    build:
+      context: .
+      dockerfile: client/Dockerfile
+      args:
+        # Public URLs (baked into JS bundle during build)
+        NEXT_PUBLIC_API_URL: https://adel-tech.com/api
+        NEXT_PUBLIC_STRAPI_URL: https://adel-tech.com
+        NEXT_PUBLIC_SITE_URL: https://adel-tech.com
+    restart: unless-stopped
+    environment:
+      # Internal URLs for server-side rendering (Docker network)
+      API_URL_INTERNAL: http://adel-admin:1337/api
+      STRAPI_URL_INTERNAL: http://adel-admin:1337
+      NODE_ENV: production
+    ports:
+      - "3001:3001"
+    networks:
+      - adel-network
+    depends_on:
+      adel-admin:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3001/ru"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+volumes:
+  adel-admin-data:
+    name: adel-admin-data
+  adel-admin-uploads:
+    name: adel-admin-uploads
+
+networks:
+  adel-network:
+    name: adel-network
+    driver: bridge
