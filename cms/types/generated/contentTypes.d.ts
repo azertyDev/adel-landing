@@ -596,6 +596,128 @@ export interface ApiFaqFaq extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiHeaderAboutHeaderAbout extends Struct.SingleTypeSchema {
+  collectionName: 'header_abouts';
+  info: {
+    description: 'Content for About Us dropdown in header';
+    displayName: 'Header About Dropdown';
+    pluralName: 'header-abouts';
+    singularName: 'header-about';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::header-about.header-about'>;
+    paragraph1: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    paragraph2: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+  };
+}
+
+export interface ApiHeaderContactHeaderContact extends Struct.SingleTypeSchema {
+  collectionName: 'header_contacts';
+  info: {
+    description: 'Content for Contact Us dropdown in header';
+    displayName: 'Header Contact Dropdown';
+    pluralName: 'header-contacts';
+    singularName: 'header-contact';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    chatLink: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    chatTitle: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    chatUrl: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+    deliveryReturnsLink: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    deliveryReturnsUrl: Schema.Attribute.String;
+    deliverySupportLink: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    deliverySupportUrl: Schema.Attribute.String;
+    deliveryTitle: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::header-contact.header-contact'>;
+    phoneNumber: Schema.Attribute.String & Schema.Attribute.Required;
+    phoneTitle: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    socialLinks: Schema.Attribute.Component<'header.social-link', true>;
+    socialTitle: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+  };
+}
+
 export interface ApiHeroHero extends Struct.SingleTypeSchema {
   collectionName: 'heroes';
   info: {
@@ -667,19 +789,31 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
   attributes: {
     brand: Schema.Attribute.Relation<'manyToOne', 'api::brand.brand'>;
     category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
-    colors: Schema.Attribute.JSON;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+    currency: Schema.Attribute.Enumeration<['USD', 'EUR', 'TRY', 'RUB']> &
+      Schema.Attribute.DefaultTo<'USD'>;
     description: Schema.Attribute.RichText &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
-    images: Schema.Attribute.Media<'images', true>;
+    features: Schema.Attribute.Component<'product.product-feature', true> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     inStock: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
+    model: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
     name: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -690,6 +824,12 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     originalPrice: Schema.Attribute.Decimal;
     price: Schema.Attribute.Decimal & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
+    size: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
     slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
     specs: Schema.Attribute.JSON &
       Schema.Attribute.SetPluginOptions<{
@@ -699,6 +839,14 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
       }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
+    variants: Schema.Attribute.Component<'product.product-variant', true> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      >;
   };
 }
 
@@ -1178,6 +1326,8 @@ declare module '@strapi/strapi' {
       'api::category.category': ApiCategoryCategory;
       'api::color.color': ApiColorColor;
       'api::faq.faq': ApiFaqFaq;
+      'api::header-about.header-about': ApiHeaderAboutHeaderAbout;
+      'api::header-contact.header-contact': ApiHeaderContactHeaderContact;
       'api::hero.hero': ApiHeroHero;
       'api::product.product': ApiProductProduct;
       'api::why-us.why-us': ApiWhyUsWhyUs;

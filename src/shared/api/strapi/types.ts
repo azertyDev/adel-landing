@@ -66,15 +66,27 @@ export interface StrapiProductVariant {
   image: StrapiMedia | null;
 }
 
+// Strapi product feature component
+export interface StrapiProductFeature {
+  id: number;
+  icon: StrapiMedia | null;
+  title: string;
+  description: string;
+}
+
 // Strapi v5 entity types (attributes are flattened)
 export interface StrapiProduct extends StrapiEntity {
   name: string;
   slug: string;
   description: string;
+  model: string | null;
+  size: string | null;
   price: number;
+  currency: 'USD' | 'EUR' | 'TRY' | 'RUB' | null;
   originalPrice: number | null;
   variants: StrapiProductVariant[];
   specs: ProductSpec[];
+  features: StrapiProductFeature[];
   inStock: boolean;
   category?: StrapiCategory;
   brand?: StrapiBrand;
@@ -108,15 +120,18 @@ export interface Product {
   description: string;
   price: number;
   originalPrice: number | null;
-  currency: 'USD' | 'TRY';
-  model: string;
-  size: string;
+  currency: 'USD' | 'EUR' | 'TRY' | 'RUB';
+  model: string | null;
+  size: string | null;
   colorVariants: ColorVariant[];
   thumbnail: string;
   specs: ProductSpec[];
+  features: ProductFeature[];
   inStock: boolean;
   categoryId?: string;
   brandId?: string;
+  category?: Category;
+  brand?: Brand;
 }
 
 export interface Category {
@@ -218,6 +233,14 @@ export interface ColorVariant {
   name: string;
   hex: string;
   image: string;
+}
+
+// ProductFeature for product page highlights
+export interface ProductFeature {
+  id: number;
+  icon: string | null;
+  title: string;
+  description: string;
 }
 
 // Header About Dropdown types

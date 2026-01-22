@@ -24,7 +24,14 @@ export function ColorSelector({
     <div
       role="radiogroup"
       aria-label="Select color"
-      className={cn('flex items-center gap-2', className)}
+      className={cn(
+        // White pill container as in design
+        'inline-flex items-center gap-1.5 sm:gap-2 md:gap-2.5 lg:gap-3',
+        'bg-white rounded-full',
+        'px-2 py-1 sm:px-2.5 sm:py-1.5 md:px-3 md:py-2 lg:px-4 lg:py-2.5',
+        'shadow-md',
+        className
+      )}
     >
       {variants.map((variant) => {
         const isSelected = variant.id === selectedId;
@@ -53,11 +60,12 @@ export function ColorSelector({
             />
             <span
               className={cn(
-                'block size-3 sm:size-3.5 lg:size-4 rounded-full transition-all duration-200',
+                // Responsive dot sizes
+                'block size-3 sm:size-4 md:size-5 lg:size-6 rounded-full transition-all duration-200',
                 'ring-1 ring-black/10',
                 'hover:scale-110',
                 'peer-focus-visible:ring-2 peer-focus-visible:ring-offset-2 peer-focus-visible:ring-gray-400',
-                isSelected && 'ring-2 ring-offset-2 ring-gray-400'
+                isSelected && 'ring-2 ring-offset-1 sm:ring-offset-2 ring-gray-400'
               )}
               style={{ backgroundColor: variant.hex }}
             />

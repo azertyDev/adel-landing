@@ -4,8 +4,10 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { Product } from '@/shared/api/strapi';
-import { Breadcrumbs, Button, Container, Heading, Text } from '@/shared/ui';
+import { Breadcrumbs, Button, Container, Heading, Pagination, Text } from '@/shared/ui';
 import { ActiveFilters, defaultFilters, type FilterState, ProductGrid } from '@/widgets';
+
+const ITEMS_PER_PAGE = 24;
 
 interface ProductsPageClientProps {
   products: Product[];
@@ -18,14 +20,16 @@ export function ProductsPageClient({ products }: ProductsPageClientProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [filters, setFilters] = useState<FilterState>(defaultFilters);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  // Read filters from URL on mount
+  // Read filters and page from URL on mount
   useEffect(() => {
     const categoriesParam = searchParams.get('categories');
     const brandsParam = searchParams.get('brands');
     const priceMinParam = searchParams.get('priceMin');
     const priceMaxParam = searchParams.get('priceMax');
     const colorsParam = searchParams.get('colors');
+    const pageParam = searchParams.get('page');
 
     setFilters({
       categories: categoriesParam ? categoriesParam.split(',') : [],
@@ -34,6 +38,7 @@ export function ProductsPageClient({ products }: ProductsPageClientProps) {
       priceMax: priceMaxParam ? Number(priceMaxParam) : null,
       colors: colorsParam ? colorsParam.split(',') : [],
     });
+    setCurrentPage(pageParam ? Number(pageParam) : 1);
   }, [searchParams]);
 
   const filteredProducts = useMemo(() => {
@@ -55,6 +60,19 @@ export function ProductsPageClient({ products }: ProductsPageClientProps) {
       return matchesCategory && matchesBrand && matchesPriceMin && matchesPriceMax && matchesColor;
     });
   }, [products, filters]);
+
+  // Pagination
+  const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
+  const paginatedProducts = useMemo(() => {
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredProducts.slice(start, start + ITEMS_PER_PAGE);
+  }, [filteredProducts, currentPage]);
+
+  const handlePageChange = useCallback((page: number) => {
+    setCurrentPage(page);
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   const clearAllFilters = useCallback(() => {
     setFilters(defaultFilters);
@@ -78,7 +96,16 @@ export function ProductsPageClient({ products }: ProductsPageClientProps) {
       </div>
 
       {filteredProducts.length > 0 ? (
-        <ProductGrid products={filteredProducts} />
+        <>
+          <ProductGrid products={paginatedProducts} />
+          {totalPages > 1 && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
+          )}
+        </>
       ) : (
         <div className="flex flex-col items-center justify-center py-16 text-center">
           <Heading as="h3" className="mb-2">

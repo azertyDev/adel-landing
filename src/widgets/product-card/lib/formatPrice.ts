@@ -1,8 +1,10 @@
-type Currency = 'USD' | 'TRY';
+type Currency = 'USD' | 'EUR' | 'TRY' | 'RUB';
 
 const CURRENCY_SYMBOLS: Record<Currency, string> = {
   USD: '$',
+  EUR: '€',
   TRY: '₺',
+  RUB: '₽',
 };
 
 export function formatPrice(price: number, currency: Currency): string {

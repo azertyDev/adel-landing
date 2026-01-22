@@ -1,13 +1,18 @@
 {
+  "brand": "Marka",
+  "category": "Kategori",
+  "color": "Renk",
   "colors": "Mevcut Renkler",
   "description": "Açıklama",
   "discoverMore": "Daha Fazlasını Keşfet",
   "filters": "Kategoriler",
   "inStock": "Stokta",
+  "model": "Model",
   "orderNow": "Şimdi Sipariş Ver",
   "outOfStock": "Stokta Yok",
   "price": "Fiyat",
   "relatedProducts": "İlgili Ürünler",
+  "size": "Boyut",
   "specifications": "Özellikler",
   "trustBadges": {
     "returns": "Kolay İade",

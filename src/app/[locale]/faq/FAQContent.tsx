@@ -2,9 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
-import { Link } from '@/i18n';
 import type { FAQItem } from '@/shared/api/strapi';
-import { Breadcrumbs, Button, Card, Container, Heading, Section, Text } from '@/shared/ui';
+import { Breadcrumbs, Container, Heading, Section, Text } from '@/shared/ui';
 import { FAQAccordion } from '@/widgets';
 
 interface FAQContentProps {
@@ -20,7 +19,7 @@ export function FAQContent({ faqs }: FAQContentProps) {
   return (
     <>
       {/* Hero Section */}
-      <Section className="bg-gray-50">
+      <Section>
         <Container>
           <Breadcrumbs items={breadcrumbs} className="mb-8" />
           <div className="mx-auto max-w-3xl text-center">
@@ -52,20 +51,6 @@ export function FAQContent({ faqs }: FAQContentProps) {
               </div>
             )}
           </div>
-        </Container>
-      </Section>
-
-      {/* CTA Section */}
-      <Section className="bg-gray-50">
-        <Container>
-          <Card className="mx-auto max-w-2xl p-8 text-center">
-            <Heading as="h3" className="mb-4">
-              {t('notFound')}
-            </Heading>
-            <Link href="/contact">
-              <Button>{t('contactUs')}</Button>
-            </Link>
-          </Card>
         </Container>
       </Section>
     </>

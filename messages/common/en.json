@@ -4,15 +4,11 @@
   "discard": "Discard changes",
   "error": "An error occurred",
   "filter": "Filter",
+  "filters": "Filters",
   "learnMore": "Learn More",
   "loading": "Loading...",
   "menu": "Menu",
   "open": "Open",
-  "products": {
-    "filters": {
-      "discard": "Discard changes"
-    }
-  },
   "retry": "Retry",
   "search": "Search",
   "sort": "Sort",

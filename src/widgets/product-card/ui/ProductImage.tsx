@@ -11,7 +11,7 @@ interface ProductImageProps {
   className?: string;
 }
 
-const FALLBACK_IMAGE = '/image/general-img-square.png';
+const FALLBACK_IMAGE = '/image/placeholder.png';
 
 export function ProductImage({ src, alt, className }: ProductImageProps) {
   const [imgError, setImgError] = useState(false);

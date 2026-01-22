@@ -36,16 +36,16 @@ export function ContactDropdown({ data }: ContactDropdownProps) {
   return (
     <div className="flex min-h-[calc(100vh-5rem)] items-center bg-gray-50 py-16 md:py-20 lg:py-24">
       <Container className="max-w-7xl">
-        <div className="grid gap-12 sm:grid-cols-2 lg:gap-16">
+        <div className="grid gap-12 sm:grid-cols-2 lg:gap-16 text-2xl">
           {/* Chat support */}
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-3 text-2nd">
               <MessageCircle className="h-6 w-6" />
-              <h3 className="text-xl font-medium">{chatTitle}</h3>
+              <h3 className=" font-medium">{chatTitle}</h3>
             </div>
             <a
               href={chatUrl}
-              className="w-fit text-left text-lg text-main-2 underline underline-offset-2 hover:text-blue-800"
+              className="w-fit text-left text-main-2 underline underline-offset-2 hover:text-blue-800"
             >
               {chatLink}
             </a>
@@ -55,11 +55,11 @@ export function ContactDropdown({ data }: ContactDropdownProps) {
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-3 text-2nd">
               <Share2 className="h-6 w-6" />
-              <h3 className="text-xl font-medium">{socialTitle}</h3>
+              <h3 className=" font-medium">{socialTitle}</h3>
             </div>
             <div className="flex flex-col gap-2">
               {socialLinks.map((link) => (
-                <div key={link.id} className="flex gap-2 text-2xl text-2nd">
+                <div key={link.id} className="flex gap-2 text-2nd">
                   {link.platform}:
                   <a
                     href={link.url}
@@ -75,35 +75,35 @@ export function ContactDropdown({ data }: ContactDropdownProps) {
           </div>
 
           {/* Phone */}
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3 ">
             <div className="flex items-center gap-3 text-2nd">
               <Phone className="h-6 w-6" />
-              <h3 className="text-xl font-medium">{phoneTitle}</h3>
+              <h3 className="font-medium">{phoneTitle}</h3>
             </div>
             <a
               href={`tel:${phoneNumber.replace(/\s/g, '')}`}
-              className="text-lg text-main-2 underline underline-offset-2 hover:text-blue-800"
+              className=" text-main-2 underline underline-offset-2 hover:text-blue-800"
             >
               {phoneNumber}
             </a>
           </div>
 
           {/* Delivery and returns */}
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3 ">
             <div className="flex items-center gap-3 text-2nd">
               <Truck className="h-6 w-6" />
-              <h3 className="text-xl font-medium">{deliveryTitle}</h3>
+              <h3 className="font-medium">{deliveryTitle}</h3>
             </div>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 ">
               <a
                 href={deliverySupportUrl}
-                className="w-fit text-left text-lg text-main-2 underline underline-offset-2 hover:text-blue-800"
+                className="w-fit text-left  text-main-2 underline underline-offset-2 hover:text-blue-800"
               >
                 {deliverySupportLink}
               </a>
               <a
                 href={deliveryReturnsUrl}
-                className="w-fit text-left text-lg text-main-2 underline underline-offset-2 hover:text-blue-800"
+                className="w-fit text-left  text-main-2 underline underline-offset-2 hover:text-blue-800"
               >
                 {deliveryReturnsLink}
               </a>

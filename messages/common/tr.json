@@ -4,15 +4,11 @@
   "discard": "Değişiklikleri sil",
   "error": "Bir hata oluştu",
   "filter": "Filtrele",
+  "filters": "Filtreler",
   "learnMore": "Daha Fazla",
   "loading": "Yükleniyor...",
   "menu": "Menü",
   "open": "Aç",
-  "products": {
-    "filters": {
-      "discard": "Değişiklikleri sil"
-    }
-  },
   "retry": "Tekrar Dene",
   "search": "Ara",
   "sort": "Sırala",

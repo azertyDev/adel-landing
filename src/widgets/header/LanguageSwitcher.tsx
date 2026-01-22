@@ -13,7 +13,11 @@ const locales = [
   { code: 'ru', label: 'RU' },
 ] as const;
 
-export function LanguageSwitcher() {
+interface LanguageSwitcherProps {
+  className?: string;
+}
+
+export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
@@ -52,7 +56,8 @@ export function LanguageSwitcher() {
         disabled={isPending}
         className={cn(
           'flex items-center gap-1 text-sm font-medium text-gray-700 transition-colors hover:text-black',
-          isPending && 'opacity-50'
+          isPending && 'opacity-50',
+          className
         )}
       >
         {currentLocale.label}

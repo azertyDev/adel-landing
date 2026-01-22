@@ -8,6 +8,7 @@ export { Container } from './Container';
 export { Drawer } from './Drawer';
 export { GlassLine } from './GlassLine';
 export { Input, type InputProps } from './Input';
+export { Pagination } from './Pagination';
 export { Section } from './Section';
 export { SectionTitle } from './SectionTitle';
 export { ProductCardSkeleton, ProductGridSkeleton, Skeleton } from './Skeleton';

@@ -9,6 +9,7 @@ import type {
   HeaderContactSection,
   HeroSection,
   Product,
+  ProductFeature,
   ProductSpec,
   StrapiAboutUs,
   StrapiBrand,
@@ -20,6 +21,7 @@ import type {
   StrapiHero,
   StrapiMedia,
   StrapiProduct,
+  StrapiProductFeature,
   StrapiProductVariant,
   StrapiResponse,
   StrapiWhyUs,
@@ -40,6 +42,16 @@ function getMediaUrl(media: StrapiMedia | undefined): string | null {
   return media.url;
 }
 
+// Map product feature
+function mapProductFeature(feature: StrapiProductFeature): ProductFeature {
+  return {
+    id: feature.id,
+    icon: getMediaUrl(feature.icon ?? undefined),
+    title: feature.title,
+    description: feature.description,
+  };
+}
+
 // Strapi v5 mappers - fields are directly on entity (no attributes nesting)
 function mapProduct(entity: StrapiProduct): Product {
   // Map variants from Strapi component - extract color from nested relation
@@ -51,7 +63,7 @@ function mapProduct(entity: StrapiProduct): Product {
       id: `cv-${entity.id}-${variant.id}`,
       name: variant.color.name,
       hex: variant.color.hex,
-      image: getMediaUrl(variant.image ?? undefined) || '/image/placeholder_6398266.png',
+      image: getMediaUrl(variant.image ?? undefined) || '/image/placeholder.png',
     }));
 
   // Use first variant as default
@@ -68,15 +80,18 @@ function mapProduct(entity: StrapiProduct): Product {
     description: entity.description,
     price: effectivePrice,
     originalPrice: entity.originalPrice,
-    currency: 'USD',
-    model: '',
-    size: '',
+    currency: entity.currency || 'USD',
+    model: entity.model || null,
+    size: entity.size || null,
     colorVariants,
     thumbnail: defaultVariant?.image || '/image/general-img-square.png',
     specs: (entity.specs as ProductSpec[]) || [],
+    features: (entity.features || []).map(mapProductFeature),
     inStock: entity.inStock,
     categoryId: entity.category?.documentId || '',
     brandId: entity.brand?.documentId || '',
+    category: entity.category ? mapCategory(entity.category) : undefined,
+    brand: entity.brand ? mapBrand(entity.brand) : undefined,
   };
 }
 
@@ -137,6 +152,7 @@ type FetchOptions = {
   };
 };
 
+// biome-ignore lint/complexity/noExcessiveCognitiveComplexity: complex URL building logic
 async function fetchStrapi<T>(
   endpoint: string,
   options: FetchOptions = {}
@@ -172,7 +188,14 @@ async function fetchStrapi<T>(
 
   if (filters) {
     for (const [key, value] of Object.entries(filters)) {
-      params.set(`filters[${key}]`, String(value));
+      if (typeof value === 'object' && value !== null) {
+        // Handle nested filter operators like { $eq: 'value' }
+        for (const [operator, operatorValue] of Object.entries(value)) {
+          params.set(`filters[${key}][${operator}]`, String(operatorValue));
+        }
+      } else {
+        params.set(`filters[${key}]`, String(value));
+      }
     }
   }
 
@@ -213,6 +236,7 @@ export async function getProducts(locale = 'ru'): Promise<Product[]> {
       variants: { populate: ['image', 'color'] },
       category: true,
       brand: true,
+      features: { populate: ['icon'] },
     },
   });
 
@@ -225,8 +249,9 @@ export async function getProduct(documentId: string, locale = 'ru'): Promise<Pro
       locale,
       populate: {
         variants: { populate: ['image', 'color'] },
-        category: { populate: [] },
-        brand: { populate: [] },
+        category: true,
+        brand: true,
+        features: { populate: ['icon'] },
       },
     });
 
@@ -242,8 +267,9 @@ export async function getProductBySlug(slug: string, locale = 'ru'): Promise<Pro
       locale,
       populate: {
         variants: { populate: ['image', 'color'] },
-        category: { populate: [] },
-        brand: { populate: [] },
+        category: true,
+        brand: true,
+        features: { populate: ['icon'] },
       },
       filters: { slug: { $eq: slug } },
     });
@@ -265,6 +291,7 @@ export async function getProductsByCategory(
       variants: { populate: ['image', 'color'] },
       category: true,
       brand: true,
+      features: { populate: ['icon'] },
     },
     filters: { 'category.slug': { $eq: categorySlug } },
   });

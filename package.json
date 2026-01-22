@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
+    "dev:all": "concurrently -n cms,web \"pnpm --dir cms dev\" \"pnpm dev\"",
+    "dev:seed": "concurrently -n cms,web \"SEED_DATABASE=true pnpm --dir cms dev\" \"pnpm dev\"",
     "build": "next build",
     "start": "next start",
     "lint": "biome lint .",
@@ -44,6 +46,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "concurrently": "^9.2.1",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
     "next-sitemap": "^4.2.3",

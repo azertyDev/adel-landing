@@ -48,9 +48,14 @@ export function AboutUs({ data }: AboutUsProps) {
             )}
 
             {/* Glass Lines */}
-            <div className="absolute left-[20%] top-0 bottom-0 flex gap-0.5 sm:gap-4 lg:gap-0.5">
+            <div className="absolute left-[20%] top-0 bottom-0 flex gap-0.5 sm:gap-1 lg:gap-0.5">
+              {/* biome-ignore lint/suspicious/noArrayIndexKey: static decorative elements */}
               {[...Array(8)].map((_, i) => (
-                <GlassLine key={i} orientation="vertical" className="w-3 sm:w-5 md:w-10" />
+                <GlassLine
+                  key={`glass-line-${i}`}
+                  orientation="vertical"
+                  className="w-3 sm:w-5 md:w-10"
+                />
               ))}
             </div>
 

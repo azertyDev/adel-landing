@@ -38,15 +38,40 @@
         }
       }
     },
+    "model": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "size": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
     "price": {
       "type": "decimal",
       "required": true
     },
+    "currency": {
+      "type": "enumeration",
+      "enum": ["USD", "EUR", "TRY", "RUB"],
+      "default": "USD"
+    },
     "originalPrice": {
       "type": "decimal"
     },
-    "colors": {
-      "type": "json"
+    "variants": {
+      "type": "component",
+      "repeatable": true,
+      "component": "product.product-variant",
+      "required": true,
+      "min": 1
     },
     "specs": {
       "type": "json",
@@ -60,12 +85,6 @@
       "type": "boolean",
       "default": true
     },
-    "images": {
-      "type": "media",
-      "multiple": true,
-      "required": false,
-      "allowedTypes": ["images"]
-    },
     "category": {
       "type": "relation",
       "relation": "manyToOne",
@@ -77,6 +96,16 @@
       "relation": "manyToOne",
       "target": "api::brand.brand",
       "inversedBy": "products"
+    },
+    "features": {
+      "type": "component",
+      "repeatable": true,
+      "component": "product.product-feature",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

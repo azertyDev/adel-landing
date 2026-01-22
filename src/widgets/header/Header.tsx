@@ -1,25 +1,28 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import { Menu, SlidersHorizontal, X } from 'lucide-react';
+import { ChevronDown, Menu, X } from 'lucide-react';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { Link } from '@/i18n';
 import type { HeaderAboutSection, HeaderContactSection } from '@/shared/api/strapi/types';
+import { OptionsIcon } from '@/shared/icons';
 import { Button, Container } from '@/shared/ui';
 import { FilterDrawer, LanguageSwitcher } from '@/widgets';
 import { AboutDropdown } from './AboutDropdown';
 import { ContactDropdown } from './ContactDropdown';
 
 type DropdownType = 'about' | 'contact' | null;
+type MobileAccordionType = 'about' | 'contact' | null;
 
 interface HeaderProps {
   headerAbout: HeaderAboutSection | null;
   headerContact: HeaderContactSection | null;
 }
 
+// biome-ignore lint/complexity/noExcessiveCognitiveComplexity: component with multiple interactive states
 export function Header({ headerAbout, headerContact }: HeaderProps) {
   const t = useTranslations('navigation');
   const commonT = useTranslations('common');
@@ -27,11 +30,12 @@ export function Header({ headerAbout, headerContact }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [filterDrawerOpen, setFilterDrawerOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<DropdownType>(null);
+  const [mobileAccordion, setMobileAccordion] = useState<MobileAccordionType>(null);
 
   // Close dropdown on route change
+  // biome-ignore lint/correctness/useExhaustiveDependencies: intentionally run on pathname change
   useEffect(() => {
     setActiveDropdown(null);
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- intentionally run on pathname change
   }, [pathname]);
 
   const toggleDropdown = (dropdown: 'about' | 'contact') => {
@@ -43,13 +47,23 @@ export function Header({ headerAbout, headerContact }: HeaderProps) {
     setMobileMenuOpen(true);
   };
 
+  const toggleMobileAccordion = (accordion: MobileAccordionType) => {
+    setMobileAccordion((prev) => (prev === accordion ? null : accordion));
+  };
+
   return (
     <header className="sticky top-0 z-50 border-b border-gray-100 bg-white/80 backdrop-blur-md">
       <Container>
         <nav className="flex h-16 items-center justify-between md:h-20">
           {/* Logo */}
-          <Link href="/" className="text-2xl font-bold tracking-tight">
-            <Image src="/image/adel_logo.svg" alt="ADEL Logo" width="110" height="52" />
+          <Link href="/" className="shrink-0">
+            <Image
+              src="/image/adel_logo.svg"
+              alt="ADEL Logo"
+              width={110}
+              height={52}
+              className="h-8 w-auto sm:h-10 md:h-11 lg:h-13"
+            />
           </Link>
 
           {/* Desktop: Navigation + Actions together on right */}
@@ -98,11 +112,7 @@ export function Header({ headerAbout, headerContact }: HeaderProps) {
               className="gap-2"
               onClick={() => setFilterDrawerOpen(!filterDrawerOpen)}
             >
-              {filterDrawerOpen ? (
-                <X className="h-4 w-4" />
-              ) : (
-                <SlidersHorizontal className="h-4 w-4" />
-              )}
+              {filterDrawerOpen ? <X className="h-4 w-4" /> : <OptionsIcon className="h-4 w-4" />}
               {commonT('filters')}
             </Button>
 
@@ -110,17 +120,42 @@ export function Header({ headerAbout, headerContact }: HeaderProps) {
             <LanguageSwitcher />
           </div>
 
-          {/* Mobile Menu Button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden"
-            onClick={() => (mobileMenuOpen ? setMobileMenuOpen(false) : handleMobileMenuOpen())}
-            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
-            type="button"
-          >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </Button>
+          {/* Mobile: Actions */}
+          <div className="flex items-center gap-2 md:hidden">
+            {/* Filters Button - icon only */}
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setFilterDrawerOpen(!filterDrawerOpen)}
+              aria-label={filterDrawerOpen ? 'Close filters' : 'Open filters'}
+              type="button"
+            >
+              {filterDrawerOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <OptionsIcon className="h-5 w-5 text-main-2" />
+              )}
+            </Button>
+
+            {/* Menu Button */}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-main-2"
+              onClick={() => (mobileMenuOpen ? setMobileMenuOpen(false) : handleMobileMenuOpen())}
+              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+              type="button"
+            >
+              {mobileMenuOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu className="h-5 w-5 text-main-2" />
+              )}
+            </Button>
+
+            {/* Language Switcher */}
+            <LanguageSwitcher className="text-main-2" />
+          </div>
         </nav>
       </Container>
 
@@ -163,41 +198,133 @@ export function Header({ headerAbout, headerContact }: HeaderProps) {
             className="border-t border-gray-100 bg-white md:hidden"
           >
             <Container>
-              <div className="flex flex-col items-center py-6">
-                {/* Navigation links - top center */}
-                <ul className="flex flex-col items-center gap-4">
+              <div className="flex flex-col py-6">
+                {/* Navigation links */}
+                <ul className="flex flex-col gap-2">
+                  {/* Products - regular link */}
                   <li>
                     <Link
                       href="/products"
-                      className="block text-lg font-medium text-gray-600 transition-colors hover:text-black"
+                      className="block py-3 text-lg font-medium text-gray-600 transition-colors hover:text-black"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {t('products')}
                     </Link>
                   </li>
-                  <li>
-                    <Link
-                      href="/about"
-                      className="block text-lg font-medium text-gray-600 transition-colors hover:text-black"
-                      onClick={() => setMobileMenuOpen(false)}
+
+                  {/* About us - accordion */}
+                  <li className="border-t border-gray-100">
+                    <button
+                      type="button"
+                      onClick={() => toggleMobileAccordion('about')}
+                      className="flex w-full items-center justify-between py-3 text-lg font-medium text-gray-600 transition-colors hover:text-black"
                     >
                       {t('about')}
-                    </Link>
+                      <ChevronDown
+                        className={`h-5 w-5 transition-transform duration-200 ${
+                          mobileAccordion === 'about' ? 'rotate-180' : ''
+                        }`}
+                      />
+                    </button>
+                    <AnimatePresence>
+                      {mobileAccordion === 'about' && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="pb-4 text-sm leading-relaxed text-gray-600">
+                            <p>{headerAbout?.paragraph1}</p>
+                            {headerAbout?.paragraph2 && (
+                              <p className="mt-3">{headerAbout.paragraph2}</p>
+                            )}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </li>
-                  <li>
-                    <Link
-                      href="/contact"
-                      className="block text-lg font-medium text-gray-600 transition-colors hover:text-black"
-                      onClick={() => setMobileMenuOpen(false)}
+
+                  {/* Contact us - accordion */}
+                  <li className="border-t border-gray-100">
+                    <button
+                      type="button"
+                      onClick={() => toggleMobileAccordion('contact')}
+                      className="flex w-full items-center justify-between py-3 text-lg font-medium text-gray-600 transition-colors hover:text-black"
                     >
                       {t('contact')}
-                    </Link>
+                      <ChevronDown
+                        className={`h-5 w-5 transition-transform duration-200 ${
+                          mobileAccordion === 'contact' ? 'rotate-180' : ''
+                        }`}
+                      />
+                    </button>
+                    <AnimatePresence>
+                      {mobileAccordion === 'contact' && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="flex flex-col gap-4 pb-4 text-sm">
+                            {/* Chat */}
+                            {headerContact?.chatTitle && (
+                              <div>
+                                <p className="font-medium text-gray-700">
+                                  {headerContact.chatTitle}
+                                </p>
+                                <a
+                                  href={headerContact.chatUrl || '#'}
+                                  className="text-main-2 underline underline-offset-2"
+                                >
+                                  {headerContact.chatLink}
+                                </a>
+                              </div>
+                            )}
+                            {/* Phone */}
+                            {headerContact?.phoneNumber && (
+                              <div>
+                                <p className="font-medium text-gray-700">
+                                  {headerContact.phoneTitle}
+                                </p>
+                                <a
+                                  href={`tel:${headerContact.phoneNumber.replace(/\s/g, '')}`}
+                                  className="text-main-2 underline underline-offset-2"
+                                >
+                                  {headerContact.phoneNumber}
+                                </a>
+                              </div>
+                            )}
+                            {/* Social */}
+                            {headerContact?.socialLinks && headerContact.socialLinks.length > 0 && (
+                              <div>
+                                <p className="font-medium text-gray-700">
+                                  {headerContact.socialTitle}
+                                </p>
+                                <div className="flex flex-col gap-1">
+                                  {headerContact.socialLinks.map((link) => (
+                                    <a
+                                      key={link.id}
+                                      href={link.url}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="text-main-2 underline underline-offset-2"
+                                    >
+                                      {link.platform}: {link.label}
+                                    </a>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </li>
                 </ul>
-                {/* Language switcher - bottom center */}
-                <div className="mt-6 flex w-full justify-center border-t border-gray-100 pt-4">
-                  <LanguageSwitcher />
-                </div>
               </div>
             </Container>
           </motion.div>
@@ -205,11 +332,13 @@ export function Header({ headerAbout, headerContact }: HeaderProps) {
       </AnimatePresence>
 
       {/* Filter Drawer - self-contained with URL sync */}
-      <FilterDrawer
-        mode="drawer"
-        isOpen={filterDrawerOpen}
-        onClose={() => setFilterDrawerOpen(false)}
-      />
+      <Suspense fallback={null}>
+        <FilterDrawer
+          mode="drawer"
+          isOpen={filterDrawerOpen}
+          onClose={() => setFilterDrawerOpen(false)}
+        />
+      </Suspense>
     </header>
   );
 }

@@ -1,13 +1,18 @@
 {
+  "brand": "Бренд",
+  "category": "Категория",
+  "color": "Цвет",
   "colors": "Доступные цвета",
   "description": "Описание",
   "discoverMore": "Узнать больше",
   "filters": "Категории",
   "inStock": "В наличии",
+  "model": "Модель",
   "orderNow": "Заказать сейчас",
   "outOfStock": "Нет в наличии",
   "price": "Цена",
   "relatedProducts": "Похожие товары",
+  "size": "Размер",
   "specifications": "Характеристики",
   "trustBadges": {
     "returns": "Лёгкий возврат",

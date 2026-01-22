@@ -19,13 +19,11 @@ export default async function HomePage({ params }: Props) {
   }
 
   return (
-    <>
-      <div className="bg-[url('/image/content-bg.png')] bg-no-repeat bg-center bg-cover bg-fixed">
-        <HeroSection locale={locale} />
-        <CategoriesSection categories={categories} />
-        <WhyUsSection locale={locale} />
-      </div>
+    <div>
+      <HeroSection locale={locale} />
+      <CategoriesSection categories={categories} />
+      <WhyUsSection locale={locale} />
       <AboutUsSection locale={locale} />
-    </>
+    </div>
   );
 }

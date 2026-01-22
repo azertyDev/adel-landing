@@ -8,9 +8,7 @@ import { Container } from '@/shared/ui';
 
 const navLinks = [
   { href: '/products', label: 'products' },
-  { href: '/about', label: 'about' },
-  { href: '/contact', label: 'contact' },
-  { href: '/privacy', label: 'privacyPolicy', useFooterT: true },
+  { href: '#', label: 'privacyPolicy', useFooterT: true },
   { href: '/faq', label: 'faq' },
 ] as const;
 
@@ -34,9 +32,9 @@ export function Footer() {
               <Image
                 src="/image/adel_logo.svg"
                 alt="ADEL Logo"
-                width={90}
-                height={43}
-                className="h-10 w-auto sm:h-12"
+                width={110}
+                height={52}
+                className="h-8 w-auto sm:h-10 md:h-11 lg:h-13"
               />
             </Link>
 
