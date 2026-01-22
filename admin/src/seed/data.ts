@@ -1543,3 +1543,373 @@ export const products = [
     },
   },
 ];
+
+// =============================================================================
+// HERO SECTION
+// =============================================================================
+export const hero = {
+  title: 'Elevate Your Everyday',
+  subtitle: 'Premium home appliances designed for modern living',
+  ctaText: 'Explore Products',
+  ctaLink: '/products',
+  localizations: {
+    ru: {
+      title: 'Улучшите свой каждый день',
+      subtitle: 'Премиальная бытовая техника для современной жизни',
+      ctaText: 'Смотреть продукты',
+    },
+    tr: {
+      title: 'Günlük Yaşamınızı Yükseltin',
+      subtitle: 'Modern yaşam için tasarlanmış premium ev aletleri',
+      ctaText: 'Ürünleri Keşfedin',
+    },
+  },
+};
+
+// =============================================================================
+// ABOUT US SECTION
+// =============================================================================
+export const aboutUs = {
+  sectionTitle: 'About Us',
+  heading: 'Quality and innovation in every product',
+  buttonText: 'Learn More',
+  buttonLink: '/about',
+  localizations: {
+    ru: {
+      sectionTitle: 'О нас',
+      heading: 'Качество и инновации в каждом продукте',
+      buttonText: 'Узнать больше',
+    },
+    tr: {
+      sectionTitle: 'Hakkımızda',
+      heading: 'Her üründe kalite ve yenilik',
+      buttonText: 'Daha Fazla Bilgi',
+    },
+  },
+};
+
+// =============================================================================
+// WHY US SECTION
+// =============================================================================
+export const whyUs = {
+  sectionTitle: 'Why Choose ADEL',
+  features: [
+    {
+      title: 'Premium Quality',
+      description: 'Built with the finest materials for lasting performance',
+      localizations: {
+        ru: {
+          title: 'Премиальное качество',
+          description: 'Создано из лучших материалов для долговечной работы',
+        },
+        tr: {
+          title: 'Premium Kalite',
+          description: 'Kalıcı performans için en iyi malzemelerle üretildi',
+        },
+      },
+    },
+    {
+      title: '2-Year Warranty',
+      description: 'Full manufacturer warranty on all products',
+      localizations: {
+        ru: {
+          title: '2 года гарантии',
+          description: 'Полная гарантия производителя на все продукты',
+        },
+        tr: {
+          title: '2 Yıl Garanti',
+          description: 'Tüm ürünlerde tam üretici garantisi',
+        },
+      },
+    },
+    {
+      title: 'Free Shipping',
+      description: 'Free delivery on orders over $100',
+      localizations: {
+        ru: {
+          title: 'Бесплатная доставка',
+          description: 'Бесплатная доставка при заказе от $100',
+        },
+        tr: {
+          title: 'Ücretsiz Kargo',
+          description: '$100 üzeri siparişlerde ücretsiz teslimat',
+        },
+      },
+    },
+    {
+      title: '24/7 Support',
+      description: 'Round-the-clock customer assistance',
+      localizations: {
+        ru: {
+          title: 'Поддержка 24/7',
+          description: 'Круглосуточная помощь клиентам',
+        },
+        tr: {
+          title: '7/24 Destek',
+          description: 'Günün her saati müşteri yardımı',
+        },
+      },
+    },
+    {
+      title: 'Easy Returns',
+      description: '30-day hassle-free return policy',
+      localizations: {
+        ru: {
+          title: 'Простой возврат',
+          description: '30-дневная политика возврата без проблем',
+        },
+        tr: {
+          title: 'Kolay İade',
+          description: '30 gün sorunsuz iade politikası',
+        },
+      },
+    },
+    {
+      title: 'Eco-Friendly',
+      description: 'Energy-efficient and sustainable designs',
+      localizations: {
+        ru: {
+          title: 'Экологичность',
+          description: 'Энергоэффективный и устойчивый дизайн',
+        },
+        tr: {
+          title: 'Çevre Dostu',
+          description: 'Enerji verimli ve sürdürülebilir tasarımlar',
+        },
+      },
+    },
+  ],
+  localizations: {
+    ru: {
+      sectionTitle: 'Почему ADEL',
+    },
+    tr: {
+      sectionTitle: "Neden ADEL'i Seçmelisiniz",
+    },
+  },
+};
+
+// =============================================================================
+// HEADER ABOUT DROPDOWN
+// =============================================================================
+export const headerAbout = {
+  paragraph1:
+    'At ADEL, we design small home appliances that combine refined aesthetics with everyday performance. Every product is created with attention to detail, intuitive usability, and long-lasting quality.',
+  paragraph2:
+    'We believe technology should feel simple, elegant, and reliable — seamlessly fitting into modern life.',
+  localizations: {
+    ru: {
+      paragraph1:
+        'В ADEL мы создаём малую бытовую технику, сочетающую изысканную эстетику с повседневной функциональностью. Каждый продукт разработан с вниманием к деталям, интуитивной простотой использования и долговечным качеством.',
+      paragraph2:
+        'Мы верим, что технологии должны быть простыми, элегантными и надёжными — органично вписываясь в современную жизнь.',
+    },
+    tr: {
+      paragraph1:
+        "ADEL'de, zarif estetiği günlük performansla birleştiren küçük ev aletleri tasarlıyoruz. Her ürün, detaylara özen, sezgisel kullanılabilirlik ve uzun ömürlü kalite ile oluşturulmaktadır.",
+      paragraph2:
+        'Teknolojinin basit, şık ve güvenilir hissettirmesi gerektiğine inanıyoruz — modern yaşama sorunsuzca uyum sağlayarak.',
+    },
+  },
+};
+
+// =============================================================================
+// HEADER CONTACT DROPDOWN
+// =============================================================================
+export const headerContact = {
+  chatTitle: 'Chat support',
+  chatLink: 'Support 24/7',
+  chatUrl: '#',
+  socialTitle: 'Social media',
+  socialLinks: [
+    {
+      platform: 'facebook',
+      url: 'https://facebook.com/adel',
+      label: 'facebook.com/adel',
+      localizations: {
+        ru: { label: 'facebook.com/adel' },
+        tr: { label: 'facebook.com/adel' },
+      },
+    },
+    {
+      platform: 'instagram',
+      url: 'https://instagram.com/adel',
+      label: 'instagram.com/adel',
+      localizations: {
+        ru: { label: 'instagram.com/adel' },
+        tr: { label: 'instagram.com/adel' },
+      },
+    },
+    {
+      platform: 'twitter',
+      url: 'https://twitter.com/adel',
+      label: 'twitter.com/adel',
+      localizations: {
+        ru: { label: 'twitter.com/adel' },
+        tr: { label: 'twitter.com/adel' },
+      },
+    },
+  ],
+  phoneTitle: 'Phone',
+  phoneNumber: '+90 123 456 78 90',
+  deliveryTitle: 'Delivery and returns',
+  deliverySupportLink: 'Online support for your order',
+  deliverySupportUrl: '#',
+  deliveryReturnsLink: 'Return policy',
+  deliveryReturnsUrl: '#',
+  localizations: {
+    ru: {
+      chatTitle: 'Чат поддержки',
+      chatLink: 'Поддержка 24/7',
+      socialTitle: 'Социальные сети',
+      phoneTitle: 'Телефон',
+      deliveryTitle: 'Доставка и возврат',
+      deliverySupportLink: 'Онлайн поддержка вашего заказа',
+      deliveryReturnsLink: 'Политика возврата',
+    },
+    tr: {
+      chatTitle: 'Sohbet desteği',
+      chatLink: '7/24 Destek',
+      socialTitle: 'Sosyal medya',
+      phoneTitle: 'Telefon',
+      deliveryTitle: 'Teslimat ve iade',
+      deliverySupportLink: 'Siparişiniz için online destek',
+      deliveryReturnsLink: 'İade politikası',
+    },
+  },
+};
+
+// =============================================================================
+// SITE SETTINGS
+// =============================================================================
+export const siteSettings = {
+  siteName: 'ADEL',
+  siteTitle: 'ADEL | Home Appliances - Quality Products for Kitchen and Home',
+  siteDescription:
+    'Modernize your kitchen and home with ADEL home appliances. Coffee machines, air purifiers, kitchen appliances and more. Quality and reliability combined.',
+  keywords:
+    'ADEL, home appliances, kitchen appliances, coffee machines, air purifiers, blender, air fryer',
+  twitterHandle: '@adel_appliances',
+  localizations: {
+    ru: {
+      siteTitle: 'ADEL | Бытовая техника - Качественные товары для кухни и дома',
+      siteDescription:
+        'Модернизируйте вашу кухню и дом с бытовой техникой ADEL. Кофемашины, очистители воздуха, кухонная техника и многое другое. Качество и надёжность.',
+      keywords:
+        'ADEL, бытовая техника, кухонная техника, кофемашины, очистители воздуха, блендер, аэрогриль',
+    },
+    tr: {
+      siteTitle: 'ADEL | Ev Aletleri - Mutfak ve Ev için Kaliteli Ürünler',
+      siteDescription:
+        'ADEL ev aletleri ile mutfağınızı ve evinizi modernleştirin. Kahve makineleri, hava temizleyiciler, mutfak aletleri ve daha fazlası. Kalite ve güvenilirlik bir arada.',
+      keywords:
+        'ADEL, ev aletleri, mutfak aletleri, kahve makinesi, hava temizleyici, blender, airfryer',
+    },
+  },
+};
+
+// =============================================================================
+// FAQS
+// =============================================================================
+export const faqs = [
+  {
+    order: 1,
+    question: 'What is the warranty period?',
+    answer:
+      'All ADEL products come with a 2-year manufacturer warranty covering defects in materials and workmanship.',
+    localizations: {
+      ru: {
+        question: 'Какой гарантийный срок?',
+        answer:
+          'Все продукты ADEL поставляются с 2-летней гарантией производителя, покрывающей дефекты материалов и изготовления.',
+      },
+      tr: {
+        question: 'Garanti süresi nedir?',
+        answer:
+          'Tüm ADEL ürünleri, malzeme ve işçilik kusurlarını kapsayan 2 yıllık üretici garantisi ile birlikte gelir.',
+      },
+    },
+  },
+  {
+    order: 2,
+    question: 'Do you offer free shipping?',
+    answer: 'Yes, we offer free shipping on all orders over $100 within the country.',
+    localizations: {
+      ru: {
+        question: 'Вы предлагаете бесплатную доставку?',
+        answer: 'Да, мы предлагаем бесплатную доставку для всех заказов свыше $100 по стране.',
+      },
+      tr: {
+        question: 'Ücretsiz kargo sunuyor musunuz?',
+        answer: 'Evet, ülke içinde $100 üzeri tüm siparişlerde ücretsiz kargo sunuyoruz.',
+      },
+    },
+  },
+  {
+    order: 3,
+    question: 'How can I track my order?',
+    answer:
+      'Once shipped, you will receive a tracking number via email to monitor your delivery status.',
+    localizations: {
+      ru: {
+        question: 'Как я могу отследить мой заказ?',
+        answer:
+          'После отправки вы получите трек-номер по электронной почте для отслеживания статуса доставки.',
+      },
+      tr: {
+        question: 'Siparişimi nasıl takip edebilirim?',
+        answer:
+          'Gönderildikten sonra, teslimat durumunuzu izlemek için e-posta ile bir takip numarası alacaksınız.',
+      },
+    },
+  },
+  {
+    order: 4,
+    question: 'What payment methods do you accept?',
+    answer: 'We accept credit cards (Visa, Mastercard), PayPal, and bank transfers.',
+    localizations: {
+      ru: {
+        question: 'Какие способы оплаты вы принимаете?',
+        answer: 'Мы принимаем кредитные карты (Visa, Mastercard), PayPal и банковские переводы.',
+      },
+      tr: {
+        question: 'Hangi ödeme yöntemlerini kabul ediyorsunuz?',
+        answer: 'Kredi kartları (Visa, Mastercard), PayPal ve banka havalesi kabul ediyoruz.',
+      },
+    },
+  },
+  {
+    order: 5,
+    question: 'Can I return a product?',
+    answer: 'Yes, you can return any product within 30 days of purchase in its original packaging.',
+    localizations: {
+      ru: {
+        question: 'Могу ли я вернуть товар?',
+        answer:
+          'Да, вы можете вернуть любой товар в течение 30 дней после покупки в оригинальной упаковке.',
+      },
+      tr: {
+        question: 'Ürünü iade edebilir miyim?',
+        answer:
+          'Evet, satın alma tarihinden itibaren 30 gün içinde herhangi bir ürünü orijinal ambalajında iade edebilirsiniz.',
+      },
+    },
+  },
+  {
+    order: 6,
+    question: 'Do you ship internationally?',
+    answer: 'Currently we ship to selected countries. Contact us for availability in your region.',
+    localizations: {
+      ru: {
+        question: 'Вы осуществляете международную доставку?',
+        answer:
+          'В настоящее время мы доставляем в избранные страны. Свяжитесь с нами для уточнения доступности в вашем регионе.',
+      },
+      tr: {
+        question: 'Uluslararası gönderim yapıyor musunuz?',
+        answer:
+          'Şu anda seçili ülkelere gönderim yapıyoruz. Bölgenizdeki uygunluk için bizimle iletişime geçin.',
+      },
+    },
+  },
+];

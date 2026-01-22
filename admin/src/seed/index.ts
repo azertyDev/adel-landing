@@ -24,6 +24,31 @@ export async function seedDatabase(strapi: Core.Strapi) {
   strapi.log.info('Starting database seed...');
 
   try {
+    // Seed locales first
+    strapi.log.info('Setting up locales...');
+    const localeService = strapi.plugin('i18n').service('locales');
+    const existingLocales = await localeService.find();
+    const existingCodes = existingLocales.map((l: { code: string }) => l.code);
+
+    const requiredLocales = [
+      { code: 'en', name: 'English (en)', isDefault: true },
+      { code: 'ru', name: 'Russian (ru)', isDefault: false },
+      { code: 'tr', name: 'Turkish (tr)', isDefault: false },
+    ];
+
+    for (const locale of requiredLocales) {
+      if (!existingCodes.includes(locale.code)) {
+        await localeService.create({
+          code: locale.code,
+          name: locale.name,
+          isDefault: locale.isDefault,
+        });
+        strapi.log.info(`Created locale: ${locale.name}`);
+      } else {
+        strapi.log.info(`Locale already exists: ${locale.name}`);
+      }
+    }
+
     // Check if data already exists
     const existingCategories = await strapi.documents('api::category.category').findMany({});
 
@@ -161,12 +186,13 @@ export async function seedDatabase(strapi: Core.Strapi) {
       const categoryId = categoryMap.get(product.categorySlug);
       const brandId = brandMap.get(product.brandSlug);
 
-      // Convert variantColors array to variants format
-      const variants = product.variantColors
-        .map((hex) => {
-          const colorId = colorMap.get(hex);
+      // Convert variants array to Strapi format (with color relation)
+      const variants = product.variants
+        .map((variant) => {
+          const colorId = colorMap.get(variant.color);
           if (!colorId) return null;
           return { color: colorId };
+          // Note: image field requires media upload, handled separately
         })
         .filter(Boolean);
 
@@ -176,10 +202,10 @@ export async function seedDatabase(strapi: Core.Strapi) {
           slug: product.slug,
           description: product.description,
           model: product.model,
-          size: product.size,
+          size: (product as { size?: string }).size ?? '',
           price: product.price,
           currency: product.currency as 'USD' | 'EUR' | 'TRY' | 'RUB',
-          originalPrice: product.originalPrice,
+          originalPrice: (product as { originalPrice?: number }).originalPrice ?? null,
           inStock: product.inStock,
           variants,
           specs: product.specs,
