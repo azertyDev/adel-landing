@@ -1002,6 +1002,30 @@ export const headerContact = {
   },
 };
 
+export const siteSettings = {
+  siteName: 'ADEL',
+  siteTitle: 'ADEL | Home Appliances - Quality Products for Kitchen and Home',
+  siteDescription:
+    'Modernize your kitchen and home with ADEL home appliances. Microwave ovens, washing machines, refrigerators and more. Quality and reliability combined.',
+  keywords:
+    'ADEL, home appliances, kitchen appliances, microwave oven, washing machine, refrigerator',
+  twitterHandle: '@adel_appliances',
+  localizations: {
+    ru: {
+      siteTitle: 'ADEL | Бытовая техника - Качественные товары для кухни и дома',
+      siteDescription:
+        'Модернизируйте вашу кухню и дом с бытовой техникой ADEL. Микроволновые печи, стиральные машины, холодильники и многое другое.',
+      keywords: 'ADEL, бытовая техника, кухонная техника, микроволновая печь, стиральная машина',
+    },
+    tr: {
+      siteTitle: 'ADEL | Ev Aletleri - Mutfak ve Ev için Kaliteli Ürünler',
+      siteDescription:
+        'ADEL ev aletleri ile mutfağınızı ve evinizi modernleştirin. Mikrodalga fırınlar, çamaşır makineleri, buzdolapları ve daha fazlası.',
+      keywords: 'ADEL, ev aletleri, mutfak aletleri, mikrodalga fırın, çamaşır makinesi, buzdolabı',
+    },
+  },
+};
+
 export const faqs = [
   {
     order: 1,

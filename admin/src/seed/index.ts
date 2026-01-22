@@ -1,5 +1,13 @@
 import type { Core } from '@strapi/strapi';
-import { brands, categories, faqs, headerAbout, headerContact, products } from './data';
+import {
+  brands,
+  categories,
+  faqs,
+  headerAbout,
+  headerContact,
+  products,
+  siteSettings,
+} from './data';
 
 export async function seedDatabase(strapi: Core.Strapi) {
   const shouldSeed = process.env.SEED_DATABASE === 'true';
@@ -307,6 +315,56 @@ export async function seedDatabase(strapi: Core.Strapi) {
       }
     } catch (_e) {
       strapi.log.warn('Header Contact content type not found, skipping...');
+    }
+
+    // Seed Site Settings (Single Type)
+    strapi.log.info('Seeding Site Settings...');
+    try {
+      const existingSiteSettings = await strapi
+        .documents('api::site-setting.site-setting')
+        .findFirst({
+          locale: 'en',
+        });
+
+      if (!existingSiteSettings) {
+        const createdSiteSettings = await strapi
+          .documents('api::site-setting.site-setting')
+          .create({
+            data: {
+              siteName: siteSettings.siteName,
+              siteTitle: siteSettings.siteTitle,
+              siteDescription: siteSettings.siteDescription,
+              keywords: siteSettings.keywords,
+              twitterHandle: siteSettings.twitterHandle,
+              locale: 'en',
+              publishedAt: new Date(),
+            },
+          });
+        strapi.log.info('Created Site Settings (EN)');
+
+        // Create localizations
+        for (const [locale, locData] of Object.entries(siteSettings.localizations)) {
+          try {
+            await strapi.documents('api::site-setting.site-setting').update({
+              documentId: createdSiteSettings.documentId,
+              locale,
+              data: {
+                siteTitle: locData.siteTitle,
+                siteDescription: locData.siteDescription,
+                keywords: locData.keywords,
+                publishedAt: new Date(),
+              },
+            });
+            strapi.log.info(`Created Site Settings (${locale.toUpperCase()})`);
+          } catch (_e) {
+            strapi.log.warn(`Failed to create ${locale} localization for Site Settings`);
+          }
+        }
+      } else {
+        strapi.log.info('Site Settings already exists, skipping...');
+      }
+    } catch (_e) {
+      strapi.log.warn('Site Settings content type not found, skipping...');
     }
 
     strapi.log.info('Database seed completed successfully!');

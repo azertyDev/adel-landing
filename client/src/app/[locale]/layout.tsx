@@ -4,80 +4,92 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { Toaster } from 'sonner';
 import { routing } from '@/i18n/routing';
-import { getHeaderAbout, getHeaderContact } from '@/shared/api/strapi/client';
+import { getHeaderAbout, getHeaderContact, getSiteSettings } from '@/shared/api/strapi/client';
 import { QueryProvider } from '@/shared/providers';
 import { Footer, Header } from '@/widgets';
 import { inter, montserrat } from '../fonts';
 import '../globals.css';
 
-export const metadata: Metadata = {
-  title: {
-    default: 'ADEL | Ev Aletleri - Mutfak ve Ev için Kaliteli Ürünler',
-    template: '%s | ADEL',
-  },
-  description:
-    'ADEL ev aletleri ile mutfağınızı ve evinizi modernleştirin. Mikrodalga fırınlar, çamaşır makineleri, buzdolapları ve daha fazlası. Kalite ve güvenilirlik bir arada.',
-  keywords: [
-    'ADEL',
-    'ev aletleri',
-    'mutfak aletleri',
-    'mikrodalga fırın',
-    'çamaşır makinesi',
-    'buzdolabı',
-    'ev elektroniği',
-    'beyaz eşya',
-    'home appliances',
-    'kitchen appliances',
-    'бытовая техника',
-  ],
-  authors: [{ name: 'ADEL' }],
-  creator: 'ADEL',
-  publisher: 'ADEL',
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
-  alternates: {
-    canonical: '/',
-    languages: {
-      en: '/en',
-      tr: '/tr',
-      ru: '/ru',
+const LOCALE_MAP: Record<string, string> = {
+  en: 'en_US',
+  tr: 'tr_TR',
+  ru: 'ru_RU',
+};
+
+type MetadataProps = {
+  params: Promise<{ locale: string }>;
+};
+
+export async function generateMetadata({ params }: MetadataProps): Promise<Metadata> {
+  const { locale } = await params;
+  const settings = await getSiteSettings(locale);
+
+  const siteName = settings?.siteName || 'ADEL';
+  const title = settings?.siteTitle || 'ADEL | Home Appliances';
+  const description = settings?.siteDescription || 'Quality home appliances for kitchen and home.';
+  const keywords = settings?.keywords || ['ADEL', 'home appliances'];
+  const ogImage = settings?.ogImage || '/og-image.jpg';
+  const twitterHandle = settings?.twitterHandle;
+
+  const ogLocale = LOCALE_MAP[locale] || 'en_US';
+  const alternateLocales = Object.values(LOCALE_MAP).filter((l) => l !== ogLocale);
+
+  return {
+    title: {
+      default: title,
+      template: `%s | ${siteName}`,
     },
-  },
-  openGraph: {
-    type: 'website',
-    locale: 'tr_TR',
-    alternateLocale: ['en_US', 'ru_RU'],
-    siteName: 'ADEL',
-    title: 'ADEL | Ev Aletleri - Mutfak ve Ev için Kaliteli Ürünler',
-    description:
-      'ADEL ev aletleri ile mutfağınızı ve evinizi modernleştirin. Kalite ve güvenilirlik bir arada.',
-    images: [
-      {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'ADEL - Ev Aletleri',
+    description,
+    keywords,
+    authors: [{ name: siteName }],
+    creator: siteName,
+    publisher: siteName,
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+    alternates: {
+      canonical: '/',
+      languages: {
+        en: '/en',
+        tr: '/tr',
+        ru: '/ru',
       },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'ADEL | Ev Aletleri',
-    description: 'ADEL ev aletleri ile mutfağınızı ve evinizi modernleştirin.',
-    images: ['/og-image.jpg'],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+    },
+    openGraph: {
+      type: 'website',
+      locale: ogLocale,
+      alternateLocale: alternateLocales,
+      siteName,
+      title,
+      description,
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: `${siteName} - Home Appliances`,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [ogImage],
+      creator: twitterHandle || undefined,
+    },
+    robots: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
     },
-  },
-  category: 'electronics',
-};
+    category: 'electronics',
+  };
+}
 
 type Props = {
   children: React.ReactNode;

@@ -298,3 +298,24 @@ export interface HeaderContactSection {
   deliveryReturnsLink: string;
   deliveryReturnsUrl: string | null;
 }
+
+// Site Settings types
+export interface StrapiSiteSettings extends StrapiEntity {
+  siteName: string;
+  siteTitle: string;
+  siteDescription: string;
+  keywords: string | null;
+  ogImage: StrapiMedia | null;
+  favicon: StrapiMedia | null;
+  twitterHandle: string | null;
+}
+
+export interface SiteSettings {
+  siteName: string;
+  siteTitle: string;
+  siteDescription: string;
+  keywords: string[];
+  ogImage: string | null;
+  favicon: string | null;
+  twitterHandle: string | null;
+}

@@ -11,6 +11,7 @@ import type {
   Product,
   ProductFeature,
   ProductSpec,
+  SiteSettings,
   StrapiAboutUs,
   StrapiBrand,
   StrapiCategory,
@@ -24,6 +25,7 @@ import type {
   StrapiProductFeature,
   StrapiProductVariant,
   StrapiResponse,
+  StrapiSiteSettings,
   StrapiWhyUs,
   StrapiWhyUsFeature,
   WhyUsFeature,
@@ -489,6 +491,33 @@ export async function getHeaderContact(locale = 'ru'): Promise<HeaderContactSect
     });
 
     return mapHeaderContact(response.data);
+  } catch {
+    return null;
+  }
+}
+
+// Site Settings mapper
+function mapSiteSettings(entity: StrapiSiteSettings): SiteSettings {
+  return {
+    siteName: entity.siteName,
+    siteTitle: entity.siteTitle,
+    siteDescription: entity.siteDescription,
+    keywords: entity.keywords ? entity.keywords.split(',').map((k) => k.trim()) : [],
+    ogImage: getMediaUrl(entity.ogImage ?? undefined),
+    favicon: getMediaUrl(entity.favicon ?? undefined),
+    twitterHandle: entity.twitterHandle,
+  };
+}
+
+// Site Settings API (Single-Type)
+export async function getSiteSettings(locale = 'en'): Promise<SiteSettings | null> {
+  try {
+    const response = await fetchStrapi<StrapiSiteSettings>('/site-setting', {
+      locale,
+      populate: ['ogImage', 'favicon'],
+    });
+
+    return mapSiteSettings(response.data);
   } catch {
     return null;
   }
