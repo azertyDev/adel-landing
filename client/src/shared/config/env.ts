@@ -30,9 +30,10 @@ const isServer = typeof window === 'undefined';
 const parsed = envParsed.data;
 
 export const env = {
+  // API_URL: internal for SSR requests (Docker network)
   API_URL: isServer && parsed.API_URL_INTERNAL ? parsed.API_URL_INTERNAL : parsed.API_URL,
-  STRAPI_URL:
-    isServer && parsed.STRAPI_URL_INTERNAL ? parsed.STRAPI_URL_INTERNAL : parsed.STRAPI_URL,
+  // STRAPI_URL: ALWAYS public - used for media URLs that end up in HTML
+  STRAPI_URL: parsed.STRAPI_URL,
   SITE_URL: parsed.SITE_URL,
   NODE_ENV: parsed.NODE_ENV,
 };
