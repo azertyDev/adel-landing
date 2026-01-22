@@ -28,6 +28,14 @@
       "biome format --write --no-errors-on-unmatched"
     ]
   },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "better-sqlite3",
+      "esbuild",
+      "@swc/core",
+      "@parcel/watcher"
+    ]
+  },
   "devDependencies": {
     "@biomejs/biome": "2.2.0",
     "@commitlint/cli": "^20.3.1",

@@ -1,9 +1,3 @@
-import type { ReactNode } from 'react';
-
-type Props = {
-  children: ReactNode;
-};
-
-export default function RootLayout({ children }: Props) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return children;
 }
