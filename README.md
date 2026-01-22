@@ -137,3 +137,73 @@ pnpm typecheck
 - Türkçe (tr)
 
 Файлы переводов находятся в `client/messages/`.
+
+## DevOps
+
+### Переменные окружения (Production)
+
+#### Client (Next.js)
+
+| Переменная | Описание | Пример |
+|------------|----------|--------|
+| `NEXT_PUBLIC_API_URL` | URL Strapi API | `https://api.adel.com/api` |
+| `NEXT_PUBLIC_STRAPI_URL` | URL Strapi | `https://api.adel.com` |
+| `NEXT_PUBLIC_SITE_URL` | URL сайта | `https://adel.com` |
+
+#### Admin (Strapi)
+
+| Переменная | Описание | Генерация |
+|------------|----------|-----------|
+| `HOST` | Хост сервера | `0.0.0.0` |
+| `PORT` | Порт сервера | `1337` |
+| `APP_KEYS` | Ключи приложения (2 шт через запятую) | `openssl rand -base64 32` |
+| `API_TOKEN_SALT` | Соль для API токенов | `openssl rand -base64 32` |
+| `ADMIN_JWT_SECRET` | JWT секрет админки | `openssl rand -base64 32` |
+| `TRANSFER_TOKEN_SALT` | Соль для transfer токенов | `openssl rand -base64 32` |
+| `JWT_SECRET` | JWT секрет | `openssl rand -base64 32` |
+| `ENCRYPTION_KEY` | Ключ шифрования | `openssl rand -base64 32` |
+| `DATABASE_CLIENT` | Клиент БД (prod) | `postgres` |
+| `DATABASE_URL` | URL подключения к БД | `postgres://user:pass@host:5432/db` |
+
+### Порты
+
+| Сервис | Порт |
+|--------|------|
+| Client (Next.js) | 3000 |
+| Admin (Strapi) | 1337 |
+
+### Сборка и запуск (Production)
+
+```bash
+# 1. Установка зависимостей
+pnpm install
+
+# 2. Сборка проекта
+pnpm build:all
+
+# 3. Запуск Admin (Strapi)
+NODE_ENV=production pnpm start:admin
+
+# 4. Запуск Client (Next.js)
+NODE_ENV=production pnpm start
+```
+
+### Health Checks
+
+```bash
+# Client
+curl http://localhost:3000/ru
+
+# Strapi API
+curl http://localhost:1337/api
+
+# Strapi Admin
+curl http://localhost:1337/admin
+```
+
+### Рекомендации
+
+- Используйте PostgreSQL для production (вместо SQLite)
+- Настройте reverse proxy (nginx) для обоих сервисов
+- Используйте PM2 или systemd для управления процессами
+- Настройте SSL через Let's Encrypt
