@@ -67,8 +67,8 @@ export async function seedDatabase(strapi: Core.Strapi) {
           name: brand.name,
           slug: brand.slug,
           locale: 'en',
-          publishedAt: new Date(),
         },
+        status: 'published',
       });
       brandMap.set(brand.slug, created.documentId);
       strapi.log.info(`Created brand: ${brand.name}`);
@@ -82,8 +82,9 @@ export async function seedDatabase(strapi: Core.Strapi) {
               locale,
               data: {
                 name: locData.name,
-                publishedAt: new Date(),
+                slug: brand.slug, // Required, not localized
               },
+              status: 'published',
             });
             strapi.log.info(`Created ${locale} localization for brand: ${brand.name}`);
           } catch (_e) {
@@ -105,8 +106,8 @@ export async function seedDatabase(strapi: Core.Strapi) {
           slug: category.slug,
           description: category.description,
           locale: 'en',
-          publishedAt: new Date(),
         },
+        status: 'published',
       });
       categoryMap.set(category.slug, created.documentId);
       strapi.log.info(`Created category: ${category.name}`);
@@ -120,9 +121,10 @@ export async function seedDatabase(strapi: Core.Strapi) {
               locale,
               data: {
                 name: locData.name,
+                slug: category.slug, // Required, not localized
                 description: locData.description,
-                publishedAt: new Date(),
               },
+              status: 'published',
             });
             strapi.log.info(`Created ${locale} localization for category: ${category.name}`);
           } catch (_e) {
@@ -152,8 +154,8 @@ export async function seedDatabase(strapi: Core.Strapi) {
             name: color.name,
             hex: color.hex,
             locale: 'en',
-            publishedAt: new Date(),
           },
+          status: 'published',
         });
         colorMap.set(color.hex, created.documentId);
         strapi.log.info(`Created color: ${color.name}`);
@@ -167,8 +169,8 @@ export async function seedDatabase(strapi: Core.Strapi) {
                 locale,
                 data: {
                   name: locData.name,
-                  publishedAt: new Date(),
                 },
+                status: 'published',
               });
               strapi.log.info(`Created ${locale} localization for color: ${color.name}`);
             } catch (_e) {
@@ -211,10 +213,10 @@ export async function seedDatabase(strapi: Core.Strapi) {
           specs: product.specs,
           features: product.features,
           locale: 'en',
-          publishedAt: new Date(),
           category: categoryId,
           brand: brandId,
         },
+        status: 'published',
       });
       strapi.log.info(`Created product: ${product.name}`);
 
@@ -227,12 +229,13 @@ export async function seedDatabase(strapi: Core.Strapi) {
               locale,
               data: {
                 name: locData.name,
+                slug: product.slug, // Required, not localized
                 description: locData.description,
                 specs: locData.specs ?? product.specs,
                 features: locData.features ?? product.features,
                 variants, // Required field, not localized
-                publishedAt: new Date(),
               },
+              status: 'published',
             });
             strapi.log.info(`Created ${locale} localization for product: ${product.name}`);
           } catch (e) {
@@ -255,8 +258,8 @@ export async function seedDatabase(strapi: Core.Strapi) {
           answer: faq.answer,
           order: faq.order,
           locale: 'en',
-          publishedAt: new Date(),
         },
+        status: 'published',
       });
       strapi.log.info(`Created FAQ: ${faq.question.substring(0, 30)}...`);
 
@@ -270,8 +273,8 @@ export async function seedDatabase(strapi: Core.Strapi) {
               data: {
                 question: locData.question,
                 answer: locData.answer,
-                publishedAt: new Date(),
               },
+              status: 'published',
             });
             strapi.log.info(`Created ${locale} localization for FAQ`);
           } catch (_e) {
@@ -296,8 +299,8 @@ export async function seedDatabase(strapi: Core.Strapi) {
             ctaText: hero.ctaText,
             ctaLink: hero.ctaLink,
             locale: 'en',
-            publishedAt: new Date(),
           },
+          status: 'published',
         });
         strapi.log.info('Created Hero Section (EN)');
 
@@ -311,8 +314,8 @@ export async function seedDatabase(strapi: Core.Strapi) {
                 title: locData.title,
                 subtitle: locData.subtitle,
                 ctaText: locData.ctaText,
-                publishedAt: new Date(),
               },
+              status: 'published',
             });
             strapi.log.info(`Created Hero Section (${locale.toUpperCase()})`);
           } catch (_e) {
@@ -341,8 +344,8 @@ export async function seedDatabase(strapi: Core.Strapi) {
             buttonText: aboutUs.buttonText,
             buttonLink: aboutUs.buttonLink,
             locale: 'en',
-            publishedAt: new Date(),
           },
+          status: 'published',
         });
         strapi.log.info('Created About Us Section (EN)');
 
@@ -356,8 +359,8 @@ export async function seedDatabase(strapi: Core.Strapi) {
                 sectionTitle: locData.sectionTitle,
                 heading: locData.heading,
                 buttonText: locData.buttonText,
-                publishedAt: new Date(),
               },
+              status: 'published',
             });
             strapi.log.info(`Created About Us Section (${locale.toUpperCase()})`);
           } catch (_e) {
@@ -390,8 +393,8 @@ export async function seedDatabase(strapi: Core.Strapi) {
             sectionTitle: whyUs.sectionTitle,
             features: featuresEn,
             locale: 'en',
-            publishedAt: new Date(),
           },
+          status: 'published',
         });
         strapi.log.info('Created Why Us Section (EN)');
 
@@ -413,8 +416,8 @@ export async function seedDatabase(strapi: Core.Strapi) {
               data: {
                 sectionTitle: locData.sectionTitle,
                 features: featuresLocale,
-                publishedAt: new Date(),
               },
+              status: 'published',
             });
             strapi.log.info(`Created Why Us Section (${locale.toUpperCase()})`);
           } catch (_e) {
@@ -443,8 +446,8 @@ export async function seedDatabase(strapi: Core.Strapi) {
             paragraph1: headerAbout.paragraph1,
             paragraph2: headerAbout.paragraph2,
             locale: 'en',
-            publishedAt: new Date(),
           },
+          status: 'published',
         });
         strapi.log.info('Created Header About (EN)');
 
@@ -457,8 +460,8 @@ export async function seedDatabase(strapi: Core.Strapi) {
               data: {
                 paragraph1: locData.paragraph1,
                 paragraph2: locData.paragraph2,
-                publishedAt: new Date(),
               },
+              status: 'published',
             });
             strapi.log.info(`Created Header About (${locale.toUpperCase()})`);
           } catch (_e) {
@@ -499,8 +502,8 @@ export async function seedDatabase(strapi: Core.Strapi) {
               deliveryReturnsLink: headerContact.deliveryReturnsLink,
               deliveryReturnsUrl: headerContact.deliveryReturnsUrl,
               locale: 'en',
-              publishedAt: new Date(),
             },
+            status: 'published',
           });
         strapi.log.info('Created Header Contact (EN)');
 
@@ -518,8 +521,8 @@ export async function seedDatabase(strapi: Core.Strapi) {
                 deliveryTitle: locData.deliveryTitle,
                 deliverySupportLink: locData.deliverySupportLink,
                 deliveryReturnsLink: locData.deliveryReturnsLink,
-                publishedAt: new Date(),
               },
+              status: 'published',
             });
             strapi.log.info(`Created Header Contact (${locale.toUpperCase()})`);
           } catch (_e) {
@@ -553,8 +556,8 @@ export async function seedDatabase(strapi: Core.Strapi) {
               keywords: siteSettings.keywords,
               twitterHandle: siteSettings.twitterHandle,
               locale: 'en',
-              publishedAt: new Date(),
             },
+            status: 'published',
           });
         strapi.log.info('Created Site Settings (EN)');
 
@@ -568,8 +571,8 @@ export async function seedDatabase(strapi: Core.Strapi) {
                 siteTitle: locData.siteTitle,
                 siteDescription: locData.siteDescription,
                 keywords: locData.keywords,
-                publishedAt: new Date(),
               },
+              status: 'published',
             });
             strapi.log.info(`Created Site Settings (${locale.toUpperCase()})`);
           } catch (_e) {
@@ -581,6 +584,52 @@ export async function seedDatabase(strapi: Core.Strapi) {
       }
     } catch (_e) {
       strapi.log.warn('Site Settings content type not found, skipping...');
+    }
+
+    // Setup public permissions for API access
+    strapi.log.info('Setting up public permissions...');
+    try {
+      const publicRole = await strapi
+        .query('plugin::users-permissions.role')
+        .findOne({ where: { type: 'public' } });
+
+      if (publicRole) {
+        const permissions = [
+          // Collection types
+          { action: 'api::product.product.find' },
+          { action: 'api::product.product.findOne' },
+          { action: 'api::category.category.find' },
+          { action: 'api::category.category.findOne' },
+          { action: 'api::brand.brand.find' },
+          { action: 'api::brand.brand.findOne' },
+          { action: 'api::color.color.find' },
+          { action: 'api::color.color.findOne' },
+          { action: 'api::faq.faq.find' },
+          { action: 'api::faq.faq.findOne' },
+          // Single types
+          { action: 'api::hero.hero.find' },
+          { action: 'api::about-us.about-us.find' },
+          { action: 'api::why-us.why-us.find' },
+          { action: 'api::header-about.header-about.find' },
+          { action: 'api::header-contact.header-contact.find' },
+          { action: 'api::site-setting.site-setting.find' },
+        ];
+
+        for (const perm of permissions) {
+          const existingPerm = await strapi.query('plugin::users-permissions.permission').findOne({
+            where: { action: perm.action, role: publicRole.id },
+          });
+
+          if (!existingPerm) {
+            await strapi.query('plugin::users-permissions.permission').create({
+              data: { action: perm.action, role: publicRole.id },
+            });
+          }
+        }
+        strapi.log.info('Public permissions configured successfully');
+      }
+    } catch (_e) {
+      strapi.log.warn('Failed to configure public permissions');
     }
 
     strapi.log.info('Database seed completed successfully!');
