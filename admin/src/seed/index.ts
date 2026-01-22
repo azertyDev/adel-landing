@@ -228,14 +228,18 @@ export async function seedDatabase(strapi: Core.Strapi) {
               data: {
                 name: locData.name,
                 description: locData.description,
-                specs: locData.specs || product.specs,
-                features: locData.features || product.features,
+                specs: locData.specs ?? product.specs,
+                features: locData.features ?? product.features,
+                variants, // Required field, not localized
                 publishedAt: new Date(),
               },
             });
             strapi.log.info(`Created ${locale} localization for product: ${product.name}`);
-          } catch (_e) {
-            strapi.log.warn(`Failed to create ${locale} localization for product: ${product.name}`);
+          } catch (e) {
+            strapi.log.error(
+              `Failed to create ${locale} localization for product: ${product.name}`
+            );
+            strapi.log.error(e instanceof Error ? e.message : String(e));
           }
         }
       }
