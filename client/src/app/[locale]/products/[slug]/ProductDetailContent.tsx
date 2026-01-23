@@ -60,10 +60,9 @@ export function ProductDetailContent({ product, relatedProducts }: ProductDetail
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-12 rounded-3xl md:rounded-[60px] lg:rounded-[80px] bg-white/40 p-4 sm:p-6 md:p-8 lg:p-10">
         {/* Gallery */}
         <ProductGallery
+          key={selectedColorIndex}
           images={galleryImages}
           productName={product.name}
-          selectedIndex={selectedColorIndex}
-          onIndexChange={setSelectedColorIndex}
         />
 
         {/* Product Info */}
