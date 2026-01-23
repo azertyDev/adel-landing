@@ -1,12 +1,14 @@
 // Strapi v5 API response types
 
+export interface PaginationMeta {
+  page: number;
+  pageSize: number;
+  pageCount: number;
+  total: number;
+}
+
 export interface StrapiMeta {
-  pagination?: {
-    page: number;
-    pageSize: number;
-    pageCount: number;
-    total: number;
-  };
+  pagination?: PaginationMeta;
 }
 
 export interface StrapiResponse<T> {
@@ -132,6 +134,12 @@ export interface Product {
   brandId?: string;
   category?: Category;
   brand?: Brand;
+}
+
+// Paginated products response for frontend use
+export interface PaginatedProducts {
+  products: Product[];
+  meta: PaginationMeta;
 }
 
 export interface Category {

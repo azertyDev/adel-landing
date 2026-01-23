@@ -2,80 +2,56 @@
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import type { Product } from '@/shared/api/strapi';
-import { Breadcrumbs, Button, Container, Heading, Pagination, Text } from '@/shared/ui';
-import { ActiveFilters, defaultFilters, type FilterState, ProductGrid } from '@/widgets';
-
-const ITEMS_PER_PAGE = 24;
+import { useCallback, useMemo } from 'react';
+import type { PaginationMeta, Product } from '@/shared/api/strapi';
+import { Breadcrumbs, Button, Container, Heading, Text } from '@/shared/ui';
+import { ActiveFilters, ProductGrid } from '@/widgets';
+import { PageSizeSelector } from './PageSizeSelector';
+import { ServerPagination } from './ServerPagination';
 
 interface ProductsPageClientProps {
   products: Product[];
+  meta: PaginationMeta;
+  initialColors: string[];
 }
 
-export function ProductsPageClient({ products }: ProductsPageClientProps) {
+export function ProductsPageClient({ products, meta, initialColors }: ProductsPageClientProps) {
   const t = useTranslations('products');
   const navT = useTranslations('navigation');
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const [filters, setFilters] = useState<FilterState>(defaultFilters);
-  const [currentPage, setCurrentPage] = useState(1);
 
-  // Read filters and page from URL on mount
-  useEffect(() => {
-    const categoriesParam = searchParams.get('categories');
-    const brandsParam = searchParams.get('brands');
-    const priceMinParam = searchParams.get('priceMin');
-    const priceMaxParam = searchParams.get('priceMax');
-    const colorsParam = searchParams.get('colors');
-    const pageParam = searchParams.get('page');
-
-    setFilters({
-      categories: categoriesParam ? categoriesParam.split(',') : [],
-      brands: brandsParam ? brandsParam.split(',') : [],
-      priceMin: priceMinParam ? Number(priceMinParam) : null,
-      priceMax: priceMaxParam ? Number(priceMaxParam) : null,
-      colors: colorsParam ? colorsParam.split(',') : [],
-    });
-    setCurrentPage(pageParam ? Number(pageParam) : 1);
-  }, [searchParams]);
-
+  // Client-side color filtering only
   const filteredProducts = useMemo(() => {
-    return products.filter((product) => {
-      const matchesCategory =
-        filters.categories.length === 0 ||
-        (product.categoryId && filters.categories.includes(product.categoryId));
-      const matchesBrand =
-        filters.brands.length === 0 ||
-        (product.brandId && filters.brands.includes(product.brandId));
-      const matchesPriceMin = filters.priceMin === null || product.price >= filters.priceMin;
-      const matchesPriceMax = filters.priceMax === null || product.price <= filters.priceMax;
-      const matchesColor =
-        filters.colors.length === 0 ||
-        filters.colors.some((color) =>
-          product.colorVariants.some((v) => v.hex === color || v.name === color)
-        );
+    if (initialColors.length === 0) return products;
 
-      return matchesCategory && matchesBrand && matchesPriceMin && matchesPriceMax && matchesColor;
-    });
-  }, [products, filters]);
+    return products.filter((product) =>
+      initialColors.some((color) =>
+        product.colorVariants.some((v) => v.hex === color || v.name === color)
+      )
+    );
+  }, [products, initialColors]);
 
-  // Pagination
-  const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
-  const paginatedProducts = useMemo(() => {
-    const start = (currentPage - 1) * ITEMS_PER_PAGE;
-    return filteredProducts.slice(start, start + ITEMS_PER_PAGE);
-  }, [filteredProducts, currentPage]);
+  // Helper to build URL with preserved params
+  const buildUrl = useCallback(
+    (newParams: Record<string, string | number | undefined>) => {
+      const params = new URLSearchParams(searchParams.toString());
 
-  const handlePageChange = useCallback((page: number) => {
-    setCurrentPage(page);
-    // Scroll to top
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
+      for (const [key, value] of Object.entries(newParams)) {
+        if (value === undefined || value === '') {
+          params.delete(key);
+        } else {
+          params.set(key, String(value));
+        }
+      }
+
+      return `${pathname}?${params.toString()}`;
+    },
+    [pathname, searchParams]
+  );
 
   const clearAllFilters = useCallback(() => {
-    setFilters(defaultFilters);
     router.push(pathname);
   }, [router, pathname]);
 
@@ -86,25 +62,24 @@ export function ProductsPageClient({ products }: ProductsPageClientProps) {
       <Breadcrumbs items={breadcrumbs} className="mb-6" />
 
       <div className="mb-8">
-        <Heading as="h1" className="mb-2">
-          {t('title')}
-        </Heading>
-        <Text variant="muted" className="mb-4">
-          {filteredProducts.length} {filteredProducts.length === 1 ? 'product' : 'products'}
-        </Text>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
+          <div>
+            <Heading as="h1" className="mb-2">
+              {t('title')}
+            </Heading>
+            <Text variant="muted">
+              {meta.total} {meta.total === 1 ? 'product' : 'products'}
+            </Text>
+          </div>
+          <PageSizeSelector current={meta.pageSize} buildUrl={buildUrl} />
+        </div>
         <ActiveFilters />
       </div>
 
       {filteredProducts.length > 0 ? (
         <>
-          <ProductGrid products={paginatedProducts} />
-          {totalPages > 1 && (
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={handlePageChange}
-            />
-          )}
+          <ProductGrid products={filteredProducts} />
+          {meta.pageCount > 1 && <ServerPagination meta={meta} buildUrl={buildUrl} />}
         </>
       ) : (
         <div className="flex flex-col items-center justify-center py-16 text-center">

@@ -19,7 +19,7 @@ type Props = {
 export async function generateStaticParams({ params }: { params: { locale: string } }) {
   const { locale } = params;
   try {
-    const products = await getProducts(locale);
+    const { products } = await getProducts(locale, { pageSize: 100 });
     return products.map((product) => ({
       slug: product.slug,
     }));
@@ -68,17 +68,17 @@ export default async function ProductDetailPage({ params }: Props) {
 
   try {
     // Fetch category and brand in parallel
-    const [categoryData, brandData, allProducts] = await Promise.all([
+    const [categoryData, brandData, productsResult] = await Promise.all([
       product.categoryId ? getCategory(product.categoryId, locale) : null,
       product.brandId ? getBrand(product.brandId, locale) : null,
-      getProducts(locale),
+      getProducts(locale, { pageSize: 100 }),
     ]);
 
     category = categoryData;
     brand = brandData;
 
     // Get related products from same category
-    relatedProducts = allProducts
+    relatedProducts = productsResult.products
       .filter((p) => p.categoryId === product.categoryId && p.id !== product.id)
       .slice(0, 4);
   } catch (error) {

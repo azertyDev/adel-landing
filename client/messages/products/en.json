@@ -16,6 +16,9 @@
     "description": "Try adjusting your filters or search terms",
     "title": "No products found"
   },
+  "pagination": {
+    "show": "Show"
+  },
   "sort": {
     "label": "Sort by",
     "nameAsc": "Name: A-Z",

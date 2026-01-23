@@ -1,3 +1,4 @@
+export type { GetProductsOptions } from './client';
 export {
   getAboutUs,
   getBrand,
@@ -21,6 +22,8 @@ export type {
   ColorVariant,
   FAQItem,
   HeroSection,
+  PaginatedProducts,
+  PaginationMeta,
   Product,
   ProductSpec,
   WhyUsFeature,

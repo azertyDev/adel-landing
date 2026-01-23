@@ -8,6 +8,8 @@ import type {
   HeaderAboutSection,
   HeaderContactSection,
   HeroSection,
+  PaginatedProducts,
+  PaginationMeta,
   Product,
   ProductFeature,
   ProductSpec,
@@ -86,7 +88,7 @@ function mapProduct(entity: StrapiProduct): Product {
     model: entity.model || null,
     size: entity.size || null,
     colorVariants,
-    thumbnail: defaultVariant?.image || '/image/general-img-square.png',
+    thumbnail: defaultVariant?.image || '/image/placeholder.png',
     specs: (entity.specs as ProductSpec[]) || [],
     features: (entity.features || []).map(mapProductFeature),
     inStock: entity.inStock,
@@ -154,6 +156,29 @@ type FetchOptions = {
   };
 };
 
+// Helper to build nested filter params for Strapi
+function buildFilterParams(
+  params: URLSearchParams,
+  filters: Record<string, unknown>,
+  prefix = 'filters'
+): void {
+  for (const [key, value] of Object.entries(filters)) {
+    const paramKey = `${prefix}[${key}]`;
+
+    if (Array.isArray(value)) {
+      // Handle arrays for $in operator: filters[category][documentId][$in][0]=id1
+      for (let i = 0; i < value.length; i++) {
+        params.set(`${paramKey}[${i}]`, String(value[i]));
+      }
+    } else if (typeof value === 'object' && value !== null) {
+      // Recursively handle nested objects
+      buildFilterParams(params, value as Record<string, unknown>, paramKey);
+    } else {
+      params.set(paramKey, String(value));
+    }
+  }
+}
+
 // biome-ignore lint/complexity/noExcessiveCognitiveComplexity: complex URL building logic
 async function fetchStrapi<T>(
   endpoint: string,
@@ -189,16 +214,7 @@ async function fetchStrapi<T>(
   }
 
   if (filters) {
-    for (const [key, value] of Object.entries(filters)) {
-      if (typeof value === 'object' && value !== null) {
-        // Handle nested filter operators like { $eq: 'value' }
-        for (const [operator, operatorValue] of Object.entries(value)) {
-          params.set(`filters[${key}][${operator}]`, String(operatorValue));
-        }
-      } else {
-        params.set(`filters[${key}]`, String(value));
-      }
-    }
+    buildFilterParams(params, filters);
   }
 
   if (sort) {
@@ -231,7 +247,39 @@ async function fetchStrapi<T>(
 }
 
 // Products API
-export async function getProducts(locale = 'ru'): Promise<Product[]> {
+export interface GetProductsOptions {
+  page?: number;
+  pageSize?: number;
+  categories?: string[];
+  brands?: string[];
+  priceMin?: number;
+  priceMax?: number;
+}
+
+export async function getProducts(
+  locale = 'ru',
+  options: GetProductsOptions = {}
+): Promise<PaginatedProducts> {
+  const { page = 1, pageSize = 24, categories, brands, priceMin, priceMax } = options;
+
+  // Build filters for Strapi
+  const filters: Record<string, unknown> = {};
+
+  if (categories?.length) {
+    filters.category = { documentId: { $in: categories } };
+  }
+
+  if (brands?.length) {
+    filters.brand = { documentId: { $in: brands } };
+  }
+
+  if (priceMin !== undefined || priceMax !== undefined) {
+    const priceFilter: Record<string, number> = {};
+    if (priceMin !== undefined) priceFilter.$gte = priceMin;
+    if (priceMax !== undefined) priceFilter.$lte = priceMax;
+    filters.price = priceFilter;
+  }
+
   const response = await fetchStrapi<StrapiProduct[]>('/products', {
     locale,
     populate: {
@@ -240,9 +288,21 @@ export async function getProducts(locale = 'ru'): Promise<Product[]> {
       brand: true,
       features: { populate: ['icon'] },
     },
+    filters: Object.keys(filters).length > 0 ? filters : undefined,
+    pagination: { page, pageSize },
   });
 
-  return response.data.map(mapProduct);
+  const defaultMeta: PaginationMeta = {
+    page,
+    pageSize,
+    pageCount: 1,
+    total: response.data.length,
+  };
+
+  return {
+    products: response.data.map(mapProduct),
+    meta: response.meta.pagination ?? defaultMeta,
+  };
 }
 
 export async function getProduct(documentId: string, locale = 'ru'): Promise<Product | null> {
