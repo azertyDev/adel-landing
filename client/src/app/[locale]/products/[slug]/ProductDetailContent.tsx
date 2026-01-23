@@ -181,16 +181,6 @@ export function ProductDetailContent({ product, relatedProducts }: ProductDetail
         </Section>
       )}
 
-      {/* Related Products */}
-      {relatedProducts.length > 0 && (
-        <Section className="py-4 sm:py-6 md:py-10 lg:py-14 xl:py-16">
-          <Heading as="h2" className="mb-8">
-            {t('relatedProducts')}
-          </Heading>
-          <ProductGrid products={relatedProducts} />
-        </Section>
-      )}
-
       {/* Product Features */}
       {product.features.length > 0 && (
         <Section className="py-4 sm:py-6 md:py-10 lg:py-14 xl:py-16">
@@ -219,6 +209,16 @@ export function ProductDetailContent({ product, relatedProducts }: ProductDetail
               </div>
             ))}
           </div>
+        </Section>
+      )}
+
+      {/* Related Products */}
+      {relatedProducts.length > 0 && (
+        <Section className="py-4 sm:py-6 md:py-10 lg:py-14 xl:py-16">
+          <Heading as="h2" className="mb-8">
+            {t('relatedProducts')}
+          </Heading>
+          <ProductGrid products={relatedProducts} />
         </Section>
       )}
     </Container>

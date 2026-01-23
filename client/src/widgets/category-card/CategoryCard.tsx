@@ -35,7 +35,7 @@ export function CategoryCard({ category, className }: CategoryCardProps) {
 
           <div className="relative h-32 w-28">
             <Image
-              src={category.image || '/image/general-img-square.png'}
+              src={category.image || '/image/placeholder.png'}
               alt={category.name}
               fill
               sizes="112px"
@@ -61,7 +61,7 @@ export function CategoryCard({ category, className }: CategoryCardProps) {
             )}
           >
             <Image
-              src={category.image || '/image/general-img-square.png'}
+              src={category.image || '/image/placeholder.png'}
               alt={category.name}
               fill
               sizes="(max-width: 640px) 112px, (max-width: 768px) 128px, (max-width: 1024px) 160px, (max-width: 1280px) 288px, 384px"

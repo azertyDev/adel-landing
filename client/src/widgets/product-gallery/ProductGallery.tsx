@@ -60,7 +60,7 @@ export function ProductGallery({
             className="relative h-4/5 w-9/12 sm:h-5/6 sm:w-8/12 lg:w-7/12"
           >
             <Image
-              src={images[currentIndex] || '/image/general-img-square.png'}
+              src={images[currentIndex] || '/image/placeholder.png'}
               alt={`${productName} - Image ${currentIndex + 1}`}
               fill
               className="object-contain"
