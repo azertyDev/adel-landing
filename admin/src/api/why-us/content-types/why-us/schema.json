@@ -31,7 +31,12 @@
       "component": "shared.why-us-feature",
       "required": true,
       "min": 1,
-      "max": 6
+      "max": 6,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }
