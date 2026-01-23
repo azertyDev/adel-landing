@@ -201,13 +201,13 @@ async function fetchStrapi<T>(
         params.set(`populate[${i}]`, populate[i]);
       }
     } else if (typeof populate === 'object') {
-      // Handle nested populate: { variants: { populate: ['image'] }, category: true }
+      // Handle nested populate: { variants: { populate: ['images'] }, category: true }
       for (const [key, value] of Object.entries(populate)) {
         if (value === true) {
           // Simple populate: category: true
           params.set(`populate[${key}]`, 'true');
         } else if (typeof value === 'object' && value !== null && 'populate' in value) {
-          // Nested populate: variants: { populate: ['image', 'color'] }
+          // Nested populate: variants: { populate: ['images', 'color'] }
           const nestedPopulate = value.populate as string[];
           for (let i = 0; i < nestedPopulate.length; i++) {
             params.set(`populate[${key}][populate][${i}]`, nestedPopulate[i]);
@@ -289,7 +289,7 @@ export async function getProducts(
   const response = await fetchStrapi<StrapiProduct[]>('/products', {
     locale,
     populate: {
-      variants: { populate: ['image', 'color'] },
+      variants: { populate: ['images', 'color'] },
       category: true,
       brand: true,
       features: { populate: ['icon'] },
@@ -316,7 +316,7 @@ export async function getProduct(documentId: string, locale = 'ru'): Promise<Pro
     const response = await fetchStrapi<StrapiProduct>(`/products/${documentId}`, {
       locale,
       populate: {
-        variants: { populate: ['image', 'color'] },
+        variants: { populate: ['images', 'color'] },
         category: true,
         brand: true,
         features: { populate: ['icon'] },
@@ -334,7 +334,7 @@ export async function getProductBySlug(slug: string, locale = 'ru'): Promise<Pro
     const response = await fetchStrapi<StrapiProduct[]>('/products', {
       locale,
       populate: {
-        variants: { populate: ['image', 'color'] },
+        variants: { populate: ['images', 'color'] },
         category: true,
         brand: true,
         features: { populate: ['icon'] },
@@ -356,7 +356,7 @@ export async function getProductsByCategory(
   const response = await fetchStrapi<StrapiProduct[]>('/products', {
     locale,
     populate: {
-      variants: { populate: ['image', 'color'] },
+      variants: { populate: ['images', 'color'] },
       category: true,
       brand: true,
       features: { populate: ['icon'] },
