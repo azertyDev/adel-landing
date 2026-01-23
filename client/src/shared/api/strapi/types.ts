@@ -65,7 +65,7 @@ export interface ProductSpec {
 export interface StrapiProductVariant {
   id: number;
   color: StrapiColor | null;
-  image: StrapiMedia | null;
+  images: StrapiMedia[];
 }
 
 // Strapi product feature component
@@ -240,7 +240,7 @@ export interface ColorVariant {
   id: string;
   name: string;
   hex: string;
-  image: string;
+  images: string[];
 }
 
 // ProductFeature for product page highlights

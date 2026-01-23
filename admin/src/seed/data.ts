@@ -155,8 +155,8 @@ export const products = [
     brandSlug: 'adel',
     description: 'Compact and efficient coffee machine with modern design.',
     variants: [
-      { color: '#C0C0C0', image: 'AD6628T.png' },
-      { color: '#000000', image: 'AD6628T 侧面.png' },
+      { color: '#C0C0C0', images: ['AD6628T.png'] },
+      { color: '#000000', images: ['AD6628T 侧面.png'] },
     ],
     specs: [
       { label: 'Power', value: '1000W' },
@@ -210,8 +210,8 @@ export const products = [
     brandSlug: 'adel',
     description: 'Advanced coffee machine with enhanced brewing capabilities.',
     variants: [
-      { color: '#C0C0C0', image: 'AD6629T.png' },
-      { color: '#000000', image: 'AD6629T-2.png' },
+      { color: '#C0C0C0', images: ['AD6629T.png'] },
+      { color: '#000000', images: ['AD6629T-2.png'] },
     ],
     specs: [
       { label: 'Power', value: '1200W' },
@@ -265,8 +265,8 @@ export const products = [
     brandSlug: 'adel',
     description: 'Premium coffee machine with professional-grade features.',
     variants: [
-      { color: '#000000', image: 'AD6858 正面.jpg' },
-      { color: '#C0C0C0', image: 'AD6858 侧面.png' },
+      { color: '#000000', images: ['AD6858 正面.jpg'] },
+      { color: '#C0C0C0', images: ['AD6858 侧面.png'] },
     ],
     specs: [
       { label: 'Power', value: '1400W' },
@@ -317,8 +317,8 @@ export const products = [
     brandSlug: 'adel',
     description: 'Versatile coffee machine with multiple brewing modes.',
     variants: [
-      { color: '#C0C0C0', image: 'AD7203 正面.png' },
-      { color: '#000000', image: 'AD7203 侧视图.png' },
+      { color: '#C0C0C0', images: ['AD7203 正面.png'] },
+      { color: '#000000', images: ['AD7203 侧视图.png'] },
     ],
     specs: [
       { label: 'Power', value: '1300W' },
@@ -366,8 +366,8 @@ export const products = [
     brandSlug: 'adel',
     description: 'Smart coffee machine with programmable settings.',
     variants: [
-      { color: '#000000', image: 'AD7205.png' },
-      { color: '#C0C0C0', image: 'AD7205 正.png' },
+      { color: '#000000', images: ['AD7205.png'] },
+      { color: '#C0C0C0', images: ['AD7205 正.png'] },
     ],
     specs: [
       { label: 'Power', value: '1350W' },
@@ -415,8 +415,8 @@ export const products = [
     brandSlug: 'adel',
     description: 'High-end coffee machine with built-in grinder.',
     variants: [
-      { color: '#C0C0C0', image: 'AD7310.png' },
-      { color: '#000000', image: 'AD7310 正面.png' },
+      { color: '#C0C0C0', images: ['AD7310.png'] },
+      { color: '#000000', images: ['AD7310 正面.png'] },
     ],
     specs: [
       { label: 'Power', value: '1500W' },
@@ -467,8 +467,8 @@ export const products = [
     brandSlug: 'adel',
     description: 'Premium automatic coffee machine with touch display.',
     variants: [
-      { color: '#000000', image: 'AD7311.png' },
-      { color: '#C0C0C0', image: 'AD7311 正面.png' },
+      { color: '#000000', images: ['AD7311.png'] },
+      { color: '#C0C0C0', images: ['AD7311 正面.png'] },
     ],
     specs: [
       { label: 'Power', value: '1550W' },
@@ -523,8 +523,8 @@ export const products = [
     brandSlug: 'demaria',
     description: 'Professional coffee grinder with precision settings.',
     variants: [
-      { color: '#000000', image: 'cg018-正视图.png' },
-      { color: '#C0C0C0', image: 'cg018-左视图.png' },
+      { color: '#000000', images: ['cg018-正视图.png'] },
+      { color: '#C0C0C0', images: ['cg018-左视图.png'] },
     ],
     specs: [
       { label: 'Power', value: '200W' },
@@ -572,8 +572,8 @@ export const products = [
     brandSlug: 'demaria',
     description: 'Advanced coffee grinder with burr mechanism.',
     variants: [
-      { color: '#C0C0C0', image: 'CG301正面.png' },
-      { color: '#000000', image: 'CG301侧面.png' },
+      { color: '#C0C0C0', images: ['CG301正面.png'] },
+      { color: '#000000', images: ['CG301侧面.png'] },
     ],
     specs: [
       { label: 'Power', value: '250W' },
@@ -623,7 +623,7 @@ export const products = [
     categorySlug: 'coffee-machines',
     brandSlug: 'demaria',
     description: 'Professional espresso machine with black panel design.',
-    variants: [{ color: '#000000', image: 'CM601-黑色面板正俯视.png' }],
+    variants: [{ color: '#000000', images: ['CM601-黑色面板正俯视.png'] }],
     specs: [
       { label: 'Power', value: '1400W' },
       { label: 'Pressure', value: '15 bar' },
@@ -673,8 +673,8 @@ export const products = [
     brandSlug: 'demaria',
     description: 'Advanced coffee machine with automatic milk frothing.',
     variants: [
-      { color: '#C0C0C0', image: 'CM602正视图.png' },
-      { color: '#000000', image: 'CM602左45度.png' },
+      { color: '#C0C0C0', images: ['CM602正视图.png'] },
+      { color: '#000000', images: ['CM602左45度.png'] },
     ],
     specs: [
       { label: 'Power', value: '1500W' },
@@ -729,8 +729,8 @@ export const products = [
     brandSlug: 'maggie',
     description: 'Multi-functional coffee machine with modern features.',
     variants: [
-      { color: '#C0C0C0', image: 'CM827M.jpg' },
-      { color: '#000000', image: 'CM827M (2).jpg' },
+      { color: '#C0C0C0', images: ['CM827M.jpg'] },
+      { color: '#000000', images: ['CM827M (2).jpg'] },
     ],
     specs: [
       { label: 'Power', value: '1350W' },
@@ -778,8 +778,8 @@ export const products = [
     brandSlug: 'maggie',
     description: 'Premium coffee machine with advanced brewing technology.',
     variants: [
-      { color: '#000000', image: 'CM832.jpg' },
-      { color: '#C0C0C0', image: 'CM832.png' },
+      { color: '#000000', images: ['CM832.jpg'] },
+      { color: '#C0C0C0', images: ['CM832.png'] },
     ],
     specs: [
       { label: 'Power', value: '1450W' },
@@ -834,8 +834,8 @@ export const products = [
     brandSlug: 'demaria',
     description: 'Powerful meat grinder with multiple attachments.',
     variants: [
-      { color: '#808080', image: 'MG-1D (15).jpg' },
-      { color: '#C0C0C0', image: 'MG-1D 灰.jpg' },
+      { color: '#808080', images: ['MG-1D (15).jpg'] },
+      { color: '#C0C0C0', images: ['MG-1D 灰.jpg'] },
     ],
     specs: [
       { label: 'Power', value: '1800W' },
@@ -886,8 +886,8 @@ export const products = [
     brandSlug: 'demaria',
     description: 'Professional meat grinder with sausage making attachments.',
     variants: [
-      { color: '#C0C0C0', image: 'MG-1F 1.jpg' },
-      { color: '#000000', image: 'MG-1F 2.jpg' },
+      { color: '#C0C0C0', images: ['MG-1F 1.jpg'] },
+      { color: '#000000', images: ['MG-1F 2.jpg'] },
     ],
     specs: [
       { label: 'Power', value: '2000W' },
@@ -934,7 +934,7 @@ export const products = [
     categorySlug: 'meat-grinders',
     brandSlug: 'demaria',
     description: 'Heavy-duty meat grinder for commercial use.',
-    variants: [{ color: '#C0C0C0', image: '7897e988300d73520c3bc742f91f6bc.png' }],
+    variants: [{ color: '#C0C0C0', images: ['7897e988300d73520c3bc742f91f6bc.png'] }],
     specs: [
       { label: 'Power', value: '2200W' },
       { label: 'Capacity', value: '3kg/min' },
@@ -980,7 +980,7 @@ export const products = [
     categorySlug: 'meat-grinders',
     brandSlug: 'demaria',
     description: 'Versatile meat grinder with vegetable processing capability.',
-    variants: [{ color: '#C0C0C0', image: 'MGV-高清图.jpg' }],
+    variants: [{ color: '#C0C0C0', images: ['MGV-高清图.jpg'] }],
     specs: [
       { label: 'Power', value: '2000W' },
       { label: 'Capacity', value: '2.5kg/min' },
@@ -1034,8 +1034,8 @@ export const products = [
     brandSlug: 'invitop',
     description: 'Professional stand mixer with powerful motor and multiple attachments.',
     variants: [
-      { color: '#C0C0C0', image: 'Cody Pro 正面.884.png' },
-      { color: '#000000', image: 'Cody Pro 斜面.885.png' },
+      { color: '#C0C0C0', images: ['Cody Pro 正面.884.png'] },
+      { color: '#000000', images: ['Cody Pro 斜面.885.png'] },
     ],
     specs: [
       { label: 'Power', value: '1200W' },
@@ -1090,9 +1090,9 @@ export const products = [
     brandSlug: 'invitop',
     description: 'Elegant stand mixer with quiet operation and precise control.',
     variants: [
-      { color: '#FFFFFF', image: '20230605-Colin 正视图.png' },
-      { color: '#000000', image: '20230605-Colin 侧视图1.png' },
-      { color: '#FFB6C1', image: '白色顶盖正面Colin.png' },
+      { color: '#FFFFFF', images: ['20230605-Colin 正视图.png'] },
+      { color: '#000000', images: ['20230605-Colin 侧视图1.png'] },
+      { color: '#FFB6C1', images: ['白色顶盖正面Colin.png'] },
     ],
     specs: [
       { label: 'Power', value: '1000W' },
@@ -1143,8 +1143,8 @@ export const products = [
     brandSlug: 'invitop',
     description: 'Premium stand mixer with advanced features and large capacity.',
     variants: [
-      { color: '#C0C0C0', image: 'Jupiter plus 正面.945.png' },
-      { color: '#000000', image: 'Jupiter plus 侧面.944.png' },
+      { color: '#C0C0C0', images: ['Jupiter plus 正面.945.png'] },
+      { color: '#000000', images: ['Jupiter plus 侧面.944.png'] },
     ],
     specs: [
       { label: 'Power', value: '1500W' },
@@ -1198,9 +1198,9 @@ export const products = [
     brandSlug: 'invitop',
     description: 'Versatile stand mixer with sleek design and reliable performance.',
     variants: [
-      { color: '#C0C0C0', image: 'Mercury.1671.jpg' },
-      { color: '#000000', image: 'Mercury.1672.jpg' },
-      { color: '#FF0000', image: 'Mercury.1673.jpg' },
+      { color: '#C0C0C0', images: ['Mercury.1671.jpg'] },
+      { color: '#000000', images: ['Mercury.1672.jpg'] },
+      { color: '#FF0000', images: ['Mercury.1673.jpg'] },
     ],
     specs: [
       { label: 'Power', value: '1100W' },
@@ -1251,9 +1251,9 @@ export const products = [
     brandSlug: 'invitop',
     description: 'Compact stand mixer with stylish design and efficient performance.',
     variants: [
-      { color: '#FFFFFF', image: 'zoeplus正面.jpg' },
-      { color: '#FFB6C1', image: 'zoeplus正侧面.jpg' },
-      { color: '#87CEEB', image: 'zoeplus全侧面.19.jpg' },
+      { color: '#FFFFFF', images: ['zoeplus正面.jpg'] },
+      { color: '#FFB6C1', images: ['zoeplus正侧面.jpg'] },
+      { color: '#87CEEB', images: ['zoeplus全侧面.19.jpg'] },
     ],
     specs: [
       { label: 'Power', value: '800W' },
@@ -1304,8 +1304,8 @@ export const products = [
     brandSlug: 'invitop',
     description: 'Multi-functional kitchen machine with food processor capabilities.',
     variants: [
-      { color: '#C0C0C0', image: '01.jpg' },
-      { color: '#000000', image: '03.jpg' },
+      { color: '#C0C0C0', images: ['01.jpg'] },
+      { color: '#000000', images: ['03.jpg'] },
     ],
     specs: [
       { label: 'Power', value: '1500W' },
@@ -1359,8 +1359,8 @@ export const products = [
     brandSlug: 'invitop',
     description: 'Premium kitchen machine with advanced mixing technology.',
     variants: [
-      { color: '#C0C0C0', image: 'APOLO (1).png' },
-      { color: '#000000', image: 'APOLO (2).png' },
+      { color: '#C0C0C0', images: ['APOLO (1).png'] },
+      { color: '#000000', images: ['APOLO (2).png'] },
     ],
     specs: [
       { label: 'Power', value: '1800W' },
@@ -1411,8 +1411,8 @@ export const products = [
     brandSlug: 'invitop',
     description: 'Professional-grade kitchen machine for serious home chefs.',
     variants: [
-      { color: '#C0C0C0', image: 'Titan (1).png' },
-      { color: '#000000', image: 'Titan (2).png' },
+      { color: '#C0C0C0', images: ['Titan (1).png'] },
+      { color: '#000000', images: ['Titan (2).png'] },
     ],
     specs: [
       { label: 'Power', value: '2200W' },
@@ -1473,8 +1473,8 @@ export const products = [
     brandSlug: 'adel',
     description: 'Versatile home appliance with modern design.',
     variants: [
-      { color: '#C0C0C0', image: 'AD9201 正.png' },
-      { color: '#000000', image: 'AD9201 侧.png' },
+      { color: '#C0C0C0', images: ['AD9201 正.png'] },
+      { color: '#000000', images: ['AD9201 侧.png'] },
     ],
     specs: [{ label: 'Power', value: '1000W' }],
     features: [
@@ -1513,8 +1513,8 @@ export const products = [
     brandSlug: 'maggie',
     description: 'Compact home appliance for everyday use.',
     variants: [
-      { color: '#C0C0C0', image: 'AD5320.jpg' },
-      { color: '#000000', image: 'AD5320.png' },
+      { color: '#C0C0C0', images: ['AD5320.jpg'] },
+      { color: '#000000', images: ['AD5320.png'] },
     ],
     specs: [{ label: 'Power', value: '800W' }],
     features: [

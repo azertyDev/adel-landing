@@ -37,12 +37,12 @@ export interface ProductProductFeature extends Struct.ComponentSchema {
 export interface ProductProductVariant extends Struct.ComponentSchema {
   collectionName: 'components_product_product_variants';
   info: {
-    description: 'Product color variant with image';
+    description: 'Product color variant with images';
     displayName: 'Product Variant';
   };
   attributes: {
     color: Schema.Attribute.Relation<'oneToOne', 'api::color.color'>;
-    image: Schema.Attribute.Media<'images'>;
+    images: Schema.Attribute.Media<'images', true>;
   };
 }
 

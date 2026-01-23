@@ -2,7 +2,7 @@
   "collectionName": "components_product_product_variants",
   "info": {
     "displayName": "Product Variant",
-    "description": "Product color variant with image"
+    "description": "Product color variant with images"
   },
   "options": {},
   "attributes": {
@@ -11,9 +11,9 @@
       "relation": "oneToOne",
       "target": "api::color.color"
     },
-    "image": {
+    "images": {
       "type": "media",
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "allowedTypes": ["images"]
     }

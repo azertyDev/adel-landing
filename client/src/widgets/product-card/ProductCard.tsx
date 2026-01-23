@@ -29,11 +29,13 @@ export function ProductCard({ product, className }: ProductCardProps) {
 
   const displayPrice = product.price;
 
-  const currentImage = selectedVariant?.image ?? product.thumbnail;
+  const currentImage = selectedVariant?.images[0] ?? product.thumbnail;
   const altText = `${product.name}${selectedVariant ? ` - ${selectedVariant.name}` : ''}`;
 
-  const handleColorHover = (variant: { image: string }) => {
-    preload(variant.image);
+  const handleColorHover = (variant: { images: string[] }) => {
+    if (variant.images[0]) {
+      preload(variant.images[0]);
+    }
   };
 
   return (

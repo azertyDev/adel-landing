@@ -23,10 +23,10 @@ export function ProductDetailContent({ product, relatedProducts }: ProductDetail
 
   const displayPrice = product.price;
 
-  // Get images from colorVariants for the gallery
+  // Get images from selected color variant for the gallery
   const galleryImages = useMemo(
-    () => product.colorVariants.map((v) => v.image),
-    [product.colorVariants]
+    () => product.colorVariants[selectedColorIndex]?.images || [],
+    [product.colorVariants, selectedColorIndex]
   );
 
   const selectedVariant = product.colorVariants[selectedColorIndex];
@@ -42,7 +42,7 @@ export function ProductDetailContent({ product, relatedProducts }: ProductDetail
   const breadcrumbs = [
     { label: navT('home'), href: '/' },
     { label: navT('products'), href: '/products' },
-    { label: product.category?.name ?? product.name },
+    { label: product.name },
   ];
 
   return (

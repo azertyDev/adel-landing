@@ -63,12 +63,18 @@ function mapProduct(entity: StrapiProduct): Product {
     .filter(
       (variant): variant is StrapiProductVariant & { color: StrapiColor } => variant.color !== null
     )
-    .map((variant) => ({
-      id: `cv-${entity.id}-${variant.id}`,
-      name: variant.color.name,
-      hex: variant.color.hex,
-      image: getMediaUrl(variant.image ?? undefined) || '/image/placeholder.png',
-    }));
+    .map((variant) => {
+      const images = (variant.images || [])
+        .map((img) => getMediaUrl(img))
+        .filter((url): url is string => url !== null);
+
+      return {
+        id: `cv-${entity.id}-${variant.id}`,
+        name: variant.color.name,
+        hex: variant.color.hex,
+        images: images.length > 0 ? images : ['/image/placeholder.png'],
+      };
+    });
 
   // Use first variant as default
   const defaultVariant = colorVariants[0];
@@ -88,7 +94,7 @@ function mapProduct(entity: StrapiProduct): Product {
     model: entity.model || null,
     size: entity.size || null,
     colorVariants,
-    thumbnail: defaultVariant?.image || '/image/placeholder.png',
+    thumbnail: defaultVariant?.images[0] || '/image/placeholder.png',
     specs: (entity.specs as ProductSpec[]) || [],
     features: (entity.features || []).map(mapProductFeature),
     inStock: entity.inStock,
