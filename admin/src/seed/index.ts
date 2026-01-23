@@ -198,6 +198,11 @@ export async function seedDatabase(strapi: Core.Strapi) {
         })
         .filter(Boolean);
 
+      // Log relation IDs for debugging
+      strapi.log.info(
+        `Product ${product.name}: categorySlug=${product.categorySlug}, categoryId=${categoryId}, brandSlug=${product.brandSlug}, brandId=${brandId}`
+      );
+
       const created = await strapi.documents('api::product.product').create({
         data: {
           name: product.name,
@@ -213,8 +218,8 @@ export async function seedDatabase(strapi: Core.Strapi) {
           specs: product.specs,
           features: product.features,
           locale: 'en',
-          category: categoryId,
-          brand: brandId,
+          category: categoryId || undefined,
+          brand: brandId || undefined,
         },
         status: 'published',
       });
@@ -234,6 +239,8 @@ export async function seedDatabase(strapi: Core.Strapi) {
                 specs: locData.specs ?? product.specs,
                 features: locData.features ?? product.features,
                 variants, // Required field, not localized
+                category: categoryId || undefined,
+                brand: brandId || undefined,
               },
               status: 'published',
             });
