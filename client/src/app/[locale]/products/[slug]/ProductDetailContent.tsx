@@ -3,9 +3,10 @@
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { useMemo, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 import type { Brand, Category, Product } from '@/shared/api/strapi';
 import { cn } from '@/shared/lib';
-import { Breadcrumbs, Button, Card, Container, Heading, Section, Text } from '@/shared/ui';
+import { Breadcrumbs, Button, Card, Container, Heading, Section } from '@/shared/ui';
 import { ProductGallery, ProductGrid } from '@/widgets';
 
 interface ProductDetailContentProps {
@@ -130,7 +131,9 @@ export function ProductDetailContent({ product, relatedProducts }: ProductDetail
           {/* Description */}
           <div>
             <p className="text-sm sm:text-base text-gray-500 mb-1 sm:mb-2">{t('description')}:</p>
-            <Text className="text-xs sm:text-sm leading-relaxed">{product.description}</Text>
+            <div className="prose prose-sm max-w-none text-xs sm:text-sm leading-relaxed">
+              <ReactMarkdown>{product.description}</ReactMarkdown>
+            </div>
           </div>
 
           {/* Price */}
