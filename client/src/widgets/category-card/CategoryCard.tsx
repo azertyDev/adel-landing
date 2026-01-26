@@ -17,7 +17,7 @@ export function CategoryCard({ category, className }: CategoryCardProps) {
   const t = useTranslations('common');
 
   return (
-    <Link href={`/products?category=${category.slug}`} className={cn('block', className)}>
+    <Link href={`/products?categories=${category.id}`} className={cn('block', className)}>
       <motion.div
         className={cn(
           'group overflow-hidden bg-[#FFF]/70 bg-cover bg-center transition-shadow hover:shadow-lg',

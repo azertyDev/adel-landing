@@ -42,7 +42,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
     <Link href={`/products/${product.slug}`} className={cn('block', className)}>
       <motion.article
         className={cn(
-          'group relative flex overflow-hidden',
+          'group relative flex overflow-hidden gap-4',
           // Horizontal layout
           'flex-row items-stretch',
           // Padding - responsive (mobile → sm → md → lg → xl)
@@ -58,14 +58,16 @@ export function ProductCard({ product, className }: ProductCardProps) {
         {/* Content - left side */}
         <div className="flex flex-1 flex-col justify-between min-w-0 py-1 sm:py-2">
           {/* Name - responsive */}
-          <h3 className="font-bold text-main leading-tight text-xs sm:text-base md:text-lg lg:text-2xl xl:text-3xl">
+          <h3 className="font-bold text-main leading-tight text-[10px] sm:text-base md:text-lg lg:text-2xl xl:text-3xl">
             {product.name}
           </h3>
 
           {/* Price - hidden on mobile */}
-          <p className="hidden sm:block text-main/70 text-xs md:text-sm lg:text-base xl:text-lg mt-1 lg:mt-2">
-            {formatPrice(displayPrice, product.currency)}
-          </p>
+          {displayPrice !== null && (
+            <p className="hidden font-medium sm:block text-main text-xs md:text-sm lg:text-base xl:text-lg mt-1 lg:mt-2">
+              {formatPrice(displayPrice, product.currency)}
+            </p>
+          )}
 
           {/* Color Selector */}
           {product.colorVariants.length > 0 && (
@@ -80,11 +82,11 @@ export function ProductCard({ product, className }: ProductCardProps) {
         </div>
 
         {/* Image - responsive size */}
-        <div className="relative h-24 sm:h-36 md:h-48 lg:h-56 xl:h-64 w-[38%] sm:w-[42%] lg:w-[45%] shrink-0 flex items-center justify-end">
+        <div className="relative flex items-center justify-end w-[45%] sm:w-[48%] md:w-[50%] lg:w-[52%] xl:w-[55%]">
           <ProductImage
             src={currentImage}
             alt={altText}
-            className="h-full sm:h-25 md:h-32.5 lg:h-45 xl:h-55 w-full"
+            className="relative h-24 w-full sm:h-32 md:h-40 lg:h-52 xl:h-64"
           />
         </div>
       </motion.article>

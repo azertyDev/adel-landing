@@ -844,7 +844,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
         };
       }>;
     originalPrice: Schema.Attribute.Decimal;
-    price: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    price: Schema.Attribute.Decimal;
     publishedAt: Schema.Attribute.DateTime;
     size: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{

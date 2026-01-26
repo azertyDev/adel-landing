@@ -60,8 +60,7 @@
       }
     },
     "price": {
-      "type": "decimal",
-      "required": true
+      "type": "decimal"
     },
     "currency": {
       "type": "enumeration",

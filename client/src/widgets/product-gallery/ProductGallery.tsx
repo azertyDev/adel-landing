@@ -57,7 +57,7 @@ export function ProductGallery({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="relative h-4/5 w-9/12 sm:h-5/6 sm:w-8/12 lg:w-7/12"
+            className="relative h-8/10 w-full sm:h-4/6 md:h-6/8 lg:h-10/12 xl:h-12/12"
           >
             <Image
               src={images[currentIndex] || '/image/placeholder.png'}

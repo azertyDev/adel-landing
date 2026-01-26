@@ -83,7 +83,7 @@ export interface StrapiProduct extends StrapiEntity {
   description: string;
   model: string | null;
   size: string | null;
-  price: number;
+  price: number | null;
   currency: 'USD' | 'EUR' | 'TRY' | 'RUB' | null;
   originalPrice: number | null;
   variants: StrapiProductVariant[];
@@ -120,7 +120,7 @@ export interface Product {
   slug: string;
   name: string;
   description: string;
-  price: number;
+  price: number | null;
   originalPrice: number | null;
   currency: 'USD' | 'EUR' | 'TRY' | 'RUB';
   model: string | null;

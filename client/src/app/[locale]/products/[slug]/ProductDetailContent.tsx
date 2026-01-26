@@ -134,9 +134,11 @@ export function ProductDetailContent({ product, relatedProducts }: ProductDetail
           </div>
 
           {/* Price */}
-          <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-main">
-            {formatPrice(displayPrice, product.currency)}
-          </p>
+          {displayPrice !== null && (
+            <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-main">
+              {formatPrice(displayPrice, product.currency)}
+            </p>
+          )}
 
           {/* CTA Buttons */}
           <div className="flex gap-2 sm:gap-3 lg:gap-4">
